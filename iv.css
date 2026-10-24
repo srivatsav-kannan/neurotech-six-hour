@@ -153,3 +153,6 @@
 }
 @media (prefers-reduced-motion: reduce) { #iv-root * { scroll-behavior: auto !important; } }
 .iv-slide[hidden] { display: none; }
+.iv-weights th, .iv-weights td { text-align: center; font-size: 15px; color: var(--ink-2); padding: 4px 6px; border-bottom: 1px solid var(--ink); }
+.iv-weights th { text-align: left; padding-left: 12px; }
+.iv-weights td.changed { color: var(--accent); font-weight: 600; }

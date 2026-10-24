@@ -16,8 +16,9 @@
   --ink-2: #5d574c;
   --rule: #cdc3ae;
   --accent: #7b2d26;
-  --hot: #e8590c;
-  --cold: #1c7ed6;
+  --navy: #1f3d5a;
+  --brain: #e8dfcb;
+  --brain-edge: #a3967b;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
@@ -32,7 +33,7 @@ body {
   flex-direction: column;
 }
 a { color: inherit; }
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; width: 100%; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; width: 100%; }
 .sc { font-variant: small-caps; letter-spacing: .06em; text-transform: lowercase; }
 
 .top { border-bottom: 1px solid var(--ink); }
@@ -47,12 +48,11 @@ nav a.on:hover { border-color: var(--ink); }
 main { display: none; padding: 48px 0 64px; flex: 1; }
 main.on { display: block; }
 h1 { font-weight: 500; font-size: clamp(34px, 5.5vw, 52px); line-height: 1.08; letter-spacing: -0.01em; margin: 6px 0 16px; }
-h2 { font-weight: 500; font-size: 30px; margin: 0 0 8px; }
-h3 { font-weight: 500; font-size: 23px; margin: 0 0 6px; }
+h2 { font-weight: 500; font-size: 28px; margin: 0 0 16px; }
 .kicker { color: var(--ink-2); font-size: 17px; }
-.lede { font-size: 21px; max-width: 780px; margin: 0 0 12px; }
-section { margin-top: 72px; }
-.prose { max-width: 780px; }
+.lede { font-size: 21px; max-width: 760px; margin: 0; }
+section { margin-top: 64px; }
+.prose { max-width: 760px; }
 .prose p { margin: 0 0 16px; }
 
 /* overview */
@@ -60,68 +60,33 @@ section { margin-top: 72px; }
 .q { padding: 28px 28px 24px; border-top: 5px solid var(--accent); display: flex; flex-direction: column; text-decoration: none; }
 .q + .q { border-left: 1px solid var(--ink); }
 .q .num { font-size: 40px; line-height: 1; color: var(--accent); }
-.q h3 { font-size: 25px; line-height: 1.25; margin: 14px 0 18px; }
+.q h3 { font-weight: 500; font-size: 25px; line-height: 1.25; margin: 14px 0 18px; }
 .q .shows { border-top: 1px solid var(--rule); padding-top: 14px; margin: auto 0 0; color: var(--ink-2); }
 .q .open { margin-top: 18px; font-weight: 600; }
 .q:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .note { margin-top: 20px; color: var(--ink-2); }
 
-/* demo */
-.demo { border: 1px solid var(--ink); margin-top: 28px; background: #f8f4ec; }
-.bar { display: flex; border-bottom: 1px solid var(--ink); }
-.bar input {
-  flex: 1; min-width: 0; font: inherit; font-size: 21px; padding: 14px 16px;
-  border: 0; background: transparent; color: var(--ink); border-radius: 0;
-}
-.bar input:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
-button { font: inherit; cursor: pointer; color: var(--ink); background: transparent; border: 1px solid var(--ink); border-radius: 0; }
-.run { border: 0; border-left: 1px solid var(--ink); background: var(--ink); color: var(--paper); padding: 0 26px; font-weight: 600; }
-.run:disabled { opacity: .5; cursor: wait; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 16px; border-bottom: 1px solid var(--ink); align-items: center; }
-.chips .sc { color: var(--ink-2); font-size: 16px; margin-right: 4px; }
-.chip { font-size: 16px; padding: 3px 10px; border-color: var(--rule); background: var(--paper); }
-.chip:hover, .chip.on { border-color: var(--ink); }
-.status { color: var(--ink-2); font-size: 16px; margin-left: auto; }
+/* figure */
+.fig { border: 1px solid var(--ink); margin-top: 32px; }
+.fig-grid { display: grid; grid-template-columns: 220px 1fr 280px; }
+.fig-grid > div { padding: 18px; }
+.fig-grid > div + div { border-left: 1px solid var(--rule); }
+.lbl { font-size: 17px; margin-bottom: 10px; display: block; }
+.sentence { font-size: 22px; font-style: italic; line-height: 1.35; min-height: 150px; }
+.pager { display: flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--ink-2); font-size: 16px; }
+button { font: inherit; cursor: pointer; color: var(--ink); background: transparent; border: 1px solid var(--ink); border-radius: 0; padding: 2px 12px; }
+button:hover { background: var(--paper-2); }
+svg { display: block; width: 100%; height: auto; }
+.maps { display: grid; gap: 10px; }
+.figcap { margin: 10px 0 0; font-size: 17px; color: var(--ink-2); }
+.maps .cap { display: flex; justify-content: space-between; font-size: 16px; color: var(--ink-2); }
+.readout { border-top: 1px solid var(--ink); padding: 16px 18px; display: grid; grid-template-columns: 220px 1fr; gap: 18px; }
+.readout ol { margin: 0; padding-left: 22px; }
+.readout li { margin-bottom: 2px; }
+.readout li.hit { font-weight: 600; }
+.readout p { margin: 0 0 6px; }
 
-.stage { padding: 4px 0 0; }
-.step { padding: 16px; border-bottom: 1px solid var(--rule); opacity: .45; transition: opacity .5s; }
-.step.on { opacity: 1; }
-.step:last-child { border-bottom: 0; }
-.lbl { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 17px; margin-bottom: 10px; }
-.lbl .n { color: var(--accent); margin-right: 6px; }
-.lbl .side { color: var(--ink-2); font-size: 16px; }
-.wordrow { display: flex; flex-wrap: wrap; gap: 6px; min-height: 42px; }
-.wordrow span { border: 1px dashed var(--rule); padding: 4px 10px; font-size: 20px; min-width: 56px; text-align: center; transition: border-color .3s, background .3s; }
-.wordrow span.in { border: 1px solid var(--ink); background: var(--paper); }
-.wordrow span.now { background: var(--ink); color: var(--paper); }
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-.two > div + div { border-left: 1px solid var(--rule); padding-left: 16px; }
-.two > div:first-child { padding-right: 16px; }
-svg, canvas, img { display: block; max-width: 100%; }
-#lm { width: 100%; height: auto; }
-.brainbox { position: relative; width: 100%; max-width: 440px; margin: 0 auto; }
-.brainbox img { width: 100%; height: auto; }
-.brainbox canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.glow { position: absolute; width: 22%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; opacity: 0; transition: opacity .25s;
-  background: radial-gradient(circle, rgba(255,200,60,.95) 0%, rgba(232,89,12,.7) 35%, rgba(232,89,12,0) 70%); mix-blend-mode: multiply; pointer-events: none; }
-.glow.lit { opacity: 1; }
-
-.eq { display: grid; grid-template-columns: 0.8fr auto 1fr auto 1.9fr; column-gap: 14px; align-items: center; }
-.eq > .lbl { align-self: end; margin-bottom: 8px; }
-.eq .op { font-size: 34px; color: var(--ink-2); text-align: center; }
-.eq .sub { font-size: 16px; color: var(--ink-2); margin-top: 6px; text-align: center; }
-#emb, #wimg { width: 100%; height: auto; border: 1px solid var(--ink); image-rendering: pixelated; background: var(--paper); }
-.scans { display: grid; grid-template-columns: 1fr; gap: 8px; }
-.scans.both { grid-template-columns: 1fr 1fr; }
-.scans figure { margin: 0; }
-.scans figcaption { font-size: 16px; color: var(--ink-2); text-align: center; margin-top: 2px; }
-.scans .measured { display: none; }
-.scans.both .measured { display: block; }
-.legend { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; color: var(--ink-2); margin-top: 8px; }
-.legend i { display: inline-block; width: 120px; height: 8px; background: linear-gradient(90deg, #b4f0fa, #5ac8e6, #1e64d2, #0a286e, #f4efe4, #780a0a, #dc3c14, #ffaa28, #ffeb78); }
-.verdict { padding: 14px 16px; margin: 0; border-top: 1px solid var(--ink); min-height: 56px; }
-
-/* grid used on What to build */
+/* results */
 .grid4 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
 .grid4 > div { padding: 20px 22px; }
 .grid4 > div:nth-child(2n) { border-left: 1px solid var(--rule); }
@@ -131,17 +96,9 @@ svg, canvas, img { display: block; max-width: 100%; }
 .grid4 p { margin: 10px 0 0; }
 .grid4 svg { margin-top: 12px; max-height: 210px; }
 
-
-/* diagrams */
-.diagram { border: 1px solid var(--ink); margin-top: 20px; display: grid; grid-template-columns: 1fr 1.5fr; }
-.diagram > div { padding: 22px; }
-.diagram > div + div { border-left: 1px solid var(--rule); display: flex; align-items: center; }
-.diagram p { margin: 0 0 12px; }
-.diagram svg { width: 100%; height: auto; }
-.flow { stroke-dasharray: 5 6; animation: flow 1.2s linear infinite; }
-@keyframes flow { to { stroke-dashoffset: -22; } }
-@media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
-
+.files { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.files a { text-decoration: none; border: 1px solid var(--ink); padding: 6px 14px; }
+.files a:hover { background: var(--paper-2); }
 .refs { padding-left: 20px; margin: 0; color: var(--ink-2); }
 .refs li { margin-bottom: 4px; }
 .pending { border: 1px solid var(--ink); padding: 40px 24px; margin-top: 32px; color: var(--ink-2); }
@@ -153,24 +110,24 @@ footer li { white-space: nowrap; }
 footer .gh { display: flex; flex: none; }
 footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 
-@media (max-width: 860px) {
-  .eq { grid-template-columns: 1fr; }
-  .eq > .lbl, .eq > div:empty { display: none; }
-  .eq .op { font-size: 26px; }
-  .diagram { grid-template-columns: 1fr; }
-  .diagram > div + div { border-left: 0; border-top: 1px solid var(--rule); }
+@media (max-width: 900px) {
+  .fig-grid { grid-template-columns: 1fr; }
+  .fig-grid > div + div { border-left: 0; border-top: 1px solid var(--rule); }
+  .sentence { min-height: 0; }
+  .readout { grid-template-columns: 1fr; gap: 6px; }
+  .maps { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 720px) {
   body { font-size: 18px; }
   .qs { grid-template-columns: 1fr; }
   .q + .q { border-left: 0; }
-  .two { grid-template-columns: 1fr; }
-  .two > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 14px; margin-top: 14px; }
-  .two > div:first-child { padding-right: 0; }
-  .status { margin-left: 0; width: 100%; }
+  .grid4 { grid-template-columns: 1fr; }
+  .grid4 > div:nth-child(2n) { border-left: 0; }
+  .grid4 > div:nth-child(n+2) { border-top: 1px solid var(--rule); }
   nav a { padding: 6px 8px; }
   footer ul { column-gap: 14px; font-size: 14px; }
 }
+
 /* story structure */
 .beats { list-style: none; margin: 40px 0 0; padding: 0; border: 1px solid var(--ink); }
 .beats li { display: grid; grid-template-columns: 64px 1fr; gap: 8px; padding: 24px 28px 22px 20px; }
@@ -190,6 +147,7 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 .bridge.next { margin-top: 56px; font-size: 20px; color: var(--ink); }
 .bridge a { font-weight: 600; text-decoration: none; }
 .bridge a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.question { font-size: 24px; line-height: 1.3; font-style: italic; max-width: 820px; margin: 4px 0 26px; padding-bottom: 22px; border-bottom: 1px solid var(--rule); }
 .build-grid h3 { font-weight: 500; font-size: 23px; line-height: 1.25; margin: 6px 0 0; }
 @media (max-width: 720px) {
   .beats li { grid-template-columns: 40px 1fr; padding: 18px 16px; }
@@ -210,8 +168,8 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
     <a class="brand" href="#">Neurotech &amp; BCI</a>
     <nav>
       <a href="#" data-to="home">Overview</a>
-      <a href="#iv" data-to="iv">IV</a>
-      <a href="#iii" data-to="iii">III</a>
+      <a href="#iv" data-to="iv">Most promising field</a>
+      <a href="#iii" data-to="iii">LLMs and the brain</a>
       <a href="#build" data-to="build">What to build</a>
     </nav>
   </div>
@@ -220,8 +178,8 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="home">
   <div class="wrap">
     <div class="kicker sc">6 Hour Challenge · Saturday 24 October 2026</div>
-    <h1>The next decade of neurotech will be won in the last mile</h1>
-    <p class="lede">New hardware gets the headlines, but our research points somewhere else. The biggest gains will come from the software, data and access that make existing brain technology work for more patients.</p>
+    <h1>Which neurotechnology will reach patients first?</h1>
+    <p class="lede">For the Neurotech and BCI track, we compared biohybrid implants, connectomics and brain stimulation on six criteria (question IV), tested how language models can decode the brain using a real fMRI dataset (question III), and turned both into what a company should build next.</p>
 
     <ol class="beats">
       <li>
@@ -234,15 +192,15 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
       <li>
         <span class="num">2</span>
         <div>
-          <h3>So we asked which technology reaches patients first, and what&rsquo;s in the way.</h3>
+          <h3>We judged three very different fields by how close each is to helping patients, and what stands in the way.</h3>
           <p>Biohybrid implants, connectomics and brain stimulation aren&rsquo;t on the same axis: one is a new interface, one is a mapping tool, one is a therapy already in clinics. We judged them on six criteria borrowed from DARPA, Stanford Biodesign, NASA and the FDA.</p>
         </div>
       </li>
       <li>
         <span class="num">3</span>
         <div>
-          <h3>Brain stimulation does, and connectomics and biohybrids will reach patients through it.</h3>
-          <p>Stimulation is the only one of the three backed by repeated randomized trials and an adaptive system approved in 2025. Connectomics tells it where to aim; biohybrids may one day replace its electrode.</p>
+          <h3>Brain stimulation is furthest along, and the other two fields will mostly reach patients by making it better.</h3>
+          <p>Stimulation is the only one of the three backed by repeated randomized trials and an adaptive system approved in 2025. Connectomics already helps choose where to stimulate, and biohybrid implants may one day replace the electrode that delivers it.</p>
           <a class="go" href="#iv">Read question IV: which field has the most promise &rarr;</a>
         </div>
       </li>
@@ -250,133 +208,104 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
         <span class="num">4</span>
         <div>
           <h3>Language models are turning decoding into a model problem, which can tell stimulation when to act.</h3>
-          <p>Using a public fMRI dataset, we fit one matrix that turns a language model&rsquo;s numbers into real brain activity. Type any sentence and watch it become a predicted brain scan.</p>
+          <p>Using a public fMRI dataset, we fit one matrix that turns GPT-2&rsquo;s numbers into real brain activity, then ran it backwards to decode what people were reading.</p>
           <a class="go" href="#iii">Read question III: LLMs and the brain &rarr;</a>
         </div>
       </li>
       <li>
         <span class="num">5</span>
         <div>
-          <h3>The companies of tomorrow will win the last mile, and prove it against a sham.</h3>
-          <p>The openings are in programming and personalizing devices, decoding brain signals, and fixing referral and payment. The test for every claim: does it beat a sham, measured by someone other than its developer?</p>
+          <h3>Next steps: build the software and services that get working devices to more patients.</h3>
+          <p>We see four openings: tools that program adaptive stimulators, decoders that tell devices when to act, ways to find and refer eligible patients, and faster paths to insurance coverage. Each has to pass three tests: beat a sham control, protect neural privacy, and reach every patient group.</p>
           <a class="go" href="#build">Read what we would build &rarr;</a>
         </div>
       </li>
     </ol>
 
-    <section>
-      <h2>How to read this site</h2>
-      <div class="speeds">
-        <div><span class="sc">Two minutes</span><p>This page. The five headlines above are the whole argument.</p></div>
-        <div><span class="sc">Ten minutes</span><p>The top of each page: our answer, the key charts, and the bridge to the next page.</p></div>
-        <div><span class="sc">Deep dive</span><p>The full evaluation on page IV, our analysis and code on page III, and every source.</p></div>
-      </div>
-      <p class="note">Questions I and II from the track come up along the way: data scaling versus new modalities on page IV, and what holds neurotech back on pages IV, III and What to build.</p>
-      <ol class="refs" style="margin-top:24px;font-size:16px"><li>GBD 2021 Nervous System Disorders Collaborators, <i>The Lancet Neurology</i>, 2024. <a href="https://www.thelancet.com/journals/laneur/article/PIIS1474-4422(24)00038-3/fulltext">Global burden of disorders affecting the nervous system</a></li></ol>
-    </section>
+    <p class="note">Questions I and II from the track come up along the way: data scaling versus new modalities on the most promising field page, and what holds neurotech back throughout.</p>
+    <ol class="refs" style="margin-top:24px;font-size:16px"><li>GBD 2021 Nervous System Disorders Collaborators, <i>The Lancet Neurology</i>, 2024. <a href="https://www.thelancet.com/journals/laneur/article/PIIS1474-4422(24)00038-3/fulltext">Global burden of disorders affecting the nervous system</a></li></ol>
   </div>
 </main>
 
 <main data-page="iii">
   <div class="wrap">
     <div class="kicker sc">Question III</div>
-    <h1>From a sentence to a brain scan</h1>
-    <p class="lede">Language models and the brain represent sentences in almost the same way. Give a model a sentence and it turns it into 384 numbers. Multiply those numbers by one matrix, W, and you get the brain activity that sentence causes. That single link is why language models can help decode brains and help us study them.</p>
-    <p class="lede">We fit W on real fMRI scans from Pereira et al. (2018), where people read sentences in a scanner. Pick one of the sentences they read to compare W's scan with their real one, or type your own.</p>
+    <p class="bridge">Where this fits: page IV argues brain stimulation is the channel to patients. This page shows how language models can tell it <i>when</i> to act, by reading meaning out of brain activity.</p>
+    <h1>The brain and GPT-2 organise sentences the same way</h1>
+    <p class="lede">Pereira et al. (2018) scanned people while they read 384 short sentences. We ran the same sentences through GPT-2 and fit one matrix that turns GPT-2's numbers into the activity measured in each person's language network, then tested it only on sentences it had not been trained on. Everything below is that real data and that real matrix.</p>
 
-    <div class="demo">
-      <div class="bar">
-        <input id="text" type="text" placeholder="Type a sentence…" maxlength="140" aria-label="Sentence" autocomplete="off">
-        <button class="run" id="run">Run</button>
-      </div>
-      <div class="chips" id="chips"><span class="sc">read in the scanner</span><span class="status" id="status"></span></div>
-
-      <div class="stage">
-        <div class="step" id="s1">
-          <div class="lbl"><span><span class="n">1</span>The sentence</span></div>
-          <div class="wordrow" id="words"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>
+    <div class="fig">
+      <div class="fig-grid">
+        <div>
+          <span class="lbl sc">What they read</span>
+          <div class="sentence" id="sentence"></div>
+          <div class="pager"><button id="prev" aria-label="Previous sentence">‹</button><span id="count"></span><button id="next" aria-label="Next sentence">›</button></div>
         </div>
-        <div class="step" id="s2">
-          <div class="two">
-            <div>
-              <div class="lbl"><span><span class="n">2</span>Through the language model</span><span class="side">MiniLM, 6 layers</span></div>
-              <svg id="lm" viewBox="0 0 420 262" role="img" aria-label="Each word passing up through the model's six layers"></svg>
-            </div>
-            <div>
-              <div class="lbl"><span><span class="n">2</span>Through a brain</span><span class="side">reading, then language areas</span></div>
-              <div class="brainbox" id="reading">
-                <img src="brain_left.png" alt="Left side of a human brain">
-              </div>
-            </div>
-          </div>
+        <div>
+          <span class="lbl sc">GPT-2's numbers × W</span>
+          <svg id="mult" viewBox="0 0 540 380" role="img" aria-label="GPT-2 vector multiplied by a slice of the real weight matrix"></svg>
+          <p class="figcap" id="multcap"></p>
         </div>
-        <div class="step" id="s3">
-          <div class="eq">
-            <div class="lbl"><span><span class="n">3</span>The model's 384 numbers</span></div>
-            <div></div>
-            <div class="lbl"><span><i>W</i></span></div>
-            <div></div>
-            <div class="lbl"><span><span class="n">4</span>The brain scan</span><span class="side">left hemisphere</span></div>
-            <div><canvas id="emb" width="24" height="16"></canvas><div class="sub">the sentence, as the model sees it</div></div>
-            <div class="op">×</div>
-            <div><canvas id="wimg"></canvas><div class="sub" id="wsize">384 × 1,357</div><div class="sub">how much each number moves each spot in the brain</div></div>
-            <div class="op">=</div>
-            <div>
-              <div class="scans" id="scans">
-                <figure>
-                  <div class="brainbox"><img src="brain_left.png" alt=""><canvas id="scan-pred" width="466" height="378"></canvas></div>
-                  <figcaption>from <i>W</i></figcaption>
-                </figure>
-                <figure class="measured">
-                  <div class="brainbox"><img src="brain_left.png" alt=""><canvas id="scan-meas" width="466" height="378"></canvas></div>
-                  <figcaption>their real scan</figcaption>
-                </figure>
-              </div>
-              <div class="legend">less active <i></i> more active</div>
-            </div>
+        <div>
+          <span class="lbl sc">Left hemisphere</span>
+          <div class="maps">
+            <div><div class="cap"><span>predicted</span></div><svg id="map-pred" viewBox="30 20 352 240"></svg></div>
+            <div><div class="cap"><span>measured</span><span id="patr"></span></div><svg id="map-act" viewBox="30 20 352 240"></svg></div>
           </div>
         </div>
       </div>
-      <p class="verdict" id="verdict">Pick a sentence above or type one, and each step will fill in.</p>
+      <div class="readout">
+        <span class="lbl sc">Read back out</span>
+        <div>
+          <p id="rank"></p>
+          <ol id="guesses"></ol>
+        </div>
+      </div>
     </div>
 
     <section>
-      <h2>What it does for decoding and neuroscience</h2>
-      <p class="lede">Because one matrix links the two, a language model can stand in for the brain's language system. That helps in three ways.</p>
-
-      <div class="diagram">
+      <h2>What the same matrix lets you do</h2>
+      <div class="grid4">
         <div>
-          <h3>Better decoding: run it backwards</h3>
-          <p>The demo goes from words to a brain scan. The same link works in reverse: a scan becomes a point in the model's space, and the model turns that point into words. This is how the best speech BCIs already work. A language model sits on top of the brain signal and turns noisy recordings into sentences, which is why decoding has improved so quickly and why it keeps improving as models and datasets get bigger.</p>
+          <span class="sc">Predict the brain</span>
+          <svg id="map-r" viewBox="30 20 352 240"></svg>
+          <p id="t-encode"></p>
         </div>
-        <div><svg id="d1" viewBox="0 0 560 250" role="img" aria-label="Words to embedding to brain scan, and back again"></svg></div>
-      </div>
-
-      <div class="diagram">
         <div>
-          <h3>Faster neuroscience: experiment on the model first</h3>
-          <p>A model brain is cheap, so you can try every idea on it and only bring people into a scanner for the few that matter. Tuckute et al. (2024) did exactly this: GPT chose sentences it predicted would switch the language network on or off, and new people in the scanner responded the way it said they would. Human brain studies are slow, expensive and often invasive, which is a big part of why neurotech takes so long to reach patients (question II). Screening on a model first cuts that down.</p>
+          <span class="sc">Decode a scan</span>
+          <svg id="bars" viewBox="0 0 400 200"></svg>
+          <p id="t-decode"></p>
         </div>
-        <div><svg id="d2" viewBox="0 0 560 250" role="img" aria-label="Thousands of sentences screened by a model brain, a few tested in people"></svg></div>
-      </div>
-
-      <div class="diagram">
         <div>
-          <h3>Communication: brain to brain</h3>
-          <p>Zada et al. (2024) recorded both people in real conversations and found the same embedding appearing in the speaker's brain just before a word and in the listener's brain just after it. So the model's space works as common ground between two people. For someone who can think a sentence but can't say it, their brain activity can be read into that space, a language model can say it out loud, and the other person hears it the normal way and answers.</p>
+          <span class="sc">Run the experiment on the model first</span>
+          <svg id="scatter" viewBox="0 0 400 220"></svg>
+          <p id="t-insilico"></p>
         </div>
-        <div><svg id="d3" viewBox="0 0 560 270" role="img" aria-label="A loop from one person's brain through the model to speech, to the other person's brain and back"></svg></div>
+        <div>
+          <span class="sc">Compare two brains</span>
+          <div class="big" id="b2b"></div>
+          <p id="t-b2b"></p>
+        </div>
       </div>
     </section>
 
     <section class="prose">
-      <h2>The risks</h2>
-      <p>Stanford's inner speech decoder sometimes picked up words people were only thinking, such as numbers they were silently counting, and their fix was a mental password the decoder waits for before it switches on. Brain-LLM alignment also follows the model's training data, so a decoder built on an English model works best for English speakers. And these models line up with the brain's language network rather than with thought as a whole.</p>
+      <h2>Why it matters</h2>
+      <p>The biggest practical change is in decoding. A brain-computer interface used to need weeks of recordings from each patient to train a decoder from scratch. With a language model on top as a prior, noisy brain signals get turned into sentences that make sense, and a decoder trained on other people can be adapted to someone new with about an hour of their data. Meta's Brain2Qwerty v2 decodes the sentences people type from MEG recordings, with no surgery, getting 61% of words right where earlier non-invasive methods got around 8%. The hard part is moving away from the electrode and towards the model and the data behind it.</p>
+      <p>It also works in the other direction. Fine-tuning speech models on fMRI from people listening to stories makes the models better at understanding meaning. Children learn language from roughly ten thousand times less text than an LLM is trained on, which says there are far more efficient ways to build these models than the ones we use now.</p>
+      <p>Because the model predicts the brain, you can try an experiment on the model before you try it on people, which is what the third panel above does with real data. MIT used the same idea to pick sentences that switched people's language network on and off, and confirmed it in the scanner. Meta describes TRIBE v2, a model built on Llama and trained on fMRI from more than 700 people, as a tool for in-silico neuroscience. Human brain experiments are slow, expensive and often invasive, and that is a large part of why neurotech takes so long to reach patients (question II), so being able to screen ideas on a model first matters.</p>
+      <p>Two people in a conversation share this space too. Zada et al. (2024) recorded both speakers and found that a word's embedding shows up in the speaker's brain just before they say it and in the listener's brain just after they hear it. A common reference between two brains is what you would need to bring someone with aphasia or ALS back into a conversation.</p>
+      <p>The same progress creates real risks. Stanford's inner speech decoder sometimes picked up words people were only thinking, such as numbers they were silently counting, and their fix was a mental password the decoder waits for before switching on. Brain-LLM alignment follows the model's training data, so a decoder built on an English model will work best for English speakers. And these models line up with the brain's language network rather than with thought as a whole, since meaning can be decoded from parts of the brain that have nothing to do with language.</p>
     </section>
 
     <section class="prose">
       <h2>How we did it</h2>
-      <p>The scans are from the 384-sentence experiment in Pereira et al. (2018), using the language-network voxels packaged by MIT's Brain-Score, for participant 426. The model is MiniLM, which is small enough to run in your browser, so a typed sentence goes through exactly the same model W was fit on. W is a ridge regression from MiniLM's 384 numbers to each of the person's 1,357 voxels. The brain is the MNI152 template, and the order the areas light up in step 2 follows published findings. The code is on <a href="https://github.com/srivatsav-kannan/neurotech-six-hour/tree/main/analysis">GitHub</a>.</p>
+      <p>The data is the 384-sentence experiment from Pereira et al. (2018), using the language-network voxels packaged by MIT's Brain-Score, from nine people. Each sentence went through GPT-2 small with the earlier sentences of its passage as context, and we averaged layer 8 over the sentence's words. W is a ridge regression from those 768 numbers to every voxel. Everything we report comes from five-fold cross-validation split by passage, so a test sentence never shares a passage with anything the model was trained on. The matrix shown is the one for participant 426, fit on all 384 sentences.</p>
+      <div class="files">
+        <a href="W.npy" download>W.npy (768 × 1,357)</a>
+        <a href="W.png">W as an image</a>
+        <a href="https://github.com/srivatsav-kannan/neurotech-six-hour/tree/main/analysis">Code</a>
+      </div>
     </section>
 
     <p class="bridge next">Next: if decoding is becoming a model and data problem, what should a company actually build? <a href="#build">Read what we would build &rarr;</a></p>
@@ -389,8 +318,10 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
         <li>Goldstein et al. 2025, <i>Nature Human Behaviour</i>. <a href="https://research.google/blog/deciphering-language-processing-in-the-human-brain-through-llm-representations/">Summary</a></li>
         <li>Tuckute et al. 2024, <i>Nature Human Behaviour</i>. <a href="https://dspace.mit.edu/handle/1721.1/153265">Driving and suppressing the human language network</a></li>
         <li>Zada et al. 2024, <i>Neuron</i>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10327051/">A shared linguistic space between brains</a></li>
+        <li>Tang &amp; Huth 2025, <i>Current Biology</i>. Semantic decoding across participants</li>
+        <li>Moussa, Klakow &amp; Toneva 2025, ICLR. <a href="https://arxiv.org/abs/2410.09230">Brain-tuning speech models</a></li>
         <li>Kunz, Willett et al. 2025, <i>Cell</i>. Inner speech decoding</li>
-        <li>Meta 2026. <a href="https://ai.meta.com/blog/brain2qwerty-brain-ai-human-communication/">Brain2Qwerty v2</a></li>
+        <li>Meta 2026. <a href="https://ai.meta.com/blog/brain2qwerty-brain-ai-human-communication/">Brain2Qwerty v2</a> and TRIBE v2</li>
         <li>Guo, Wu &amp; Yiu 2026. <a href="https://arxiv.org/abs/2605.23032">Brain-LLM alignment tracks training data</a></li>
       </ol>
     </section>
@@ -400,6 +331,7 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="iv">
   <div class="wrap">
     <div class="kicker sc">Question IV</div>
+    <p class="question">Biohybrid implants, connectomics, human brain stimulation: which research development in neuroscience do you think has the most promise?</p>
     <!-- Page IV is built by iv.js from iv-content.json. Edit the JSON to change text, ratings or sources. -->
     <div id="iv-root"><div class="pending">Loading page IV…</div></div>
     <p class="bridge next">Next: stimulation needs to know when to act. <a href="#iii">See how language models are making brain decoding a model problem &rarr;</a></p>
@@ -409,6 +341,7 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="build">
   <div class="wrap">
     <div class="kicker sc">What this means for the companies of tomorrow</div>
+    <p class="bridge">Where this fits: pages IV and III showed where neurotech&rsquo;s promise is and how it gets smarter. This page turns that into what a founder could build, and the tests they would have to pass.</p>
     <h1>The companies of tomorrow will win the last mile</h1>
     <p class="lede">Brain stimulation already works for many patients. Most of the value still left on the table sits between a working device and the people who never get it, or never get it tuned well. That gap is a software, data and access problem, and it is where we think new companies can win.</p>
 
@@ -498,20 +431,8 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 </footer>
 
 <script>
-(() => {
-  const route = () => {
-    const page = { '#iii': 'iii', '#iv': 'iv', '#build': 'build' }[location.hash] || 'home';
-    document.querySelectorAll('main').forEach(m => m.classList.toggle('on', m.dataset.page === page));
-    document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.to === page));
-    window.scrollTo(0, 0);
-  };
-  window.addEventListener('hashchange', route);
-  route();
-})();
-</script>
-<script type="module">
-const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
+const $ = id => document.getElementById(id);
 const el = (tag, attrs, parent) => {
   const n = document.createElementNS(NS, tag);
   for (const k in attrs) n.setAttribute(k, attrs[k]);
@@ -523,313 +444,126 @@ const txt = (parent, x, y, s, attrs = {}) => {
   n.textContent = s;
   return n;
 };
-const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-// fMRI-style colours: blue/cyan below average, red/orange/yellow above
-const HOT = [[120, 10, 10], [220, 60, 20], [255, 170, 40], [255, 235, 120]];
-const COLD = [[10, 40, 110], [30, 100, 210], [90, 200, 230], [180, 240, 250]];
-function ramp(stops, t) {
-  const x = (Math.max(0, Math.min(1, t)) || 0) * (stops.length - 1), i = Math.min(stops.length - 2, Math.floor(x)), f = x - i;
-  return stops[i].map((v, k) => Math.round(v + (stops[i + 1][k] - v) * f));
-}
-const colour = v => (v >= 0 ? ramp(HOT, v) : ramp(COLD, -v));
+const PAPER = [244, 239, 228], RED = [123, 45, 38], BLUE = [31, 61, 90];
+const mix = (a, b, t) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',')})`;
+const diverge = v => v >= 0 ? mix(PAPER, RED, Math.min(1, v)) : mix(PAPER, BLUE, Math.min(1, -v));
+const pct = x => Math.round(x * 100) + '%';
+const ordinal = n => n + ({ 1: 'st', 2: 'nd', 3: 'rd' }[n % 100 > 10 && n % 100 < 14 ? 0 : n % 10] || 'th');
 
-const [M, B] = await Promise.all([fetch('model.json').then(r => r.json()), fetch('brain.json').then(r => r.json())]);
-const Wq = new Int8Array(await fetch('W.bin').then(r => r.arrayBuffer()));
-const NV = M.n_vox, ND = M.dims;
-const SD = M.sd.map(v => v || 1);
-$('wsize').textContent = `${ND} × ${NV.toLocaleString()} numbers`;
+const CORTEX = 'M62 170 C40 130 60 70 120 52 C165 36 235 30 285 48 C335 64 372 100 372 145 C372 175 360 195 340 205 C315 214 290 212 270 214 C245 238 200 250 160 238 C135 230 118 215 112 200 C100 196 80 192 62 170 Z';
 
-// brain image coordinates for an MNI point (left hemisphere, front on the left)
-const toImg = (y, z) => [(B.ny - 1 - (y - B.y0) / B.step) * B.scale + B.scale / 2, (B.nz - 1 - (z - B.z0) / B.step) * B.scale + B.scale / 2];
-const LEFT = [...Array(NV).keys()].filter(i => M.x[i] < 0);
+// voxel grid (2 mm, anterior = high ap, superior = high si) onto the lateral outline
+const px = ap => 50 + (91 - ap) * 3.6;
+const py = si => 30 + (73 - si) * 3.24;
 
-function predict(emb) {
-  const xs = emb.map((v, d) => (v - M.mu[d]) / SD[d]);
-  const out = Float32Array.from(M.intercept);
-  for (let d = 0; d < ND; d++) {
-    const x = xs[d], row = d * NV;
-    if (!x) continue;
-    for (let v = 0; v < NV; v++) out[v] += x * Wq[row + v] * M.w_scale[v];
-  }
-  return out;
-}
-
-function paintScan(canvas, values) {
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const mags = LEFT.map(i => Math.abs(values[i])).sort((a, b) => a - b);
-  const top = mags[Math.floor(mags.length * 0.97)] || 1;
-  const order = LEFT.slice().sort((a, b) => Math.abs(values[a]) - Math.abs(values[b]));
-  for (const i of order) {
-    const t = values[i] / top;
-    if (Math.abs(t) < 0.28) continue;
-    const [px, py] = toImg(M.y[i], M.z[i]);
-    const [r, g, b] = colour(t);
-    const rad = 6 + 6 * Math.min(1, Math.abs(t));
-    const grd = ctx.createRadialGradient(px, py, 0, px, py, rad);
-    grd.addColorStop(0, `rgba(${r},${g},${b},${0.85 * Math.min(1, Math.abs(t))})`);
-    grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
-    ctx.fillStyle = grd;
-    ctx.beginPath(); ctx.arc(px, py, rad, 0, 7); ctx.fill();
+function drawMap(svg, D, values, color) {
+  svg.innerHTML = '';
+  el('path', { d: CORTEX, fill: 'var(--brain)', stroke: 'var(--brain-edge)', 'stroke-width': 1.4 }, svg);
+  const idx = D.left.map((l, i) => i).filter(i => D.left[i]);
+  idx.sort((a, b) => Math.abs(values[a]) - Math.abs(values[b]));
+  for (const i of idx) {
+    el('rect', { x: px(D.ap[i]) - 2, y: py(D.si[i]) - 2, width: 4, height: 4, fill: color(values[i]) }, svg);
   }
 }
 
-function paintEmb(emb, frac = 1) {
-  const c = $('emb'), ctx = c.getContext('2d'), img = ctx.createImageData(24, 16);
-  const xs = emb.map((v, d) => (v - M.mu[d]) / SD[d]);
-  for (let d = 0; d < ND; d++) {
-    const show = (d * 7919 % ND) / ND < frac;
-    const [r, g, b] = show ? colour(xs[d] / 2.5) : [244, 239, 228];
-    img.data.set([r, g, b, 255], d * 4);
-  }
-  ctx.putImageData(img, 0, 0);
+function drawMult(D, i) {
+  const svg = $('mult');
+  svg.innerHTML = '';
+  const C = 12, vx = 0, wx = 50, top = 30;
+  const rows = D.w_rows.length, cols = D.w_cols.length;
+  txt(svg, vx + 10, top - 10, 'GPT-2', { 'text-anchor': 'start', 'font-size': 20 });
+  txt(svg, wx + cols * C / 2, top - 10, 'W', { 'text-anchor': 'middle', 'font-style': 'italic', fill: '#7b2d26', 'font-size': 24 });
+  D.x[i].forEach((v, r) => el('rect', { x: vx + 0.5, y: top + r * C + 0.5, width: 20, height: C - 1, fill: diverge(v / 99 * 1.5) }, svg));
+  el('rect', { x: vx, y: top, width: 21, height: rows * C, fill: 'none', stroke: 'var(--ink)' }, svg);
+  txt(svg, vx + 35, top + rows * C / 2 + 7, '×', { 'font-size': 24, fill: '#1d1b18', 'text-anchor': 'middle' });
+  D.w_slice.forEach((row, r) => row.forEach((v, c) =>
+    el('rect', { x: wx + c * C + 0.5, y: top + r * C + 0.5, width: C - 1, height: C - 1, fill: diverge(v / 99 * 1.6) }, svg)));
+  el('rect', { x: wx, y: top, width: cols * C, height: rows * C, fill: 'none', stroke: 'var(--ink)' }, svg);
+  const oy = top + rows * C + 34;
+  txt(svg, wx + cols * C / 2, oy - 9, '=', { 'font-size': 24, fill: '#1d1b18', 'text-anchor': 'middle' });
+  D.w_cols.forEach((v, c) => el('rect', { x: wx + c * C + 0.5, y: oy + 0.5, width: C - 1, height: 20, fill: diverge(D.pred[i][v] / 99 * 1.5) }, svg));
+  el('rect', { x: wx, y: oy, width: cols * C, height: 21, fill: 'none', stroke: 'var(--ink)' }, svg);
+  txt(svg, wx + cols * C / 2, oy + 44, 'predicted activity', { 'font-size': 20, 'text-anchor': 'middle' });
+  $('multcap').textContent = `This is 24 of GPT-2's 768 numbers for the sentence, and the 24 × 40 corner of W that connects them to 40 of this person's ${D.w_shape[1].toLocaleString()} voxels. The full W is ${D.w_shape[0]} × ${D.w_shape[1].toLocaleString()}.`;
 }
-paintEmb(new Array(ND).fill(0).map((_, d) => M.mu[d]), 0);
 
-// W itself, every one of its numbers as a pixel
-(function paintW() {
-  const c = $('wimg');
-  c.width = NV; c.height = ND;
-  const ctx = c.getContext('2d'), img = ctx.createImageData(NV, ND);
-  for (let d = 0; d < ND; d++) for (let v = 0; v < NV; v++) {
-    const [r, g, b] = colour(Wq[d * NV + v] / 90);
-    img.data.set([r, g, b, 255], (d * NV + v) * 4);
+function showSentence(D, k) {
+  const i = D.show[k];
+  $('sentence').textContent = D.sentences[i];
+  $('count').textContent = `${k + 1} of ${D.show.length}`;
+  drawMult(D, i);
+  drawMap($('map-pred'), D, D.pred[i], v => diverge(v / 99 * 1.4));
+  drawMap($('map-act'), D, D.actual[i], v => diverge(v / 99 * 1.4));
+  $('patr').textContent = `r = ${D.pattern_r[i].toFixed(2)}`;
+  $('rank').textContent = `Reading the measured scans back into GPT-2's space and comparing against all ${D.n} sentences, the one they actually read comes ${ordinal(D.dec_rank[i] + 1)}. The closest three were:`;
+  const ol = $('guesses');
+  ol.innerHTML = '';
+  for (const j of D.dec_top[i]) {
+    const li = document.createElement('li');
+    li.textContent = D.sentences[j];
+    if (j === i) li.className = 'hit';
+    ol.appendChild(li);
   }
-  ctx.putImageData(img, 0, 0);
-})();
+}
 
-// the reading brain: areas that light up in turn, from published findings
-const AREAS = [[-88, 2], [-52, 6], [-8, -22], [22, 12]];
-const glows = AREAS.map(([y, z]) => {
-  const [px, py] = toImg(y, z);
-  const g = document.createElement('div');
-  g.className = 'glow';
-  g.style.left = (px / B.w * 100) + '%';
-  g.style.top = (py / B.h * 100) + '%';
-  $('reading').appendChild(g);
-  return g;
+function drawBars(D) {
+  const svg = $('bars');
+  const all = [...[...D.dec_pairwise_each].sort((a, b) => a - b).map(v => ({ v })), { v: D.dec_pairwise, all: true }];
+  const x0 = 46, w = 340, h = 150, top = 10;
+  const y = v => top + h - (v - 0.4) / 0.5 * h;
+  [0.5, 0.6, 0.7, 0.8, 0.9].forEach(t => {
+    el('line', { x1: x0, x2: x0 + w, y1: y(t), y2: y(t), stroke: t === 0.5 ? '#1d1b18' : '#cdc3ae', 'stroke-dasharray': t === 0.5 ? '3 3' : 'none' }, svg);
+    txt(svg, x0 - 6, y(t) + 5, t === 0.5 ? 'chance' : pct(t), { 'text-anchor': 'end', 'font-size': 13 });
+  });
+  const bw = w / all.length;
+  all.forEach((b, j) => el('rect', { x: x0 + j * bw + 4, y: y(b.v), width: bw - 8, height: y(0.4) - y(b.v), fill: b.all ? '#7b2d26' : '#1f3d5a', opacity: b.all ? 1 : 0.75 }, svg));
+  txt(svg, x0 + (w - bw) / 2, top + h + 22, 'each of the nine people', { 'text-anchor': 'middle', 'font-size': 14 });
+  txt(svg, x0 + w - bw / 2, top + h + 22, 'all nine', { 'text-anchor': 'middle', 'font-size': 14, fill: '#7b2d26' });
+}
+
+function drawScatter(D) {
+  const svg = $('scatter');
+  const P = D.insilico_pred, A = D.insilico_act;
+  const [p0, p1] = [Math.min(...P), Math.max(...P)], [a0, a1] = [Math.min(...A), Math.max(...A)];
+  const x0 = 34, w = 350, top = 8, h = 170;
+  const X = v => x0 + (v - p0) / (p1 - p0) * w, Y = v => top + h - (v - a0) / (a1 - a0) * h;
+  el('rect', { x: x0, y: top, width: w, height: h, fill: 'none', stroke: '#cdc3ae' }, svg);
+  P.forEach((p, i) => el('circle', { cx: X(p), cy: Y(A[i]), r: 2.4, fill: '#1f3d5a', opacity: 0.55 }, svg));
+  const mp = P.reduce((s, v) => s + v, 0) / P.length, ma = A.reduce((s, v) => s + v, 0) / A.length;
+  const b = P.reduce((s, v, i) => s + (v - mp) * (A[i] - ma), 0) / P.reduce((s, v) => s + (v - mp) ** 2, 0);
+  el('line', { x1: X(p0), y1: Y(ma + b * (p0 - mp)), x2: X(p1), y2: Y(ma + b * (p1 - mp)), stroke: '#7b2d26', 'stroke-width': 2 }, svg);
+  txt(svg, x0 + w / 2, top + h + 22, 'predicted response, before seeing the scans', { 'text-anchor': 'middle', 'font-size': 14 });
+  txt(svg, 14, top + h / 2, 'measured', { 'text-anchor': 'middle', 'font-size': 14, transform: `rotate(-90 14 ${top + h / 2})` });
+}
+
+fetch('data.json').then(r => r.json()).then(D => {
+  let k = Math.max(0, D.show.indexOf(D.sentences.findIndex(s => s.startsWith('The piano'))));
+  showSentence(D, k);
+  $('prev').onclick = () => { k = (k - 1 + D.show.length) % D.show.length; showSentence(D, k); };
+  $('next').onclick = () => { k = (k + 1) % D.show.length; showSentence(D, k); };
+
+  drawMap($('map-r'), D, D.r.map(v => v / 99 * 0.6), v => mix(PAPER, RED, Math.max(0, Math.min(1, v / 0.45))));
+  $('t-encode').textContent = `Each square is a voxel in this person's language network, darker where W predicts it better on sentences it never saw. The median correlation is ${D.r_main.toFixed(2)} for this person and ${D.r_mean.toFixed(2)} averaged over all nine.`;
+
+  drawBars(D);
+  $('t-decode').textContent = `Run the matrix the other way and a scan can be read back into GPT-2's space. Given one scan and two sentences, it picks the one the person was actually reading ${pct(D.dec_pairwise)} of the time using all nine people, against 50% for guessing.`;
+
+  drawScatter(D);
+  $('t-insilico').textContent = `The model predicted how strongly each of the ${D.n} sentences would drive the language network before it saw the held-out scans. Its predictions correlate at r = ${D.insilico_r.toFixed(2)} with what nine people's brains actually did.`;
+
+  $('b2b').textContent = pct(D.b2b_pairwise);
+  $('t-b2b').textContent = `We read two different people's scans into GPT-2's space and checked whether the same sentence lands in the same place for both. Matching one person's scan to the other's works ${pct(D.b2b_pairwise)} of the time against 50% for guessing, so the space is shared, though weakly at the resolution of fMRI.`;
 });
 
-// the language model skeleton: words along the bottom, six layers above
-const lm = $('lm');
-function drawLM(words) {
-  lm.innerHTML = '';
-  const n = Math.max(words.length, 6), x0 = 54, w = 360, cw = w / n;
-  for (let l = 0; l < 6; l++) txt(lm, 0, 182 - l * 28 + 13, `layer ${l + 1}`, { 'font-size': 13 });
-  const cells = [];
-  for (let k = 0; k < n; k++) {
-    const col = [];
-    for (let l = 0; l < 6; l++) col.push(el('rect', { x: x0 + k * cw + 2, y: 182 - l * 28, width: cw - 4, height: 20, fill: '#e8590c', opacity: 0.08 }, lm));
-    cells.push(col);
-    if (words[k]) {
-      const cx = x0 + k * cw + cw / 2;
-      txt(lm, cx, 220, words[k].length > 12 ? words[k].slice(0, 11) + '…' : words[k], { 'text-anchor': 'end', 'font-size': 13, fill: '#1d1b18', transform: `rotate(-38 ${cx} 220)` });
-    }
-  }
-  el('line', { x1: x0, x2: x0 + w, y1: 206, y2: 206, stroke: '#cdc3ae' }, lm);
-  return cells;
+function route() {
+  const page = { '#iii': 'iii', '#iv': 'iv', '#build': 'build' }[location.hash] || 'home';
+  document.querySelectorAll('main').forEach(m => m.classList.toggle('on', m.dataset.page === page));
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.to === page));
+  window.scrollTo(0, 0);
 }
-let lmCells = drawLM([]);
-
-// ---------- the run ----------
-let runId = 0;
-async function run(text, example) {
-  const id = ++runId;
-  const alive = () => id === runId;
-  const words = text.trim().split(/\s+/).filter(Boolean);
-  if (!words.length) return;
-
-  let emb = example ? example.emb : null;
-  if (!emb) {
-    $('run').disabled = true;
-    const ex = await getExtractor();
-    if (!ex || !alive()) { $('run').disabled = false; return; }
-    emb = Array.from((await ex(text, { pooling: 'mean', normalize: true })).data);
-    $('run').disabled = false;
-  }
-  const pred = predict(emb);
-
-  // reset to skeleton
-  ['s1', 's2', 's3'].forEach(s => $(s).classList.remove('on'));
-  $('scans').classList.toggle('both', !!example);
-  $('scan-pred').getContext('2d').clearRect(0, 0, 466, 378);
-  $('scan-meas').getContext('2d').clearRect(0, 0, 466, 378);
-  $('scan-pred').style.opacity = 0; $('scan-meas').style.opacity = 0;
-  $('wimg').style.opacity = 0.25;
-  paintEmb(emb, 0);
-  $('verdict').textContent = 'Running…';
-
-  // 1. the words
-  $('s1').classList.add('on');
-  const row = $('words');
-  row.innerHTML = '';
-  const spans = words.map(w => { const s = document.createElement('span'); s.textContent = w; row.appendChild(s); return s; });
-  for (const s of spans) { if (!alive()) return; s.classList.add('in'); await sleep(90); }
-
-  // 2. both at once, word by word
-  $('s2').classList.add('on');
-  lmCells = drawLM(words);
-  const per = Math.min(520, 4200 / words.length);
-  for (let k = 0; k < words.length; k++) {
-    if (!alive()) return;
-    spans.forEach((s, j) => s.classList.toggle('now', j === k));
-    lmCells[k].forEach((c, l) => setTimeout(() => { c.setAttribute('opacity', 1); setTimeout(() => c.setAttribute('opacity', 0.45), 260); }, l * per / 8));
-    glows.forEach((g, a) => setTimeout(() => { g.classList.add('lit'); setTimeout(() => g.classList.remove('lit'), per * 0.7); }, a * per / 5));
-    await sleep(per);
-  }
-  spans.forEach(s => s.classList.remove('now'));
-  await sleep(300);
-
-  // 3. the embedding fills in, W appears, the scan comes out
-  if (!alive()) return;
-  $('s3').classList.add('on');
-  for (let f = 0; f <= 1.001; f += 0.1) { if (!alive()) return; paintEmb(emb, f); await sleep(50); }
-  $('wimg').style.transition = 'opacity .6s'; $('wimg').style.opacity = 1;
-  await sleep(600);
-  paintScan($('scan-pred'), pred);
-  $('scan-pred').style.transition = 'opacity .9s'; $('scan-pred').style.opacity = 1;
-  if (example) {
-    await sleep(700);
-    paintScan($('scan-meas'), Float32Array.from(example.measured, v => v / 127 * 3));
-    $('scan-meas').style.transition = 'opacity .9s'; $('scan-meas').style.opacity = 1;
-    $('verdict').textContent = `Participant ${M.subject} read this sentence in the scanner. The left scan is the model's numbers multiplied by W, and the right one is what their brain actually did.`;
-  } else {
-    $('verdict').textContent = `Nobody has read this sentence in a scanner, so there is only W's scan: what participant ${M.subject}'s language network should do while reading it.`;
-  }
-}
-
-// MiniLM in the browser, loaded the first time someone types
-let extractor = null;
-async function getExtractor() {
-  if (extractor) return extractor;
-  $('status').textContent = 'loading the language model (about 23 MB)…';
-  try {
-    const { pipeline, env } = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
-    env.allowLocalModels = false;
-    extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-    $('status').textContent = '';
-  } catch (e) {
-    console.error(e);
-    $('status').textContent = "the language model couldn't load here, so only the examples work";
-  }
-  return extractor;
-}
-
-const chips = [];
-M.examples.forEach(ex => {
-  const b = document.createElement('button');
-  b.className = 'chip';
-  b.textContent = ex.text.split(' ').slice(0, 4).join(' ') + '…';
-  b.title = ex.text;
-  b.onclick = () => {
-    chips.forEach(c => c.classList.toggle('on', c === b));
-    $('text').value = ex.text;
-    run(ex.text, ex);
-  };
-  chips.push(b);
-  $('chips').insertBefore(b, $('status'));
-});
-const go = () => {
-  const t = $('text').value.trim();
-  const ex = M.examples.find(e => e.text === t);
-  chips.forEach((c, i) => c.classList.toggle('on', M.examples[i] === ex));
-  run(t, ex);
-};
-$('run').onclick = go;
-$('text').addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
-$('text').addEventListener('focus', () => getExtractor(), { once: true });
-
-// ---------- diagrams ----------
-const scanURL = (() => {
-  const c = document.createElement('canvas'); c.width = 466; c.height = 378;
-  paintScan(c, Float32Array.from(M.examples[0].measured, v => v / 127 * 3));
-  return c.toDataURL();
-})();
-function brainAt(svg, x, y, w, withScan, flip = false) {
-  const h = w * B.h / B.w;
-  const g = el('g', flip ? { transform: `translate(${2 * x + w} 0) scale(-1 1)` } : {}, svg);
-  el('image', { href: 'brain_left.png', x, y, width: w, height: h }, g);
-  if (withScan) el('image', { href: scanURL, x, y, width: w, height: h }, g);
-}
-function modelAt(svg, x, y, w, h) {
-  for (let l = 0; l < 5; l++) el('rect', { x, y: y + l * (h / 5), width: w, height: h / 5 - 3, fill: '#e8590c', opacity: 0.25 + l * 0.12 }, svg);
-}
-function stripAt(svg, x, y, w, h, seed = 1) {
-  const n = 16;
-  for (let i = 0; i < n; i++) {
-    const v = Math.sin(i * 12.9898 * seed) * 1.6;
-    const [r, g, b] = colour(Math.max(-1, Math.min(1, v)));
-    el('rect', { x: x + i * w / n, y, width: w / n, height: h, fill: `rgb(${r},${g},${b})` }, svg);
-  }
-  el('rect', { x, y, width: w, height: h, fill: 'none', stroke: '#1d1b18' }, svg);
-}
-const arrow = (svg, x1, y1, x2, y2, color = '#1d1b18', flow = true) => {
-  const id = 'a' + Math.random().toString(36).slice(2, 7);
-  const m = el('marker', { id, viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, svg);
-  el('path', { d: 'M0 0 L10 5 L0 10 Z', fill: color }, m);
-  el('line', { x1, y1, x2, y2, stroke: color, 'stroke-width': 1.6, 'marker-end': `url(#${id})`, class: flow ? 'flow' : '' }, svg);
-};
-
-(function d1() {
-  const s = $('d1');
-  txt(s, 10, 74, '“piano”', { 'font-size': 22, fill: '#1d1b18', 'font-style': 'italic' });
-  arrow(s, 82, 68, 112, 68);
-  modelAt(s, 118, 30, 70, 80);
-  txt(s, 153, 128, 'language model', { 'text-anchor': 'middle', 'font-size': 17 });
-  arrow(s, 194, 68, 224, 68);
-  stripAt(s, 230, 58, 96, 20, 1.3);
-  txt(s, 278, 100, 'embedding', { 'text-anchor': 'middle', 'font-size': 17 });
-  txt(s, 346, 75, '× W', { 'text-anchor': 'middle', 'font-size': 20, fill: '#7b2d26', 'font-style': 'italic' });
-  arrow(s, 366, 68, 392, 68);
-  brainAt(s, 396, 6, 160, true);
-  txt(s, 476, 146, 'brain scan', { 'text-anchor': 'middle', 'font-size': 17 });
-  arrow(s, 470, 178, 110, 178, '#7b2d26');
-  txt(s, 290, 204, 'backwards: scan → embedding → words', { 'text-anchor': 'middle', 'font-size': 17, fill: '#7b2d26' });
-  txt(s, 290, 228, 'this is decoding', { 'text-anchor': 'middle', 'font-size': 17 });
-})();
-
-(function d2() {
-  const s = $('d2');
-  for (let i = 0; i < 14; i++) el('line', { x1: 10, x2: 10 + 60 + (i * 37 % 30), y1: 40 + i * 9, y2: 40 + i * 9, stroke: '#5d574c', 'stroke-width': 2, opacity: 0.55 }, s);
-  txt(s, 50, 186, '10,000 sentences', { 'text-anchor': 'middle', 'font-size': 17 });
-  arrow(s, 112, 100, 140, 100);
-  modelAt(s, 146, 58, 46, 64);
-  brainAt(s, 196, 52, 90, false);
-  txt(s, 218, 186, 'LLM + W', { 'text-anchor': 'middle', 'font-size': 17 });
-  arrow(s, 292, 100, 320, 100);
-  for (let i = 0; i < 6; i++) el('rect', { x: 326, y: 52 + i * 16, width: 70 - i * 9, height: 10, fill: i < 2 ? '#e8590c' : '#cdc3ae' }, s);
-  txt(s, 362, 186, 'ranked by the', { 'text-anchor': 'middle', 'font-size': 17 });
-  txt(s, 362, 205, 'model brain', { 'text-anchor': 'middle', 'font-size': 17 });
-  arrow(s, 404, 100, 432, 100);
-  [0, 1, 2].forEach(i => { el('circle', { cx: 452 + i * 30, cy: 86, r: 9, fill: 'none', stroke: '#1d1b18', 'stroke-width': 1.4 }, s); el('path', { d: `M${438 + i * 30} 118 Q${452 + i * 30} 96 ${466 + i * 30} 118`, fill: 'none', stroke: '#1d1b18', 'stroke-width': 1.4 }, s); });
-  txt(s, 482, 150, 'top 10 tested', { 'text-anchor': 'middle', 'font-size': 17 });
-  txt(s, 482, 169, 'in people', { 'text-anchor': 'middle', 'font-size': 17 });
-  el('path', { d: 'M482 210 Q300 250 218 210', fill: 'none', stroke: '#7b2d26', 'stroke-width': 1.6, class: 'flow' }, s);
-  txt(s, 350, 244, 'results update W', { 'text-anchor': 'middle', 'font-size': 17, fill: '#7b2d26' });
-})();
-
-(function d3() {
-  const s = $('d3');
-  brainAt(s, 10, 70, 120, true);
-  txt(s, 70, 186, 'can think it,', { 'text-anchor': 'middle', 'font-size': 17 });
-  txt(s, 70, 203, "can't say it", { 'text-anchor': 'middle', 'font-size': 17 });
-  brainAt(s, 430, 70, 120, true, true);
-  txt(s, 490, 186, 'hears it, answers', { 'text-anchor': 'middle', 'font-size': 17 });
-  // shared space in the middle
-  for (let i = 0; i < 40; i++) {
-    const a = i * 2.39996, r = 8 + Math.sqrt(i) * 7;
-    el('circle', { cx: 280 + Math.cos(a) * r, cy: 120 + Math.sin(a) * r * 0.7, r: 2.6, fill: i === 7 ? '#e8590c' : '#5d574c', opacity: i === 7 ? 1 : 0.45 }, s);
-  }
-  txt(s, 280, 192, 'the shared embedding space', { 'text-anchor': 'middle', 'font-size': 17 });
-  el('path', { d: 'M120 92 Q190 40 248 96', fill: 'none', stroke: '#1d1b18', 'stroke-width': 1.6, class: 'flow' }, s);
-  txt(s, 172, 44, 'decoded', { 'text-anchor': 'middle', 'font-size': 17 });
-  el('path', { d: 'M312 96 Q380 40 440 92', fill: 'none', stroke: '#1d1b18', 'stroke-width': 1.6, class: 'flow' }, s);
-  txt(s, 388, 44, 'said aloud, heard', { 'text-anchor': 'middle', 'font-size': 17 });
-  el('path', { d: 'M440 160 Q380 250 280 236 Q180 250 120 160', fill: 'none', stroke: '#7b2d26', 'stroke-width': 1.6, class: 'flow' }, s);
-  txt(s, 280, 262, 'the reply comes back out loud', { 'text-anchor': 'middle', 'font-size': 17, fill: '#7b2d26' });
-})();
-
+window.addEventListener('hashchange', route);
+route();
 </script>
 <script src="iv.js"></script>
 </body>

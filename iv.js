@@ -75,8 +75,8 @@
       <div class="iv-glance" id="iv-glance"></div>`;
 
     const lineage = [
-      ['DARPA\u2019s Heilmeier Catechism', ['heilmeier-darpa', 'arpah-heilmeier-medium']],
-      ['Stanford Biodesign', ['biodesign-guide', 'biodesign-need-screening']],
+      ['DARPA\u2019s Heilmeier Catechism', ['heilmeier-darpa']],
+      ['Stanford Biodesign', ['biodesign-guide']],
       ['NASA and DoD readiness levels', ['nasa-trl', 'dod-biomedical-trl']],
       ['FDA device guidance', ['fda-study-market']],
       ['NSF I-Corps', ['nsf-icorps-solicitation']],
@@ -90,7 +90,7 @@
       </section>
       <div class="iv-scroll" style="margin-top:20px"><table class="iv-table">
         <thead><tr><th></th><th>criterion</th><th>the test</th><th>what we looked for</th></tr></thead>
-        <tbody>${CRIT.map(c => `<tr><td class="n">${c.number}</td><td>${t(c.name)}<div class="who">Evaluated by ${t(c.owner)}</div></td><td class="test">${t(c.test)}</td><td>${t(c.lookedFor)}${cite(c.groundedIn)}</td></tr>`).join('')}</tbody>
+        <tbody>${CRIT.map(c => `<tr><td class="n">${c.number}</td><td>${t(c.name)}</td><td class="test">${t(c.test)}</td><td>${t(c.lookedFor)}${cite(c.groundedIn)}</td></tr>`).join('')}</tbody>
       </table></div>
       <div class="iv-scale">
         <div><span class="lbl sc">How we rate</span>
@@ -106,12 +106,12 @@
     const scorecard = `
       <section id="iv-scorecard">
         <h2>How the three fields compare</h2>
-        <p class="iv-lensnote">Pick a perspective to reweight the criteria, then click any cell to read the evidence behind it. How we chose the criteria is in the full evaluation below.</p>
-        <div class="iv-lenses" role="group" aria-label="Perspective">${LENSES.map((l, i) => `<button data-lens="${i}" aria-pressed="${i === 0}">${t(l.name)}</button>`).join('')}</div>
+        <p class="iv-lensnote">Each cell is our 1 to 5 rating, and those ratings never change. A perspective only changes how much each criterion counts toward the weighted score, which is the weighted average of a field\u2019s six ratings. Click any cell to read the evidence behind it.</p>
+        <div class="iv-lenses" role="group" aria-label="Perspective"><span class="sc" style="align-self:center;color:var(--ink-2);margin-right:4px">perspective</span>${LENSES.map((l, i) => `<button data-lens="${i}" aria-pressed="${i === 0}">${t(l.name)}</button>`).join('')}</div>
         <p id="iv-lenssent" aria-live="polite" style="margin:0 0 14px"></p>
         <div class="iv-scroll"><table class="iv-score">
           <caption class="sc" style="text-align:left;color:var(--ink-2);padding-bottom:6px">Our ratings, 1 to 5</caption>
-          <thead><tr><th></th>${CRIT.map(c => `<th>${c.number}<br>${t(c.shortName)}</th>`).join('')}<th>Weighted</th></tr></thead>
+          <thead><tr><th></th>${CRIT.map(c => `<th>${c.number}<br>${t(c.shortName)}</th>`).join('')}<th>Weighted</th></tr><tr class="iv-weights" id="iv-weights"></tr></thead>
           <tbody id="iv-scorebody"></tbody>
         </table></div>
         <p class="iv-caption">${t(C.framework.ratingScale.note)}</p>
@@ -143,13 +143,7 @@
         </div>
       </section>`;
 
-    const sham = `
-      <section>
-        <h2>The sham question</h2>
-        <p class="iv-big">${t(C.sham.headline)}</p>
-        <div class="iv-fig">${shamChart(C.charts.openLabelVsSham)}</div>
-        <div class="prose" style="margin-top:16px">${C.sham.explanation.map(e => `<p>${t(e.text)}${cite(e.sourceIds)}</p>`).join('')}</div>
-      </section>`;
+
 
     const also = `
       <section id="iv-also">
@@ -158,7 +152,7 @@
       </section>`;
 
     // Build in reading order so citation numbers run top to bottom.
-    let html = thesis + convergence + scorecard + sham + also + framework + explorer;
+    let html = thesis + convergence + scorecard + framework + explorer + also;
     html += `<section><h2>Sources for page IV</h2><ol class="iv-refs">${order.map((id, i) => {
       const s = SRC.get(id);
       const tag = TYPE_LABEL[s.type] ? `<span class="iv-tag">${TYPE_LABEL[s.type]}</span>` : '';
@@ -179,7 +173,6 @@
       return `<article class="iv-slide${side ? '' : ' novis'}" data-f="${fi}" data-c="${ci}" ${fi === 0 && ci === 0 ? '' : 'hidden'} aria-label="${esc(f.name)}, criterion ${c.number} of 6: ${esc(c.name)}">
         <div>
           <div class="iv-crit"><span class="n">${c.number}</span><div><h3>${t(c.name)}</h3><span class="test">${t(c.test)}</span></div></div>
-          <div class="iv-owner">Evaluated by ${t(s.owner)}</div>
           <div class="iv-meter" aria-label="Rated ${r.rating} of 5, ${label(r.rating)}"><span class="segs">${[1, 2, 3, 4, 5].map(n => `<span class="${n <= r.rating ? 'f' : ''}"></span>`).join('')}</span><span>${r.rating} of 5, ${label(r.rating).toLowerCase()}</span></div>
           <p class="iv-rationale">${t(r.rationale)}</p>
           <p class="iv-verdict">${t(s.verdict)}</p>
@@ -225,30 +218,6 @@
 
     function timeline(d) {
       return `<span class="lbl sc">${t(d.title)}</span><div class="iv-timeline">${d.tracks.map(tr => `<div><span class="sc" style="color:var(--accent)">${t(tr.label)}</span><ol>${tr.events.map(e => `<li><span class="yr">${e.year}</span><span>${t(e.label)}${cite(e.sourceIds)}<span class="kind">${t(d.kindLabels[e.kind])}</span></span></li>`).join('')}</ol></div>`).join('')}</div>`;
-    }
-
-    function shamChart(d) {
-      const W = 720, rowH = 100, top = 6, x0 = 10, w = 560, max = 60;
-      const X = v => x0 + v / max * w;
-      const F = 'font-family="EB Garamond, serif"';
-      const bottom = top + d.groups.length * rowH;
-      let s = `<svg viewBox="0 0 ${W} ${bottom + 26}" role="img" aria-label="${esc(d.summary)}">
-        <defs><pattern id="iv-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#ebe4d4"/><line x1="0" y1="0" x2="0" y2="6" stroke="#5d574c" stroke-width="2"/></pattern></defs>`;
-      [0, 20, 40, 60].forEach(v => { s += `<line x1="${X(v)}" x2="${X(v)}" y1="${top + 26}" y2="${bottom}" stroke="#cdc3ae"/><text x="${X(v)}" y="${bottom + 20}" text-anchor="${v === 0 ? 'start' : 'middle'}" font-size="15" fill="#5d574c" ${F}>${v}%</text>`; });
-      d.groups.forEach((g, i) => {
-        const y = top + i * rowH;
-        s += `<text x="${x0}" y="${y + 18}" font-size="18" fill="#1d1b18" ${F}>${esc(sq(g.label))}</text>`;
-        if (g.range) {
-          s += `<rect x="${X(g.range[0])}" y="${y + 30}" width="${X(g.range[1]) - X(g.range[0])}" height="22" fill="#1f3d5a"/><text x="${X(g.range[1]) + 8}" y="${y + 46}" font-size="15" fill="#1f3d5a" ${F}>${g.range[0]}\u2013${g.range[1]}% responded</text>`;
-        } else {
-          s += `<rect x="${X(0)}" y="${y + 28}" width="${X(g.active) - X(0)}" height="20" fill="#7b2d26"/><text x="${X(g.active) + 8}" y="${y + 43}" font-size="15" fill="#7b2d26" ${F}>Active ${g.active}%${g.activeFraction ? ' (' + g.activeFraction + ')' : ''}</text>`;
-          s += `<rect x="${X(0)}" y="${y + 52}" width="${X(g.sham) - X(0)}" height="20" fill="url(#iv-hatch)" stroke="#5d574c"/><text x="${X(g.sham) + 8}" y="${y + 67}" font-size="15" fill="#5d574c" ${F}>Sham ${Math.round(g.sham)}%${g.shamFraction ? ' (' + g.shamFraction + ')' : ''}</text>`;
-          if (g.expectedActive) s += `<line x1="${X(g.expectedActive)}" x2="${X(g.expectedActive)}" y1="${y + 24}" y2="${y + 76}" stroke="#1d1b18" stroke-dasharray="4 3"/><text x="${X(g.expectedActive) + 6}" y="${y + 90}" font-size="14" fill="#1d1b18" ${F}>expected ${g.expectedActive}%</text>`;
-        }
-      });
-      s += '</svg>';
-      const rows = d.groups.map(g => `<tr><td>${t(g.label)}</td><td>${g.range ? g.range.join('\u2013') + '%' : g.active + '%'}</td><td>${g.range ? '\u2014' : Math.round(g.sham) + '%'}</td><td>${cite(g.sourceIds)}</td></tr>`).join('');
-      return `<span class="lbl sc">${t(d.title)}</span>${s}<p class="figcap">${t(d.takeaway)}</p><details><summary>Show the numbers</summary><table><tr><th>Study</th><th>Active</th><th>Sham</th><th>Source</th></tr>${rows}</table></details>`;
     }
 
     function scaleChart(d) {
@@ -303,9 +272,21 @@
     // ---------- interactivity ----------
     const $ = sel => root.querySelector(sel);
 
+    function weightBlurb(l) {
+      const by = w => CRIT.filter(c => l.weights[c.id] === w).map(c => c.shortName.toLowerCase());
+      const list = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+      const parts = [];
+      if (by(2).length) parts.push(`${list(by(2))} double weight`);
+      if (by(1.5).length) parts.push(`${list(by(1.5))} 1.5 times the weight`);
+      if (by(0.5).length) parts.push(`${list(by(0.5))} half the weight`);
+      if (!parts.length) return '';
+      if (parts.length > 1) parts[parts.length - 1] = 'and ' + parts[parts.length - 1];
+      return `It gives ${parts.join(parts.length > 2 ? '; ' : ', ')}.`;
+    }
+
     function drawGlance() {
       const r = ranked(lens);
-      $('#iv-glance').innerHTML = r.map((x, i) => `<div class="${i === 0 ? 'first' : ''}"><span class="rank sc">${ordinal(i)} under the ${esc(lens.name.toLowerCase())} lens</span><h3>${t(x.f.name)}</h3><p class="verdict">${t(x.f.verdict)}</p><span class="score">Weighted score ${x.s.toFixed(1)} of 5</span><button data-open="${FIELDS.indexOf(x.f)}">Read the evaluation</button></div>`).join('');
+      $('#iv-glance').innerHTML = r.map((x, i) => `<div class="${i === 0 ? 'first' : ''}"><span class="rank sc">${ordinal(i)}, ${esc(lens.name.toLowerCase())} perspective</span><h3>${t(x.f.name)}</h3><p class="verdict">${t(x.f.verdict)}</p><span class="score">Weighted score ${x.s.toFixed(1)} of 5</span><button data-open="${FIELDS.indexOf(x.f)}">Read the evaluation</button></div>`).join('');
     }
 
     function drawScore() {
@@ -317,7 +298,8 @@
       }).join('')}<td class="total">${score(f.id, lens).toFixed(1)}<small>${ordinal(rankOf.get(f.id))}</small></td></tr>`).join('');
       const top = r[0].f.name;
       const holds = winners.size === 1;
-      $('#iv-lenssent').innerHTML = `Under the ${esc(lens.name.toLowerCase())} lens, ${esc(top.toLowerCase())} ranks first.${holds ? ' The ranking at the top holds under every lens we tried.' : ''} <span style="color:var(--ink-2)">${t(lens.rationale)}</span>`;
+      $('#iv-weights').innerHTML = `<th scope="row" class="sc">weight</th>${CRIT.map(c => `<td class="w${lens.weights[c.id] === 1 ? '' : ' changed'}">\u00D7${lens.weights[c.id]}</td>`).join('')}<td></td>`;
+      $('#iv-lenssent').innerHTML = `<b style="font-weight:600">${esc(lens.name)} perspective.</b> ${t(lens.rationale)} ${weightBlurb(lens)} Under this perspective, ${esc(top.toLowerCase())} ranks first${holds ? ', as it does under every perspective we tried' : ''}.`;
     }
 
     function showSlide(announce) {
