@@ -84,7 +84,7 @@
     ];
     const framework = `
       <section class="prose" id="iv-framework">
-        <h2>How we judged</h2>
+        <h2>The full evaluation: how we judged</h2>
         <p>These three fields aren\u2019t on the same axis. Brain stimulation is a therapy already in clinics, biohybrid implants are a new way to connect hardware to the brain, and connectomics is a mapping tool. So before asking which is most promising, we asked promising for whom, by what standard, and on what timeline. Our answers: for patients and the founders who serve them, by six criteria borrowed from the people who fund, regulate and invest in medical technology, over roughly the next ten years.</p>
         <p>${t(C.framework.intro)} We drew on ${lineage.map(([n, ids], i) => (i === lineage.length - 1 ? 'and ' : '') + n + cite(ids)).join(', ')}.</p>
       </section>
@@ -106,7 +106,7 @@
     const scorecard = `
       <section id="iv-scorecard">
         <h2>How the three fields compare</h2>
-        <p class="iv-lensnote">Pick a perspective to reweight the criteria, then click any cell to read the evidence behind it.</p>
+        <p class="iv-lensnote">Pick a perspective to reweight the criteria, then click any cell to read the evidence behind it. How we chose the criteria is in the full evaluation below.</p>
         <div class="iv-lenses" role="group" aria-label="Perspective">${LENSES.map((l, i) => `<button data-lens="${i}" aria-pressed="${i === 0}">${t(l.name)}</button>`).join('')}</div>
         <p id="iv-lenssent" aria-live="polite" style="margin:0 0 14px"></p>
         <div class="iv-scroll"><table class="iv-score">
@@ -158,7 +158,7 @@
       </section>`;
 
     // Build in reading order so citation numbers run top to bottom.
-    let html = thesis + framework + scorecard + explorer + convergence + sham + also;
+    let html = thesis + convergence + scorecard + sham + also + framework + explorer;
     html += `<section><h2>Sources for page IV</h2><ol class="iv-refs">${order.map((id, i) => {
       const s = SRC.get(id);
       const tag = TYPE_LABEL[s.type] ? `<span class="iv-tag">${TYPE_LABEL[s.type]}</span>` : '';
