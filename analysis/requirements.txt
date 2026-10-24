@@ -1,0 +1,10 @@
+huggingface-hub==2.3.0
+netcdf4==1.7.5.1.post1
+nilearn==0.14.1
+numpy==2.5.4
+onnxruntime==1.31.0
+pillow==13.0.0
+scikit-learn==1.9.1
+scipy==1.18.1
+tokenizers==0.23.3
+xarray==2026.9.0

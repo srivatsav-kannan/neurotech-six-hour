@@ -14,6 +14,7 @@ import xarray as xr
 from sklearn.linear_model import RidgeCV
 
 SUBJECT, EXP, N_EXAMPLES = "426", "384sentences", 8
+# the page's examples skip sentences on violent or stereotyped topics
 AVOID = ("woman", "murder", "kill", "crime", "stereotyp", "weapon", "war")
 
 ds = xr.open_dataset(sys.argv[1])
@@ -50,6 +51,7 @@ for i in np.argsort(-match):
     if len(examples) == N_EXAMPLES:
         break
 
+# measured scans are stored as small integers: z-scores scaled so that 3 maps to 127
 q = lambda a: np.clip(np.round(np.asarray(a) / 3 * 127), -127, 127).astype(int).tolist()
 c = np.stack([ds[f"col_to_coord_{k}"].values[v] for k in (1, 2, 3)], 1)
 out = {
@@ -60,5 +62,8 @@ out = {
     "x": (78 - 2 * (c[:, 0] - 1)).tolist(), "y": (-112 + 2 * (c[:, 1] - 1)).tolist(), "z": (-50 + 2 * (c[:, 2] - 1)).tolist(),
     "examples": [{"text": str(sent[i]).strip(), "emb": np.round(X[i], 5).tolist(), "measured": q(Ys[i])} for i in examples],
 }
-json.dump(out, open(f"{site}/model.json", "w"), separators=(",", ":"))
-print([(sent[i].strip(), round(float(match[i]), 2)) for i in examples])
+with open(f"{site}/model.json", "w") as f:
+    json.dump(out, f, separators=(",", ":"))
+print(f"wrote {site}/W.bin and {site}/model.json")
+for i in examples:
+    print(f"  example: {sent[i].strip()}")
