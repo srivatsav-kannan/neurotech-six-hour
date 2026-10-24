@@ -1,44 +1,5 @@
 {
  "_readme": "Content for page IV. Edit text here, not in iv.js. Every evidence item needs sourceIds that exist in 'sources'. Ratings are team judgments (1-5, higher = more promising; for risk, higher = lower risk). Pitch-length edit: about 2-3 evidence items per slide; numbers shown in a chart are not repeated in text. Open checks before presenting: confirm Stanford SNT's regulatory status; company revenue figures stay hidden until verified against filings; confirm the timeline dates listed in charts.stimulationTimeline.dateNotes.",
- "demo": {
-  "kicker": "Our demo",
-  "heading": "Timing TMS to the brain's own rhythm",
-  "lede": [
-   {
-    "text": "The motor cortex hums at about ten beats a second, a wave called the mu rhythm. Magnetic pulses that land on the wave's trough have produced stronger effects than pulses at random times.",
-    "sourceIds": [
-     "zrenner2018-brs"
-    ]
-   },
-   {
-    "text": "But no one can see where a wave is until it has passed, and every system takes time to fire. So we trained a small neural network to predict the wave ahead of time. Here it runs against the standard method on recorded EEG from a person it never trained on.",
-    "sourceIds": []
-   }
-  ],
-  "notes": [
-   {
-    "text": "Across 9 people it never trained on, it put 71% of pulses on target at a 40 ms delay, versus 53% for the standard method and 25% for untimed TMS.",
-    "sourceIds": [
-     "tms-phase-demo",
-     "bci-competition-iv-2a"
-    ]
-   },
-   {
-    "text": "This is recorded EEG, not live stimulation, and whether mu phase changes TMS effects is still debated.",
-    "sourceIds": [
-     "madsen2019-brs"
-    ]
-   }
-  ],
-  "fullPage": {
-   "label": "Full results, method and caveats",
-   "url": "tms-demo/index.html"
-  },
-  "scripts": [
-   "tms-demo/data.js",
-   "tms-demo/player.js"
-  ]
- },
  "thesis": {
   "headline": "Brain stimulation has the most promise, and the other two fields will reach patients through it.",
   "sentences": [

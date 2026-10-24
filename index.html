@@ -441,6 +441,21 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
       </div>
     </section>
 
+    <section id="tms">
+      <span class="sc" style="color:var(--accent)">Our demo</span>
+      <h2>One of these products in miniature: timing TMS to each person's brain</h2>
+      <div class="prose">
+        <p>Question IV pointed us to brain stimulation as the field closest to patients, and question III to the idea that reading the brain is turning into a software and data problem. This demo sits where the two meet. TMS, which stimulates the brain with magnetic pulses through the scalp, is already used in clinics, but most systems fire on a fixed schedule with settings that barely change from one patient to the next, even though everyone's brain rhythms are different.</p>
+        <p>The motor cortex hums at about ten beats a second, a wave called the mu rhythm, and pulses that land on its trough have produced stronger effects than pulses at random times.<sup>18</sup> The catch is that you can only see where a wave was, and every system takes time to fire. So we trained a small neural network to predict each person's wave ahead of time. Below, it runs against the standard method on recorded EEG from a person it never trained on.</p>
+      </div>
+      <div id="tms-mount" style="margin-top:20px"><div class="pending">Loading the demo…</div></div>
+      <p class="iv-caption">This is recorded EEG, not live stimulation, and whether mu phase changes the effect of TMS is still debated.<sup>19</sup> The data is BCI Competition IV set 2a.<sup>20</sup> <a href="tms-demo/index.html">Full results, method and caveats &rarr;</a></p>
+      <div class="prose" style="margin-top:20px">
+        <p><b>Why it belongs here.</b> This is what we mean by programming the device. The stimulator already exists, and the value is in the layer that listens to a patient's brain and decides when to fire. That makes therapy personal in a concrete way: instead of one schedule for everyone, each patient's own rhythm sets the timing, and the same approach extends to choosing where to stimulate and how much.</p>
+        <p><b>What it would take to make this real.</b> The model is the easy part. Better TMS needs infrastructure around it: EEG that reaches the stimulator within a few milliseconds, models trained across many people and tuned to a new patient in minutes, shared datasets so every group isn't starting from scratch, and trials that compare timed against untimed stimulation, so the benefit is proven against a sham and can be paid for. Each of those is a product or service someone has to build.</p>
+      </div>
+    </section>
+
     <section class="prose">
       <h2>Three tests every founder has to pass</h2>
       <p><b style="font-weight:600">Beat a sham.</b> Deep brain stimulation for depression looked strong in small open-label studies, with about 40 to 50% of patients responding.<sup>10</sup> In the sham-controlled BROADEN trial, 20% responded with active stimulation against 17% with sham, and RECLAIM was stopped for futility.<sup>11,12</sup> Before believing any next-generation claim, ask whether it has been tested against a sham or an active comparator by someone other than its developers.</p>
@@ -481,6 +496,9 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
         <li>TechCrunch 2026. <a href="https://techcrunch.com/2026/04/14/max-hodaks-science-corp-is-preparing-to-place-its-first-sensor-in-a-human-brain/">Science Corp. is preparing to place its first sensor in a human brain</a></li>
         <li>The Next Web 2026. <a href="https://thenextweb.com/news/science-corp-biohybrid-brain-sensor-first-human-hodak-yale">Science Corp is betting biology will beat electrodes</a></li>
         <li>Wellcome 2023. <a href="https://wellcome.org/insights/reports/scaling-connectomics">Scaling up connectomics: the road to a whole mouse brain connectome</a></li>
+              <li>Zrenner et al. 2018, <i>Brain Stimulation</i>. <a href="https://doi.org/10.1016/j.brs.2017.11.016">Real-time EEG-defined excitability states determine efficacy of TMS-induced plasticity in human motor cortex</a></li>
+        <li>Madsen et al. 2019, <i>Brain Stimulation</i>. <a href="https://www.biorxiv.org/content/10.1101/513390.full.pdf">No trace of phase: corticomotor excitability is not tuned by phase of pericentral mu-rhythm</a></li>
+        <li>Our analysis of BCI Competition IV data set 2a, Graz University of Technology. <a href="https://bbci.de/competition/iv/">Data</a> and <a href="tms-demo/index.html">full results</a></li>
       </ol>
     </section>
   </div>
@@ -836,5 +854,21 @@ const arrow = (svg, x1, y1, x2, y2, color = '#1d1b18', flow = true) => {
 
 </script>
 <script src="iv.js"></script>
+<script>
+(() => {
+  let started = false;
+  const load = src => new Promise((ok, no) => { const el = document.createElement('script'); el.src = src; el.onload = ok; el.onerror = no; document.head.appendChild(el); });
+  const start = () => {
+    if (started || location.hash !== '#build') return;
+    started = true;
+    const mount = document.getElementById('tms-mount');
+    load('tms-demo/data.js').then(() => load('tms-demo/player.js'))
+      .then(() => { mount.innerHTML = ''; window.TMSDemo.mount(mount, window.TMS_DEMO); })
+      .catch(() => { mount.innerHTML = '<div class="pending">The demo couldn\u2019t load.</div>'; });
+  };
+  window.addEventListener('hashchange', start);
+  start();
+})();
+</script>
 </body>
 </html>
