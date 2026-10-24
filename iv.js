@@ -40,8 +40,12 @@
   function render(C) {
     const SRC = new Map(C.sources.map(s => [s.id, s]));
     const order = [], num = new Map();
+    // At most MAX_CITES sources per claim, reusing ones already cited and then the strongest kinds, to keep the list short.
+    const MAX_CITES = 1;
+    const RANK = ['peer-reviewed', 'government', 'trial-registry', 'dataset', 'report', 'framework', 'analysis', 'company', 'preprint', 'secondary', 'news'];
+    const strength = id => { const r = RANK.indexOf(SRC.get(id).type); return r < 0 ? RANK.length : r; };
     const cite = ids => {
-      const ns = (ids || []).filter(id => SRC.has(id)).map(id => {
+      const ns = (ids || []).filter(id => SRC.has(id)).sort((x, y) => (num.has(y) - num.has(x)) || strength(x) - strength(y)).slice(0, MAX_CITES).map(id => {
         if (!num.has(id)) { order.push(id); num.set(id, order.length); }
         const n = num.get(id), s = SRC.get(id);
         return `<a href="#" data-ref="${n}" aria-label="Source ${n}: ${esc(sq(s.title))}">${n}</a>`;
@@ -97,16 +101,16 @@
       <section class="prose" id="iv-framework">
         <h2>The full evaluation: how we judged</h2>
         <p>These three fields aren\u2019t on the same axis. Brain stimulation is a therapy already in clinics, biohybrid implants are a new way to connect hardware to the brain, and connectomics is a mapping tool. So before asking which is most promising, we asked promising for whom, by what standard, and on what timeline. Our answers: for patients and the founders who serve them, by six criteria borrowed from the people who fund, regulate and invest in medical technology, over roughly the next ten years.</p>
-        <p>${t(C.framework.intro)} We drew on ${lineage.map(([n, ids], i) => (i === lineage.length - 1 ? 'and ' : '') + n + cite(ids)).join(', ')}.</p>
+        <p>${t(C.framework.intro)} We drew on ${lineage.map(([n], i) => (i === lineage.length - 1 ? 'and ' : '') + n).join(', ')}.</p>
       </section>
       <div class="iv-scroll" style="margin-top:20px"><table class="iv-table">
         <thead><tr><th></th><th>criterion</th><th>the test</th><th>what we looked for</th></tr></thead>
-        <tbody>${CRIT.map(c => `<tr><td class="n">${c.number}</td><td>${t(c.name)}<div class="who">Evaluated by ${t(c.owner)}</div></td><td class="test">${t(c.test)}</td><td>${t(c.lookedFor)}${cite(c.groundedIn)}</td></tr>`).join('')}</tbody>
+        <tbody>${CRIT.map(c => `<tr><td class="n">${c.number}</td><td>${t(c.name)}</td><td class="test">${t(c.test)}</td><td>${t(c.lookedFor)}</td></tr>`).join('')}</tbody>
       </table></div>
       <div class="iv-scale">
         <div><span class="lbl sc">How we rate</span>
           <ul>${LEVELS.map(l => `<li><span class="iv-swatch" style="background:${cellBg(l.rating)};color:${cellFg(l.rating)}">${l.rating}</span><span><b style="font-weight:600">${t(l.label)}.</b> ${t(l.meaning)}</span></li>`).join('')}</ul>
-          <p class="iv-caption">${t(C.framework.ratingScale.direction)} ${t(C.framework.ratingScale.biodesignNote.text)}${cite(C.framework.ratingScale.biodesignNote.sourceIds)}</p>
+          <p class="iv-caption">${t(C.framework.ratingScale.direction)} ${t(C.framework.ratingScale.biodesignNote.text)}</p>
         </div>
         <div><span class="lbl sc">Whose perspective?</span>
           <p style="margin:0 0 8px">${t(C.framework.lensNote)}</p>
@@ -117,12 +121,12 @@
     const scorecard = `
       <section id="iv-scorecard">
         <h2>How the three fields compare</h2>
-        <p class="iv-lensnote">Pick a perspective to reweight the criteria, then click any cell to read the evidence behind it. How we chose the criteria is in the full evaluation below.</p>
+        <p class="iv-lensnote">Our ratings stay the same whichever perspective you pick. What changes is how much each criterion counts, shown in the weight row under the criteria, so the weighted score moves. ${t(C.framework.lensSummary)} Click any cell to read the evidence behind it.</p>
         <div class="iv-lenses" role="group" aria-label="Perspective">${LENSES.map((l, i) => `<button data-lens="${i}" aria-pressed="${i === 0}">${t(l.name)}</button>`).join('')}</div>
         <p id="iv-lenssent" aria-live="polite" style="margin:0 0 14px"></p>
         <div class="iv-scroll"><table class="iv-score">
           <caption class="sc" style="text-align:left;color:var(--ink-2);padding-bottom:6px">Our ratings, 1 to 5</caption>
-          <thead><tr><th></th>${CRIT.map(c => `<th>${c.number}<br>${t(c.shortName)}</th>`).join('')}<th>Weighted</th></tr></thead>
+          <thead><tr><th></th>${CRIT.map(c => `<th>${c.number}<br>${t(c.shortName)}</th>`).join('')}<th>Weighted</th></tr><tr class="iv-weights"><th scope="row">weight</th>${CRIT.map(c => `<td data-w="${c.id}"></td>`).join('')}<td></td></tr></thead>
           <tbody id="iv-scorebody"></tbody>
         </table></div>
         <p class="iv-caption">${t(C.framework.ratingScale.note)}</p>
@@ -154,14 +158,6 @@
         </div>
       </section>`;
 
-    const sham = `
-      <section>
-        <h2>The sham question</h2>
-        <p class="iv-big">${t(C.sham.headline)}</p>
-        <div class="iv-fig">${shamChart(C.charts.openLabelVsSham)}</div>
-        <div class="prose" style="margin-top:16px">${C.sham.explanation.map(e => `<p>${t(e.text)}${cite(e.sourceIds)}</p>`).join('')}</div>
-      </section>`;
-
     const also = `
       <section id="iv-also">
         <h2>${t(C.alsoAnswers.heading.replace('Questions 1 and 2', 'questions I and II'))}</h2>
@@ -169,7 +165,7 @@
       </section>`;
 
     // Build in reading order so citation numbers run top to bottom.
-    let html = demo + thesis + convergence + scorecard + sham + also + framework + explorer;
+    let html = demo + thesis + convergence + scorecard + framework + explorer + also;
     html += `<section><h2>Sources for page IV</h2><ol class="iv-refs">${order.map((id, i) => {
       const s = SRC.get(id);
       const tag = TYPE_LABEL[s.type] ? `<span class="iv-tag">${TYPE_LABEL[s.type]}</span>` : '';
@@ -190,7 +186,6 @@
       return `<article class="iv-slide${side ? '' : ' novis'}" data-f="${fi}" data-c="${ci}" ${fi === 0 && ci === 0 ? '' : 'hidden'} aria-label="${esc(f.name)}, criterion ${c.number} of 6: ${esc(c.name)}">
         <div>
           <div class="iv-crit"><span class="n">${c.number}</span><div><h3>${t(c.name)}</h3><span class="test">${t(c.test)}</span></div></div>
-          <div class="iv-owner">Evaluated by ${t(s.owner)}</div>
           <div class="iv-meter" aria-label="Rated ${r.rating} of 5, ${label(r.rating)}"><span class="segs">${[1, 2, 3, 4, 5].map(n => `<span class="${n <= r.rating ? 'f' : ''}"></span>`).join('')}</span><span>${r.rating} of 5, ${label(r.rating).toLowerCase()}</span></div>
           <p class="iv-rationale">${t(r.rationale)}</p>
           <p class="iv-verdict">${t(s.verdict)}</p>
@@ -236,30 +231,6 @@
 
     function timeline(d) {
       return `<span class="lbl sc">${t(d.title)}</span><div class="iv-timeline">${d.tracks.map(tr => `<div><span class="sc" style="color:var(--accent)">${t(tr.label)}</span><ol>${tr.events.map(e => `<li><span class="yr">${e.year}</span><span>${t(e.label)}${cite(e.sourceIds)}<span class="kind">${t(d.kindLabels[e.kind])}</span></span></li>`).join('')}</ol></div>`).join('')}</div>`;
-    }
-
-    function shamChart(d) {
-      const W = 720, rowH = 100, top = 6, x0 = 10, w = 560, max = 60;
-      const X = v => x0 + v / max * w;
-      const F = 'font-family="EB Garamond, serif"';
-      const bottom = top + d.groups.length * rowH;
-      let s = `<svg viewBox="0 0 ${W} ${bottom + 26}" role="img" aria-label="${esc(d.summary)}">
-        <defs><pattern id="iv-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#ebe4d4"/><line x1="0" y1="0" x2="0" y2="6" stroke="#5d574c" stroke-width="2"/></pattern></defs>`;
-      [0, 20, 40, 60].forEach(v => { s += `<line x1="${X(v)}" x2="${X(v)}" y1="${top + 26}" y2="${bottom}" stroke="#cdc3ae"/><text x="${X(v)}" y="${bottom + 20}" text-anchor="${v === 0 ? 'start' : 'middle'}" font-size="15" fill="#5d574c" ${F}>${v}%</text>`; });
-      d.groups.forEach((g, i) => {
-        const y = top + i * rowH;
-        s += `<text x="${x0}" y="${y + 18}" font-size="18" fill="#1d1b18" ${F}>${esc(sq(g.label))}</text>`;
-        if (g.range) {
-          s += `<rect x="${X(g.range[0])}" y="${y + 30}" width="${X(g.range[1]) - X(g.range[0])}" height="22" fill="#1f3d5a"/><text x="${X(g.range[1]) + 8}" y="${y + 46}" font-size="15" fill="#1f3d5a" ${F}>${g.range[0]}\u2013${g.range[1]}% responded</text>`;
-        } else {
-          s += `<rect x="${X(0)}" y="${y + 28}" width="${X(g.active) - X(0)}" height="20" fill="#7b2d26"/><text x="${X(g.active) + 8}" y="${y + 43}" font-size="15" fill="#7b2d26" ${F}>Active ${g.active}%${g.activeFraction ? ' (' + g.activeFraction + ')' : ''}</text>`;
-          s += `<rect x="${X(0)}" y="${y + 52}" width="${X(g.sham) - X(0)}" height="20" fill="url(#iv-hatch)" stroke="#5d574c"/><text x="${X(g.sham) + 8}" y="${y + 67}" font-size="15" fill="#5d574c" ${F}>Sham ${Math.round(g.sham)}%${g.shamFraction ? ' (' + g.shamFraction + ')' : ''}</text>`;
-          if (g.expectedActive) s += `<line x1="${X(g.expectedActive)}" x2="${X(g.expectedActive)}" y1="${y + 24}" y2="${y + 76}" stroke="#1d1b18" stroke-dasharray="4 3"/><text x="${X(g.expectedActive) + 6}" y="${y + 90}" font-size="14" fill="#1d1b18" ${F}>expected ${g.expectedActive}%</text>`;
-        }
-      });
-      s += '</svg>';
-      const rows = d.groups.map(g => `<tr><td>${t(g.label)}</td><td>${g.range ? g.range.join('\u2013') + '%' : g.active + '%'}</td><td>${g.range ? '\u2014' : Math.round(g.sham) + '%'}</td><td>${cite(g.sourceIds)}</td></tr>`).join('');
-      return `<span class="lbl sc">${t(d.title)}</span>${s}<p class="figcap">${t(d.takeaway)}</p><details><summary>Show the numbers</summary><table><tr><th>Study</th><th>Active</th><th>Sham</th><th>Source</th></tr>${rows}</table></details>`;
     }
 
     function scaleChart(d) {
@@ -326,9 +297,10 @@
         const v = C.scorecard[f.id][c.id];
         return `<td style="background:${cellBg(v.rating)}"><button data-cell="${fi},${ci}" title="${esc(sq(v.rationale))}" style="color:${cellFg(v.rating)}" aria-label="${esc(f.name)}, ${esc(c.name)}: ${v.rating} of 5, ${label(v.rating)}. Show the evidence."><span class="num">${v.rating}</span><span class="lab">${label(v.rating)}</span></button></td>`;
       }).join('')}<td class="total">${score(f.id, lens).toFixed(1)}<small>${ordinal(rankOf.get(f.id))}</small></td></tr>`).join('');
+      root.querySelectorAll('[data-w]').forEach(td => { td.textContent = '\u00d7' + lens.weights[td.dataset.w]; });
       const top = r[0].f.name;
       const holds = winners.size === 1;
-      $('#iv-lenssent').innerHTML = `Under the ${esc(lens.name.toLowerCase())} lens, ${esc(top.toLowerCase())} ranks first.${holds ? ' The ranking at the top holds under every lens we tried.' : ''} <span style="color:var(--ink-2)">${t(lens.rationale)}</span>`;
+      $('#iv-lenssent').innerHTML = `Under the ${esc(lens.name.toLowerCase())} lens, ${esc(top.toLowerCase())} ranks first.${holds ? ' The ranking at the top holds under every lens we tried.' : ''}`;
     }
 
     function showSlide(announce) {

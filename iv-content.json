@@ -262,6 +262,7 @@
    }
   ],
   "lensNote": "No source can set the weights. Pick a perspective.",
+  "lensSummary": "Equal counts every criterion the same, Patients puts benefit, proof, speed and safety first, Founders puts demand and business viability first, and Science puts impact on understanding and the quality of the evidence first.",
   "trlFootnote": "Our estimate on the DoD biomedical TRL scale, not an official rating.",
   "trlSourceIds": [
    "nasa-trl",
@@ -1143,19 +1144,6 @@
    }
   ]
  },
- "sham": {
-  "headline": "Before believing a neurotech claim, ask: was it tested against a sham, by someone other than its developer?",
-  "explanation": [
-   {
-    "text": "Depression DBS looked strong in open-label studies, then failed to beat sham in two controlled trials. Clinical attention, placebo effects, and the implant itself can all inflate uncontrolled results.",
-    "sourceIds": [
-     "clevelandclinic-dbs",
-     "broaden-medscape2026",
-     "reclaim-frontiers2018"
-    ]
-   }
-  ]
- },
  "alsoAnswers": {
   "anchorId": "also-answers",
   "heading": "What this says about Questions 1 and 2",
@@ -1195,48 +1183,6 @@
   ]
  },
  "charts": {
-  "openLabelVsSham": {
-   "title": "Depression DBS: before and after sham controls",
-   "summary": "Open-label response of 40 to 50% fell to 20% versus 17% sham in BROADEN, and 3 of 15 versus 2 of 14 in RECLAIM.",
-   "takeaway": "Strong uncontrolled results shrank to near the sham rate.",
-   "unit": "% of patients responding",
-   "groups": [
-    {
-     "label": "Early open-label pilots (6 months)",
-     "range": [
-      40,
-      50
-     ],
-     "sourceIds": [
-      "clevelandclinic-dbs"
-     ]
-    },
-    {
-     "label": "BROADEN, sham-controlled (6 months)",
-     "active": 20,
-     "sham": 17,
-     "expectedActive": 40,
-     "sourceIds": [
-      "broaden-medscape2026"
-     ]
-    },
-    {
-     "label": "RECLAIM, sham-controlled (16 weeks)",
-     "active": 20,
-     "activeFraction": "3 of 15",
-     "sham": 14.3,
-     "shamFraction": "2 of 14",
-     "sourceIds": [
-      "reclaim-frontiers2018"
-     ]
-    }
-   ],
-   "sourceIds": [
-    "clevelandclinic-dbs",
-    "broaden-medscape2026",
-    "reclaim-frontiers2018"
-   ]
-  },
   "connectomeScale": {
    "title": "How much brain has been mapped",
    "summary": "Worm and fly brains are fully mapped; mammalian maps are cubic-millimeter samples; whole mouse and human brains are unmapped.",
