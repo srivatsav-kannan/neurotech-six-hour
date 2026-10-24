@@ -520,13 +520,48 @@
         "stanmed2026-bronte",
         "ucsf-dbs-trials"
        ]
+      },
+      {
+       "group": "Our demo",
+       "qualifier": "Our analysis, not peer reviewed",
+       "text": "We built a piece of that software: a small neural network that predicts the brain's mu rhythm from scalp EEG, so a TMS pulse lands on the wave's trough, the timing linked to stronger effects. The interactive demo is linked in the sources.",
+       "sourceIds": [
+        "tms-phase-demo",
+        "zrenner2018-brs"
+       ]
+      },
+      {
+       "group": "Our demo",
+       "qualifier": "Our analysis, not peer reviewed",
+       "text": "Tested on 9 people it never trained on, it put 71% of simulated pulses on target at a 40 ms system delay, versus 53% for the standard method and 25% for untimed TMS. It beat both published methods for all 9 people.",
+       "sourceIds": [
+        "tms-phase-demo",
+        "shirinpour2020-jne",
+        "bci-competition-iv-2a"
+       ]
+      },
+      {
+       "group": "Our demo",
+       "qualifier": "Our analysis, not peer reviewed",
+       "text": "At a 60 ms delay it was as accurate as the standard method with no delay, so cheaper hardware could deliver timed TMS. A few minutes of each person's own EEG made it better for all 9.",
+       "sourceIds": [
+        "tms-phase-demo"
+       ]
+      },
+      {
+       "group": "The catch",
+       "text": "One study found no effect of mu phase on how strongly TMS excites the motor cortex, so the benefit of timing still has to be shown in patients.",
+       "sourceIds": [
+        "madsen2019-brs"
+       ]
       }
      ],
      "visual": {
       "component": "CoverageGapChart"
      },
      "caveats": [
-      "The software opening is our inference."
+      "The software opening is our inference.",
+      "Our demo used recorded EEG, not live stimulation."
      ]
     },
     {
@@ -1051,6 +1086,13 @@
     "sourceIds": [
      "scangos2021-natmed",
      "stanmed2026-bronte"
+    ]
+   },
+   {
+    "text": "Our demo shows the timing gain: predicting the motor rhythm 40 ms ahead put 71% of simulated TMS pulses on target, versus 53% with the standard method.",
+    "sourceIds": [
+     "tms-phase-demo",
+     "zrenner2018-brs"
     ]
    },
    {
@@ -2151,6 +2193,49 @@
    "year": 2025,
    "url": "https://www.arnoldporter.com/en/perspectives/advisories/2025/07/neural-data-privacy-regulation",
    "type": "secondary"
+  },
+  {
+   "id": "tms-phase-demo",
+   "title": "Interactive demo: timing TMS to the brain's own rhythm",
+   "publisher": "Our team",
+   "year": 2026,
+   "url": "tms-demo/index.html",
+   "type": "analysis",
+   "note": "Our own model and evaluation on recorded EEG; not peer reviewed."
+  },
+  {
+   "id": "zrenner2018-brs",
+   "title": "Real-time EEG-defined excitability states determine efficacy of TMS-induced plasticity in human motor cortex",
+   "publisher": "Brain Stimulation (Zrenner et al.)",
+   "year": 2018,
+   "url": "https://doi.org/10.1016/j.brs.2017.11.016",
+   "type": "peer-reviewed"
+  },
+  {
+   "id": "shirinpour2020-jne",
+   "title": "Experimental evaluation of methods for real-time EEG phase-specific transcranial magnetic stimulation",
+   "publisher": "Journal of Neural Engineering (Shirinpour et al.)",
+   "year": 2020,
+   "url": "https://doi.org/10.1088/1741-2552/ab9dba",
+   "type": "peer-reviewed"
+  },
+  {
+   "id": "madsen2019-brs",
+   "title": "No trace of phase: Corticomotor excitability is not tuned by phase of pericentral mu-rhythm",
+   "publisher": "Brain Stimulation (Madsen et al.)",
+   "year": 2019,
+   "url": "https://www.biorxiv.org/content/10.1101/513390.full.pdf",
+   "type": "peer-reviewed",
+   "note": "Links to the open preprint of the published paper."
+  },
+  {
+   "id": "bci-competition-iv-2a",
+   "title": "BCI Competition IV, data set 2a",
+   "publisher": "Graz University of Technology",
+   "year": 2008,
+   "url": "https://bbci.de/competition/iv/",
+   "type": "dataset",
+   "note": "Nine people, 22-channel EEG; the recordings used in our demo."
   }
  ]
 }
