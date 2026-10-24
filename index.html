@@ -54,6 +54,7 @@ h3 { font-weight: 500; font-size: 23px; margin: 0 0 6px; }
 section { margin-top: 72px; }
 .prose { max-width: 780px; }
 .prose p { margin: 0 0 16px; }
+.prose b { font-weight: 600; }
 
 /* overview */
 .qs { display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px; border: 1px solid var(--ink); }
@@ -364,7 +365,10 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 
     <section class="prose">
       <h2>The risks</h2>
-      <p>Stanford's inner speech decoder sometimes picked up words people were only thinking, such as numbers they were silently counting, and their fix was a mental password the decoder waits for before it switches on. Brain-LLM alignment also follows the model's training data, so a decoder built on an English model works best for English speakers. And these models line up with the brain's language network rather than with thought as a whole.</p>
+      <p><b>Thoughts can leak.</b> Stanford's inner speech decoder sometimes picked up words people were only thinking, such as numbers they were silently counting. Their fix was a mental password the decoder waits for before it switches on, which is close to the first privacy feature ever built for thoughts. Decoders are also starting to transfer between people, so less of your own data is needed to read you. Colorado and California now treat neural data as sensitive and Chile has written neural rights into its constitution, but most places have no rules at all.</p>
+      <p><b>The same tool can steer people.</b> If a model can pick the sentences that most strongly drive someone's language network, that is useful for science, and it is also exactly what an ad or a feed would want to optimise for. Feeds tuned for engagement already cause problems, and feeds tuned against measured brain responses would go a step further.</p>
+      <p><b>It works better for some people than others.</b> How well a model lines up with the brain follows its training data. An English-trained model fits English speakers' brains best and a Chinese-trained one fits Chinese speakers best, so a decoder built on an English model will work worse for everyone else. Which languages a model learned from becomes a question of who gets a medical device that works.</p>
+      <p><b>It is easy to overclaim.</b> Some early results that made models look brain-like turned out to come from simple things like sentence length and position in a passage (Feghhi et al., 2024), and some papers put brain labels on model outputs without using any brain data. These models also line up with the brain's language network rather than with thought as a whole: meaning can be decoded from parts of the brain that have nothing to do with language (Horikawa, 2025).</p>
     </section>
 
     <section class="prose">
@@ -385,6 +389,8 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
         <li>Kunz, Willett et al. 2025, <i>Cell</i>. Inner speech decoding</li>
         <li>Meta 2026. <a href="https://ai.meta.com/blog/brain2qwerty-brain-ai-human-communication/">Brain2Qwerty v2</a></li>
         <li>Guo, Wu &amp; Yiu 2026. <a href="https://arxiv.org/abs/2605.23032">Brain-LLM alignment tracks training data</a></li>
+        <li>Feghhi et al. 2024. <a href="https://arxiv.org/abs/2406.01538">What are large language models mapping to in the brain?</a></li>
+        <li>Horikawa 2025, <i>Science Advances</i>. Mind captioning: evolving descriptive text of mental content from human brain activity</li>
       </ol>
     </section>
   </div>
