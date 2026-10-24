@@ -128,6 +128,7 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
   footer ul { column-gap: 14px; font-size: 14px; }
 }
 </style>
+<link rel="stylesheet" href="iv.css">
 </head>
 <body>
 
@@ -158,11 +159,11 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
       <a class="q" href="#iv">
         <span class="num">IV</span>
         <h3>Biohybrid implants, connectomics, human brain stimulation: which has the most promise?</h3>
-        <p class="shows">Our pick, and the case for it.</p>
+        <p class="shows">Brain stimulation. We scored all three fields on six criteria borrowed from DARPA, Stanford Biodesign, NASA and the FDA, and linked every claim to its source.</p>
         <span class="open">Open IV →</span>
       </a>
     </div>
-    <p class="note">Question II, on why neurotech is slow to reach patients, also comes up on page III.</p>
+    <p class="note">Questions I and II also come up on page IV, and question II on page III.</p>
   </div>
 </main>
 
@@ -267,9 +268,8 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="iv">
   <div class="wrap">
     <div class="kicker sc">Question IV</div>
-    <h1>Biohybrid implants, connectomics, brain stimulation</h1>
-    <p class="lede">Which has the most promise?</p>
-    <div class="pending">In progress.</div>
+    <!-- Page IV is built by iv.js from iv-content.json. Edit the JSON to change text, ratings or sources. -->
+    <div id="iv-root"><div class="pending">Loading page IV…</div></div>
   </div>
 </main>
 
@@ -423,5 +423,6 @@ function route() {
 window.addEventListener('hashchange', route);
 route();
 </script>
+<script src="iv.js"></script>
 </body>
 </html>
