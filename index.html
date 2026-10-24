@@ -121,6 +121,17 @@ svg, canvas, img { display: block; max-width: 100%; }
 .legend i { display: inline-block; width: 120px; height: 8px; background: linear-gradient(90deg, #b4f0fa, #5ac8e6, #1e64d2, #0a286e, #f4efe4, #780a0a, #dc3c14, #ffaa28, #ffeb78); }
 .verdict { padding: 14px 16px; margin: 0; border-top: 1px solid var(--ink); min-height: 56px; }
 
+/* grid used on What to build */
+.grid4 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); }
+.grid4 > div { padding: 20px 22px; }
+.grid4 > div:nth-child(2n) { border-left: 1px solid var(--rule); }
+.grid4 > div:nth-child(n+3) { border-top: 1px solid var(--rule); }
+.grid4 .sc { color: var(--accent); font-size: 17px; }
+.grid4 .big { font-size: 40px; line-height: 1.1; margin: 6px 0 2px; }
+.grid4 p { margin: 10px 0 0; }
+.grid4 svg { margin-top: 12px; max-height: 210px; }
+
+
 /* diagrams */
 .diagram { border: 1px solid var(--ink); margin-top: 20px; display: grid; grid-template-columns: 1fr 1.5fr; }
 .diagram > div { padding: 22px; }
@@ -160,7 +171,37 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
   nav a { padding: 6px 8px; }
   footer ul { column-gap: 14px; font-size: 14px; }
 }
+/* story structure */
+.beats { list-style: none; margin: 40px 0 0; padding: 0; border: 1px solid var(--ink); }
+.beats li { display: grid; grid-template-columns: 64px 1fr; gap: 8px; padding: 24px 28px 22px 20px; }
+.beats li + li { border-top: 1px solid var(--rule); }
+.beats .num { font-size: 40px; line-height: 1; color: var(--accent); }
+.beats h3 { font-weight: 500; font-size: 25px; line-height: 1.25; margin: 0 0 8px; max-width: 760px; }
+.beats p { margin: 0; color: var(--ink-2); max-width: 760px; }
+.beats .go { display: inline-block; margin-top: 12px; font-weight: 600; text-decoration: none; }
+.beats .go:hover { text-decoration: underline; text-underline-offset: 4px; }
+.beats sup, .build-grid sup, .prose sup { font-size: .65em; color: var(--accent); }
+.speeds { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--ink); }
+.speeds > div { padding: 18px 20px; }
+.speeds > div + div { border-left: 1px solid var(--rule); }
+.speeds .sc { color: var(--accent); }
+.speeds p { margin: 6px 0 0; }
+.bridge { color: var(--ink-2); border-left: 3px solid var(--accent); padding: 2px 0 2px 14px; max-width: 760px; margin: 10px 0 18px; font-size: 18px; }
+.bridge.next { margin-top: 56px; font-size: 20px; color: var(--ink); }
+.bridge a { font-weight: 600; text-decoration: none; }
+.bridge a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.build-grid h3 { font-weight: 500; font-size: 23px; line-height: 1.25; margin: 6px 0 0; }
+@media (max-width: 720px) {
+  .beats li { grid-template-columns: 40px 1fr; padding: 18px 16px; }
+  .beats .num { font-size: 30px; }
+  .beats h3 { font-size: 22px; }
+  .speeds { grid-template-columns: 1fr; }
+  .speeds > div + div { border-left: 0; border-top: 1px solid var(--rule); }
+  .top .wrap { height: auto; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; gap: 6px 16px; }
+  nav { flex-wrap: wrap; }
+}
 </style>
+<link rel="stylesheet" href="iv.css">
 </head>
 <body>
 
@@ -169,8 +210,9 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
     <a class="brand" href="#">Neurotech &amp; BCI</a>
     <nav>
       <a href="#" data-to="home">Overview</a>
-      <a href="#iii" data-to="iii">III</a>
       <a href="#iv" data-to="iv">IV</a>
+      <a href="#iii" data-to="iii">III</a>
+      <a href="#build" data-to="build">What to build</a>
     </nav>
   </div>
 </div>
@@ -178,30 +220,67 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="home">
   <div class="wrap">
     <div class="kicker sc">6 Hour Challenge · Saturday 24 October 2026</div>
-    <h1>Neurotech &amp; BCI</h1>
-    <p class="lede">We're answering two of the four questions in this track, and each one has its own page.</p>
+    <h1>The next decade of neurotech will be won in the last mile</h1>
+    <p class="lede">New hardware gets the headlines, but our research points somewhere else. The biggest gains will come from the software, data and access that make existing brain technology work for more patients.</p>
 
-    <div class="qs">
-      <a class="q" href="#iii">
-        <span class="num">III</span>
-        <h3>Parts of the brain map linearly to LLM activations. How can LLMs improve neural decoding and our understanding of the brain?</h3>
-        <p class="shows">An interactive demo where you type a sentence and watch it become a language model's embedding and a brain scan, linked by one matrix we fit on real fMRI data. Then three diagrams on why that matters.</p>
-        <span class="open">Open III →</span>
-      </a>
-      <a class="q" href="#iv">
-        <span class="num">IV</span>
-        <h3>Biohybrid implants, connectomics, human brain stimulation: which has the most promise?</h3>
-        <p class="shows">Our pick, and the case for it.</p>
-        <span class="open">Open IV →</span>
-      </a>
-    </div>
-    <p class="note">Question II, on why neurotech is slow to reach patients, also comes up on page III.</p>
+    <ol class="beats">
+      <li>
+        <span class="num">1</span>
+        <div>
+          <h3>Billions of people need better brain treatments, and most neurotech never reaches them.</h3>
+          <p>Conditions affecting the nervous system were the world&rsquo;s leading cause of disability in 2021, touching about 3.4 billion people.<sup>1</sup> Promising neurotechnology often stalls long before it gets to them.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <div>
+          <h3>So we asked which technology reaches patients first, and what&rsquo;s in the way.</h3>
+          <p>Biohybrid implants, connectomics and brain stimulation aren&rsquo;t on the same axis: one is a new interface, one is a mapping tool, one is a therapy already in clinics. We judged them on six criteria borrowed from DARPA, Stanford Biodesign, NASA and the FDA.</p>
+        </div>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <div>
+          <h3>Brain stimulation does, and connectomics and biohybrids will reach patients through it.</h3>
+          <p>Stimulation is the only one of the three backed by repeated randomized trials and an adaptive system approved in 2025. Connectomics tells it where to aim; biohybrids may one day replace its electrode.</p>
+          <a class="go" href="#iv">Read question IV: which field has the most promise &rarr;</a>
+        </div>
+      </li>
+      <li>
+        <span class="num">4</span>
+        <div>
+          <h3>Language models are turning decoding into a model problem, which can tell stimulation when to act.</h3>
+          <p>Using a public fMRI dataset, we fit one matrix that turns a language model&rsquo;s numbers into real brain activity. Type any sentence and watch it become a predicted brain scan.</p>
+          <a class="go" href="#iii">Read question III: LLMs and the brain &rarr;</a>
+        </div>
+      </li>
+      <li>
+        <span class="num">5</span>
+        <div>
+          <h3>The companies of tomorrow will win the last mile, and prove it against a sham.</h3>
+          <p>The openings are in programming and personalizing devices, decoding brain signals, and fixing referral and payment. The test for every claim: does it beat a sham, measured by someone other than its developer?</p>
+          <a class="go" href="#build">Read what we would build &rarr;</a>
+        </div>
+      </li>
+    </ol>
+
+    <section>
+      <h2>How to read this site</h2>
+      <div class="speeds">
+        <div><span class="sc">Two minutes</span><p>This page. The five headlines above are the whole argument.</p></div>
+        <div><span class="sc">Ten minutes</span><p>The top of each page: our answer, the key charts, and the bridge to the next page.</p></div>
+        <div><span class="sc">Deep dive</span><p>The full evaluation on page IV, our analysis and code on page III, and every source.</p></div>
+      </div>
+      <p class="note">Questions I and II from the track come up along the way: data scaling versus new modalities on page IV, and what holds neurotech back on pages IV, III and What to build.</p>
+      <ol class="refs" style="margin-top:24px;font-size:16px"><li>GBD 2021 Nervous System Disorders Collaborators, <i>The Lancet Neurology</i>, 2024. <a href="https://www.thelancet.com/journals/laneur/article/PIIS1474-4422(24)00038-3/fulltext">Global burden of disorders affecting the nervous system</a></li></ol>
+    </section>
   </div>
 </main>
 
 <main data-page="iii">
   <div class="wrap">
     <div class="kicker sc">Question III</div>
+    <p class="bridge">Where this fits: page IV argues brain stimulation is the channel to patients. This page shows how language models can tell it <i>when</i> to act, by reading meaning out of brain activity.</p>
     <h1>From a sentence to a brain scan</h1>
     <p class="lede">In 2018 Pereira and colleagues had people read short sentences in an MRI scanner and recorded what their brains did. A language model can read the same sentences and turn each one into a list of 384 numbers, called an embedding. It turns out that one fixed matrix, W, converts those numbers into the brain activity that was measured. We fit that W ourselves on their public data, for one of the participants.</p>
     <p class="lede">Pick a sentence that person actually read to see their real scan next to what W predicts, or type your own and W will predict the scan.</p>
@@ -301,6 +380,8 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
       <p>The scans are from the 384-sentence experiment in Pereira et al. (2018), using the language-network voxels packaged by MIT's Brain-Score, for participant 426. The embeddings come from MiniLM, which is small enough to run in your browser, so a typed sentence goes through exactly the same model W was fit on. W is a ridge regression from the 384 numbers to each of the person's 1,357 voxels. Across sentences it was never trained on, its predictions correlate with the measured voxels at a median of 0.16. That is modest in absolute terms, as single-sentence fMRI is noisy, and the examples above are the ones where it matched best. The brain is the MNI152 template, and the order in step 2 follows the published findings rather than this dataset. The code is on <a href="https://github.com/srivatsav-kannan/neurotech-six-hour/tree/main/analysis">GitHub</a>.</p>
     </section>
 
+    <p class="bridge next">Next: if decoding is becoming a model and data problem, what should a company actually build? <a href="#build">Read what we would build &rarr;</a></p>
+
     <section>
       <h2>Sources</h2>
       <ol class="refs">
@@ -320,9 +401,87 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="iv">
   <div class="wrap">
     <div class="kicker sc">Question IV</div>
-    <h1>Biohybrid implants, connectomics, brain stimulation</h1>
-    <p class="lede">Which has the most promise?</p>
-    <div class="pending">In progress.</div>
+    <p class="bridge">Where this fits: this is our answer to which field has the most promise, and the evidence behind it. Page III then looks closely at one piece of it: how language models improve decoding.</p>
+    <!-- Page IV is built by iv.js from iv-content.json. Edit the JSON to change text, ratings or sources. -->
+    <div id="iv-root"><div class="pending">Loading page IV…</div></div>
+    <p class="bridge next">Next: stimulation needs to know when to act. <a href="#iii">See how language models are making brain decoding a model problem &rarr;</a></p>
+  </div>
+</main>
+
+<main data-page="build">
+  <div class="wrap">
+    <div class="kicker sc">What this means for the companies of tomorrow</div>
+    <p class="bridge">Where this fits: pages IV and III showed where neurotech&rsquo;s promise is and how it gets smarter. This page turns that into what a founder could build, and the tests they would have to pass.</p>
+    <h1>The companies of tomorrow will win the last mile</h1>
+    <p class="lede">Brain stimulation already works for many patients. Most of the value still left on the table sits between a working device and the people who never get it, or never get it tuned well. That gap is a software, data and access problem, and it is where we think new companies can win.</p>
+
+    <section>
+      <h2>Four openings</h2>
+      <div class="grid4 build-grid">
+        <div>
+          <span class="sc">Program the device</span>
+          <h3>Software that tunes adaptive stimulation</h3>
+          <p>Adaptive deep brain stimulation, which adjusts itself using brain signals, was approved by the FDA for Parkinson&rsquo;s in February 2025.<sup>1</sup> But programming it is still incompletely defined, and several settings strongly affect performance and take a long time to tune.<sup>1,2</sup> In one clinic, only 9 of 20 patients offered it were eligible.<sup>2</sup> UCSF is testing an automated pipeline so clinics without specialist expertise can use it.<sup>1</sup> That pipeline is a product.</p>
+        </div>
+        <div>
+          <span class="sc">Read the brain</span>
+          <h3>Decoding models as the sensing layer</h3>
+          <p>Closed-loop devices stimulate only when they detect a symptom&rsquo;s brain signature, like a pacemaker that listens before it acts.<sup>3</sup> At UCSF, a device triggered by one patient&rsquo;s personal depression signal produced a rapid, sustained improvement, though in a single patient.<sup>4</sup> Page III shows why language models make this kind of decoding a model and data problem rather than a hardware one.</p>
+        </div>
+        <div>
+          <span class="sc">Reach the patient</span>
+          <h3>Fixing referral and access</h3>
+          <p>Only about 10% of the up to 15% of advanced Parkinson&rsquo;s patients eligible for DBS are referred to specialized centers.<sup>5</sup> Many clinicians don&rsquo;t realize it is one of the safest neurosurgical procedures and refer too late.<sup>3</sup> Women and racial and ethnic minorities are less likely to receive it, even at the same disease severity.<sup>6</sup> Tools that find eligible patients and route them to care address a gap the hardware cannot.</p>
+        </div>
+        <div>
+          <span class="sc">Get paid</span>
+          <h3>Making payment move as fast as approval</h3>
+          <p>Novel devices waited a median of 5.7 years after FDA authorization for Medicare coverage, and only 44% reached any coverage in the study period.<sup>7</sup> Small companies fared worse: a five-year coverage probability of 19.4%, against 67.9% for large ones.<sup>8</sup> CMS has proposed a RAPID pathway that could bring coverage within 60 to 90 days for some breakthrough devices, but it is not final.<sup>9</sup></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2>Three tests every founder has to pass</h2>
+      <p><b style="font-weight:600">Beat a sham.</b> Deep brain stimulation for depression looked strong in small open-label studies, with about 40 to 50% of patients responding.<sup>10</sup> In the sham-controlled BROADEN trial, 20% responded with active stimulation against 17% with sham, and RECLAIM was stopped for futility.<sup>11,12</sup> Before believing any next-generation claim, ask whether it has been tested against a sham or an active comparator by someone other than its developers.</p>
+      <p><b style="font-weight:600">Protect the mind.</b> Colorado and California passed the first US state laws treating neural data as sensitive in 2024, and US senators have proposed the MIND Act to study national standards.<sup>13,14</sup> As page III notes, Stanford&rsquo;s inner speech decoder sometimes picked up words people were only thinking, and its fix was a mental password. Privacy has to be designed in, not added later.</p>
+      <p><b style="font-weight:600">Reach everyone.</b> A therapy that only well-referred, well-insured patients get is a smaller market and a worse outcome. The disparities in who receives DBS today are a design problem for tomorrow&rsquo;s companies.<sup>6</sup></p>
+    </section>
+
+    <section class="prose">
+      <h2>The longer bets we would watch</h2>
+      <p><b style="font-weight:600">Biohybrid implants</b> are the modality bet from question I. Science Corp, founded by Neuralink&rsquo;s former president, raised a $230 million Series C, but its first human device will be a sensor without living cells, and its own surgical lead calls trials starting in 2027 optimistic.<sup>15,16</sup> We would watch for a two-way interface in a large animal.</p>
+      <p><b style="font-weight:600">Connectomics</b> is infrastructure. Wellcome&rsquo;s expert group set a whole mouse brain connectome as a 10 to 15 year goal, blocked mainly by the cost of human proofreading.<sup>17</sup> We think the first company to make mapping cheap could sell tools to everyone else, the way cheap sequencing did for genomics.</p>
+    </section>
+
+    <section class="prose">
+      <h2>Where this leaves us</h2>
+      <p>Billions of people need better brain treatments. The technology to help many of them already exists, and the next decade&rsquo;s best companies will be the ones that get it tuned, timed, paid for and delivered, while proving every claim against a sham.</p>
+      <p><a href="#">Back to the overview</a> · <a href="#iv">Question IV</a> · <a href="#iii">Question III</a></p>
+    </section>
+
+    <section>
+      <h2>Sources</h2>
+      <ol class="refs">
+        <li>UCSF. <a href="https://clinicaltrials.ucsf.edu/deep-brain-stimulation">Deep Brain Stimulation Clinical Trials</a>, 2026</li>
+        <li>Cascino et al. 2026, <i>npj Parkinson&rsquo;s Disease</i>. <a href="https://www.nature.com/articles/s41531-026-01269-z">ADAPT-START findings and programming principles</a></li>
+        <li>Stanford Medicine Magazine 2026. <a href="https://stanmed.stanford.edu/adbs-parkinsons-brain-pacemaker/">Developing adaptive deep brain stimulation to treat Parkinson&rsquo;s</a></li>
+        <li>Scangos et al. 2021, <i>Nature Medicine</i>. <a href="https://www.nature.com/articles/s41591-021-01480-w">Closed-loop neuromodulation in an individual with treatment-resistant depression</a></li>
+        <li>Lange et al. 2017, <i>Acta Neurochirurgica</i>. <a href="https://link.springer.com/article/10.1007/s00701-017-3122-3">Underutilization of deep brain stimulation for Parkinson&rsquo;s disease?</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11152032/">Disparities in Access to Deep Brain Stimulation for Parkinson&rsquo;s Disease</a>, literature review, PubMed Central</li>
+        <li>Sexton et al. 2023, <i>JAMA Health Forum</i>. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10403784/">Time from FDA authorization to Medicare coverage for novel technologies</a></li>
+        <li>RAPS 2023. <a href="https://www.raps.org/resource/study-novel-devices-face-lengthy-path-from-authori.html">Novel devices face lengthy path from authorization to Medicare coverage</a></li>
+        <li>American College of Gastroenterology 2026. <a href="https://gi.org/journals-publications/acg-blog/rapid-coverage-pathway-analysis/">RAPID coverage pathway analysis</a></li>
+        <li>Cleveland Clinic Consult QD 2015. <a href="https://consultqd.clevelandclinic.org/deep-brain-stimulation-for-neuropsych-disorders-dont-count-it-out-yet/">Deep brain stimulation for neuropsych disorders</a></li>
+        <li>Medscape 2026. <a href="https://www.medscape.com/viewarticle/can-deep-brain-stimulation-finally-deliver-depression-2026a1000ssk">Can deep brain stimulation finally deliver for depression?</a></li>
+        <li><i>Frontiers in Neuroscience</i> 2018. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5871707/">Closing the loop on deep brain stimulation for treatment-resistant depression</a></li>
+        <li>Arnold &amp; Porter 2025. <a href="https://www.arnoldporter.com/en/perspectives/advisories/2025/07/neural-data-privacy-regulation">Neural data privacy regulation</a></li>
+        <li>Davis Wright Tremaine 2025. <a href="https://www.dwt.com/blogs/privacy--security-law-blog/2025/10/senate-mind-act-neural-data-ftc-regulation">The proposed MIND Act</a></li>
+        <li>TechCrunch 2026. <a href="https://techcrunch.com/2026/04/14/max-hodaks-science-corp-is-preparing-to-place-its-first-sensor-in-a-human-brain/">Science Corp. is preparing to place its first sensor in a human brain</a></li>
+        <li>The Next Web 2026. <a href="https://thenextweb.com/news/science-corp-biohybrid-brain-sensor-first-human-hodak-yale">Science Corp is betting biology will beat electrodes</a></li>
+        <li>Wellcome 2023. <a href="https://wellcome.org/insights/reports/scaling-connectomics">Scaling up connectomics: the road to a whole mouse brain connectome</a></li>
+      </ol>
+    </section>
   </div>
 </main>
 
@@ -341,6 +500,18 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
   </div>
 </footer>
 
+<script>
+(() => {
+  const route = () => {
+    const page = { '#iii': 'iii', '#iv': 'iv', '#build': 'build' }[location.hash] || 'home';
+    document.querySelectorAll('main').forEach(m => m.classList.toggle('on', m.dataset.page === page));
+    document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.to === page));
+    window.scrollTo(0, 0);
+  };
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
 <script type="module">
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
@@ -662,15 +833,7 @@ const arrow = (svg, x1, y1, x2, y2, color = '#1d1b18', flow = true) => {
   txt(s, 280, 262, 'the reply comes back out loud', { 'text-anchor': 'middle', 'font-size': 17, fill: '#7b2d26' });
 })();
 
-// ---------- pages ----------
-function route() {
-  const page = { '#iii': 'iii', '#iv': 'iv' }[location.hash] || 'home';
-  document.querySelectorAll('main').forEach(m => m.classList.toggle('on', m.dataset.page === page));
-  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.dataset.to === page));
-  window.scrollTo(0, 0);
-}
-window.addEventListener('hashchange', route);
-route();
 </script>
+<script src="iv.js"></script>
 </body>
 </html>
