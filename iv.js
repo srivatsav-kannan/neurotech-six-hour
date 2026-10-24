@@ -166,12 +166,10 @@
 
     // Build in reading order so citation numbers run top to bottom.
     let html = demo + thesis + convergence + scorecard + framework + explorer + also;
-    html += `<section><h2>Sources for page IV</h2><ol class="iv-refs">${order.map((id, i) => {
-      const s = SRC.get(id);
-      const tag = TYPE_LABEL[s.type] ? `<span class="iv-tag">${TYPE_LABEL[s.type]}</span>` : '';
-      return `<li id="ivref-${i + 1}">${tag}<a class="t" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${t(s.title)}</a>. ${t(s.publisher)}${s.year ? ', ' + s.year : ''}.${s.note ? ' ' + t(s.note) : ''}</li>`;
-    }).join('')}</ol></section>`;
     root.innerHTML = html;
+    // sources go in their own slot below the page's next-page link; rebuildRefs fills the list
+    const srcSlot = document.getElementById('iv-sources');
+    if (srcSlot) srcSlot.innerHTML = '<section><h2>Sources for page IV</h2><ol class="iv-refs"></ol></section>';
 
     // ---------- slides ----------
     function slideHTML(f, s, fi, ci) {
@@ -323,7 +321,7 @@
     rebuildRefs();
 
     function rebuildRefs() {
-      const ol = root.querySelector('.iv-refs');
+      const ol = document.querySelector('.iv-refs');
       if (!ol) return;
       ol.innerHTML = order.map((id, i) => {
         const s = SRC.get(id);
