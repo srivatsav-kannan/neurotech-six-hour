@@ -280,10 +280,9 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="iii">
   <div class="wrap">
     <div class="kicker sc">Question III</div>
-    <p class="bridge">Where this fits: page IV argues brain stimulation is the channel to patients. This page shows how language models can tell it <i>when</i> to act, by reading meaning out of brain activity.</p>
     <h1>From a sentence to a brain scan</h1>
-    <p class="lede">In 2018 Pereira and colleagues had people read short sentences in an MRI scanner and recorded what their brains did. A language model can read the same sentences and turn each one into a list of 384 numbers, called an embedding. It turns out that one fixed matrix, W, converts those numbers into the brain activity that was measured. We fit that W ourselves on their public data, for one of the participants.</p>
-    <p class="lede">Pick a sentence that person actually read to see their real scan next to what W predicts, or type your own and W will predict the scan.</p>
+    <p class="lede">Language models and the brain represent sentences in almost the same way. Give a model a sentence and it turns it into 384 numbers. Multiply those numbers by one matrix, W, and you get the brain activity that sentence causes. That single link is why language models can help decode brains and help us study them.</p>
+    <p class="lede">We fit W on real fMRI scans from Pereira et al. (2018), where people read sentences in a scanner. Pick one of the sentences they read to compare W's scan with their real one, or type your own.</p>
 
     <div class="demo">
       <div class="bar">
@@ -313,24 +312,24 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
         </div>
         <div class="step" id="s3">
           <div class="eq">
-            <div class="lbl"><span><span class="n">3</span>Embedding</span></div>
+            <div class="lbl"><span><span class="n">3</span>The model's 384 numbers</span></div>
             <div></div>
             <div class="lbl"><span><i>W</i></span></div>
             <div></div>
-            <div class="lbl"><span><span class="n">4</span>Brain scan</span><span class="side">left hemisphere</span></div>
-            <div><canvas id="emb" width="24" height="16"></canvas><div class="sub">384 numbers</div></div>
+            <div class="lbl"><span><span class="n">4</span>The brain scan</span><span class="side">left hemisphere</span></div>
+            <div><canvas id="emb" width="24" height="16"></canvas><div class="sub">the sentence, as the model sees it</div></div>
             <div class="op">×</div>
-            <div><canvas id="wimg"></canvas><div class="sub" id="wsize">384 × 1,357</div></div>
+            <div><canvas id="wimg"></canvas><div class="sub" id="wsize">384 × 1,357</div><div class="sub">how much each number moves each spot in the brain</div></div>
             <div class="op">=</div>
             <div>
               <div class="scans" id="scans">
                 <figure>
                   <div class="brainbox"><img src="brain_left.png" alt=""><canvas id="scan-pred" width="466" height="378"></canvas></div>
-                  <figcaption>predicted by <i>W</i></figcaption>
+                  <figcaption>from <i>W</i></figcaption>
                 </figure>
                 <figure class="measured">
                   <div class="brainbox"><img src="brain_left.png" alt=""><canvas id="scan-meas" width="466" height="378"></canvas></div>
-                  <figcaption>measured</figcaption>
+                  <figcaption>their real scan</figcaption>
                 </figure>
               </div>
               <div class="legend">less active <i></i> more active</div>
@@ -342,12 +341,12 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
     </div>
 
     <section>
-      <h2>Why this matters</h2>
-      <p class="lede">If one matrix connects a language model to the brain, the model becomes a working stand-in for how we process language. Here is what that makes possible.</p>
+      <h2>What it does for decoding and neuroscience</h2>
+      <p class="lede">Because one matrix links the two, a language model can stand in for the brain's language system. That helps in three ways.</p>
 
       <div class="diagram">
         <div>
-          <h3>Reading a brain by running it backwards</h3>
+          <h3>Better decoding: run it backwards</h3>
           <p>The demo goes from words to a brain scan. The same link works in reverse: a scan becomes a point in the model's space, and the model turns that point into words. This is how the best speech BCIs already work. A language model sits on top of the brain signal and turns noisy recordings into sentences, which is why decoding has improved so quickly and why it keeps improving as models and datasets get bigger.</p>
         </div>
         <div><svg id="d1" viewBox="0 0 560 250" role="img" aria-label="Words to embedding to brain scan, and back again"></svg></div>
@@ -355,7 +354,7 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 
       <div class="diagram">
         <div>
-          <h3>Running experiments on the model first</h3>
+          <h3>Faster neuroscience: experiment on the model first</h3>
           <p>A model brain is cheap, so you can try every idea on it and only bring people into a scanner for the few that matter. Tuckute et al. (2024) did exactly this: GPT chose sentences it predicted would switch the language network on or off, and new people in the scanner responded the way it said they would. Human brain studies are slow, expensive and often invasive, which is a big part of why neurotech takes so long to reach patients (question II). Screening on a model first cuts that down.</p>
         </div>
         <div><svg id="d2" viewBox="0 0 560 250" role="img" aria-label="Thousands of sentences screened by a model brain, a few tested in people"></svg></div>
@@ -363,7 +362,7 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 
       <div class="diagram">
         <div>
-          <h3>Brain to brain</h3>
+          <h3>Communication: brain to brain</h3>
           <p>Zada et al. (2024) recorded both people in real conversations and found the same embedding appearing in the speaker's brain just before a word and in the listener's brain just after it. So the model's space works as common ground between two people. For someone who can think a sentence but can't say it, their brain activity can be read into that space, a language model can say it out loud, and the other person hears it the normal way and answers.</p>
         </div>
         <div><svg id="d3" viewBox="0 0 560 270" role="img" aria-label="A loop from one person's brain through the model to speech, to the other person's brain and back"></svg></div>
@@ -377,7 +376,7 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 
     <section class="prose">
       <h2>How we did it</h2>
-      <p>The scans are from the 384-sentence experiment in Pereira et al. (2018), using the language-network voxels packaged by MIT's Brain-Score, for participant 426. The embeddings come from MiniLM, which is small enough to run in your browser, so a typed sentence goes through exactly the same model W was fit on. W is a ridge regression from the 384 numbers to each of the person's 1,357 voxels. Across sentences it was never trained on, its predictions correlate with the measured voxels at a median of 0.16. That is modest in absolute terms, as single-sentence fMRI is noisy, and the examples above are the ones where it matched best. The brain is the MNI152 template, and the order in step 2 follows the published findings rather than this dataset. The code is on <a href="https://github.com/srivatsav-kannan/neurotech-six-hour/tree/main/analysis">GitHub</a>.</p>
+      <p>The scans are from the 384-sentence experiment in Pereira et al. (2018), using the language-network voxels packaged by MIT's Brain-Score, for participant 426. The model is MiniLM, which is small enough to run in your browser, so a typed sentence goes through exactly the same model W was fit on. W is a ridge regression from MiniLM's 384 numbers to each of the person's 1,357 voxels. The brain is the MNI152 template, and the order the areas light up in step 2 follows published findings. The code is on <a href="https://github.com/srivatsav-kannan/neurotech-six-hour/tree/main/analysis">GitHub</a>.</p>
     </section>
 
     <p class="bridge next">Next: if decoding is becoming a model and data problem, what should a company actually build? <a href="#build">Read what we would build &rarr;</a></p>
@@ -401,7 +400,6 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="iv">
   <div class="wrap">
     <div class="kicker sc">Question IV</div>
-    <p class="bridge">Where this fits: this is our answer to which field has the most promise, and the evidence behind it. Page III then looks closely at one piece of it: how language models improve decoding.</p>
     <!-- Page IV is built by iv.js from iv-content.json. Edit the JSON to change text, ratings or sources. -->
     <div id="iv-root"><div class="pending">Loading page IV…</div></div>
     <p class="bridge next">Next: stimulation needs to know when to act. <a href="#iii">See how language models are making brain decoding a model problem &rarr;</a></p>
@@ -411,7 +409,6 @@ footer .gh svg { width: 24px; height: 24px; fill: var(--ink); }
 <main data-page="build">
   <div class="wrap">
     <div class="kicker sc">What this means for the companies of tomorrow</div>
-    <p class="bridge">Where this fits: pages IV and III showed where neurotech&rsquo;s promise is and how it gets smarter. This page turns that into what a founder could build, and the tests they would have to pass.</p>
     <h1>The companies of tomorrow will win the last mile</h1>
     <p class="lede">Brain stimulation already works for many patients. Most of the value still left on the table sits between a working device and the people who never get it, or never get it tuned well. That gap is a software, data and access problem, and it is where we think new companies can win.</p>
 
@@ -541,7 +538,7 @@ const [M, B] = await Promise.all([fetch('model.json').then(r => r.json()), fetch
 const Wq = new Int8Array(await fetch('W.bin').then(r => r.arrayBuffer()));
 const NV = M.n_vox, ND = M.dims;
 const SD = M.sd.map(v => v || 1);
-$('wsize').textContent = `${ND} × ${NV.toLocaleString()}`;
+$('wsize').textContent = `${ND} × ${NV.toLocaleString()} numbers`;
 
 // brain image coordinates for an MNI point (left hemisphere, front on the left)
 const toImg = (y, z) => [(B.ny - 1 - (y - B.y0) / B.step) * B.scale + B.scale / 2, (B.nz - 1 - (z - B.z0) / B.step) * B.scale + B.scale / 2];
@@ -651,7 +648,7 @@ async function run(text, example) {
     emb = Array.from((await ex(text, { pooling: 'mean', normalize: true })).data);
     $('run').disabled = false;
   }
-  const pred = example ? Float32Array.from(example.predicted, v => v / 127 * 3) : predict(emb);
+  const pred = predict(emb);
 
   // reset to skeleton
   ['s1', 's2', 's3'].forEach(s => $(s).classList.remove('on'));
@@ -696,9 +693,9 @@ async function run(text, example) {
     await sleep(700);
     paintScan($('scan-meas'), Float32Array.from(example.measured, v => v / 127 * 3));
     $('scan-meas').style.transition = 'opacity .9s'; $('scan-meas').style.opacity = 1;
-    $('verdict').textContent = `Participant ${M.subject} read this sentence in the scanner. W was fit without it, so the left scan is a genuine prediction, and it lines up with what was measured at r = ${example.r.toFixed(2)}.`;
+    $('verdict').textContent = `Participant ${M.subject} read this sentence in the scanner. The left scan is the model's numbers multiplied by W, and the right one is what their brain actually did.`;
   } else {
-    $('verdict').textContent = `Nobody has scanned this sentence, so this is W's prediction of what participant ${M.subject}'s language network would do while reading it.`;
+    $('verdict').textContent = `Nobody has read this sentence in a scanner, so there is only W's scan: what participant ${M.subject}'s language network should do while reading it.`;
   }
 }
 
