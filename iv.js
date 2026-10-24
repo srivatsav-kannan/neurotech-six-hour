@@ -99,8 +99,8 @@
     ];
     const framework = `
       <section class="prose" id="iv-framework">
-        <h2>The full evaluation: how we judged</h2>
-        <p>These three fields aren\u2019t on the same axis. Brain stimulation is a therapy already in clinics, biohybrid implants are a new way to connect hardware to the brain, and connectomics is a mapping tool. So before asking which is most promising, we asked promising for whom, by what standard, and on what timeline. Our answers: for patients and the founders who serve them, by six criteria borrowed from the people who fund, regulate and invest in medical technology, over roughly the next ten years.</p>
+        <h2>How we judged the three fields</h2>
+        <p>These three fields are very different kinds of things. Brain stimulation is a treatment already used in clinics, biohybrid implants are a new way to connect hardware to the brain, and connectomics is a way of mapping it. So before asking which is most promising, we had to decide promising for whom, by what standard and over what period. We chose patients and the founders who build for them, six criteria taken from the people who fund, regulate and invest in medical technology, and roughly the next ten years.</p>
         <p>${t(C.framework.intro)} We drew on ${lineage.map(([n], i) => (i === lineage.length - 1 ? 'and ' : '') + n).join(', ')}.</p>
       </section>
       <div class="iv-scroll" style="margin-top:20px"><table class="iv-table">
@@ -108,11 +108,11 @@
         <tbody>${CRIT.map(c => `<tr><td class="n">${c.number}</td><td>${t(c.name)}</td><td class="test">${t(c.test)}</td><td>${t(c.lookedFor)}</td></tr>`).join('')}</tbody>
       </table></div>
       <div class="iv-scale">
-        <div><span class="lbl sc">How we rate</span>
+        <div><span class="lbl sc">The rating scale</span>
           <ul>${LEVELS.map(l => `<li><span class="iv-swatch" style="background:${cellBg(l.rating)};color:${cellFg(l.rating)}">${l.rating}</span><span><b style="font-weight:600">${t(l.label)}.</b> ${t(l.meaning)}</span></li>`).join('')}</ul>
           <p class="iv-caption">${t(C.framework.ratingScale.direction)} ${t(C.framework.ratingScale.biodesignNote.text)}</p>
         </div>
-        <div><span class="lbl sc">Whose perspective?</span>
+        <div><span class="lbl sc">Weighting the criteria</span>
           <p style="margin:0 0 8px">${t(C.framework.lensNote)}</p>
           <ul>${LENSES.map(l => `<li><span><b style="font-weight:600">${t(l.name)}.</b> ${t(l.rationale)}</span></li>`).join('')}</ul>
         </div>
@@ -160,7 +160,7 @@
 
     const also = `
       <section id="iv-also">
-        <h2>${t(C.alsoAnswers.heading.replace('Questions 1 and 2', 'questions I and II'))}</h2>
+        <h2>${t(C.alsoAnswers.heading)}</h2>
         <div class="iv-two">${C.alsoAnswers.items.map(a => `<div><span class="num">${roman[a.question]}</span><h3>${t(a.title)}</h3><p style="margin:0">${t(a.body)}${cite(a.sourceIds)}</p></div>`).join('')}</div>
       </section>`;
 
@@ -269,7 +269,7 @@
       let s = `<svg viewBox="0 0 760 260" role="img" aria-label="Connectomics tells stimulation where to stimulate, LLM-based decoding tells it when, and biohybrid implants may later provide a better interface. All three feed brain stimulation, which reaches patients.">`;
       nodes.forEach((n, i) => {
         const y = 40 + i * 85;
-        s += `<rect x="10" y="${y - 24}" width="220" height="48" fill="#f4efe4" stroke="#1d1b18"/><text x="120" y="${y + 6}" text-anchor="middle" font-size="17" fill="#1d1b18" font-family="EB Garamond, serif">${esc(sq(n.label.replace(' (Question 3)', ' (III)')))}</text>`;
+        s += `<rect x="10" y="${y - 24}" width="220" height="48" fill="#f4efe4" stroke="#1d1b18"/><text x="120" y="${y + 6}" text-anchor="middle" font-size="17" fill="#1d1b18" font-family="EB Garamond, serif">${esc(sq(n.label.replace(' (Question 3)', ' (question III)')))}</text>`;
         s += `<line x1="230" y1="${y}" x2="478" y2="130" stroke="${n.edgeStyle === 'dashed' ? '#5d574c' : '#7b2d26'}" stroke-width="1.6" ${n.edgeStyle === 'dashed' ? 'stroke-dasharray="6 4"' : ''} marker-end="url(#iv-arrow)"/>`;
         const ly = y + (130 - y) * (262 - 230) / 248;
         s += `<text x="262" y="${i === 2 ? ly + 24 : ly - 10}" font-size="15" font-style="italic" fill="#5d574c" font-family="EB Garamond, serif">${esc(sq(n.edgeLabel))}</text>`;
@@ -285,7 +285,7 @@
 
     function drawGlance() {
       const r = ranked(lens);
-      $('#iv-glance').innerHTML = r.map((x, i) => `<div class="${i === 0 ? 'first' : ''}"><span class="rank sc">${ordinal(i)} under the ${esc(lens.name.toLowerCase())} lens</span><h3>${t(x.f.name)}</h3><p class="verdict">${t(x.f.verdict)}</p><span class="score">Weighted score ${x.s.toFixed(1)} of 5</span><button data-open="${FIELDS.indexOf(x.f)}">Read the evaluation</button></div>`).join('');
+      $('#iv-glance').innerHTML = r.map((x, i) => `<div class="${i === 0 ? 'first' : ''}"><span class="rank sc">Ranked ${ordinal(i)}</span><h3>${t(x.f.name)}</h3><p class="verdict">${t(x.f.verdict)}</p><span class="score">Weighted score ${x.s.toFixed(1)} of 5</span><button data-open="${FIELDS.indexOf(x.f)}">Read the evaluation</button></div>`).join('');
     }
 
     function drawScore() {
@@ -298,7 +298,7 @@
       root.querySelectorAll('[data-w]').forEach(td => { td.textContent = '\u00d7' + lens.weights[td.dataset.w]; });
       const top = r[0].f.name;
       const holds = winners.size === 1;
-      $('#iv-lenssent').innerHTML = `Under the ${esc(lens.name.toLowerCase())} lens, ${esc(top.toLowerCase())} ranks first.${holds ? ' The ranking at the top holds under every lens we tried.' : ''}`;
+      $('#iv-lenssent').innerHTML = `${esc(top)} ranks first with these weights${holds ? ', and with every other set we tried' : ''}.`;
     }
 
     function showSlide(announce) {
