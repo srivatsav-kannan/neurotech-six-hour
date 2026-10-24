@@ -1,10 +1,49 @@
 {
- "_readme": "Content for page IV. Edit text here, not in iv.js. Every evidence item needs sourceIds that exist in 'sources'. Ratings are team judgments (1-5, higher = more promising; for risk, higher = lower risk).",
+ "_readme": "Content for page IV. Edit text here, not in iv.js. Every evidence item needs sourceIds that exist in 'sources'. Ratings are team judgments (1-5, higher = more promising; for risk, higher = lower risk). Pitch-length edit: about 2-3 evidence items per slide; numbers shown in a chart are not repeated in text. Open checks before presenting: confirm Stanford SNT's regulatory status; company revenue figures stay hidden until verified against filings; confirm the timeline dates listed in charts.stimulationTimeline.dateNotes.",
+ "demo": {
+  "kicker": "Our demo",
+  "heading": "Timing TMS to the brain's own rhythm",
+  "lede": [
+   {
+    "text": "The motor cortex hums at about ten beats a second, a wave called the mu rhythm. Magnetic pulses that land on the wave's trough have produced stronger effects than pulses at random times.",
+    "sourceIds": [
+     "zrenner2018-brs"
+    ]
+   },
+   {
+    "text": "But no one can see where a wave is until it has passed, and every system takes time to fire. So we trained a small neural network to predict the wave ahead of time. Here it runs against the standard method on recorded EEG from a person it never trained on.",
+    "sourceIds": []
+   }
+  ],
+  "notes": [
+   {
+    "text": "Across 9 people it never trained on, it put 71% of pulses on target at a 40 ms delay, versus 53% for the standard method and 25% for untimed TMS.",
+    "sourceIds": [
+     "tms-phase-demo",
+     "bci-competition-iv-2a"
+    ]
+   },
+   {
+    "text": "This is recorded EEG, not live stimulation, and whether mu phase changes TMS effects is still debated.",
+    "sourceIds": [
+     "madsen2019-brs"
+    ]
+   }
+  ],
+  "fullPage": {
+   "label": "Full results, method and caveats",
+   "url": "tms-demo/index.html"
+  },
+  "scripts": [
+   "tms-demo/data.js",
+   "tms-demo/player.js"
+  ]
+ },
  "thesis": {
   "headline": "Brain stimulation has the most promise, and the other two fields will reach patients through it.",
   "sentences": [
    {
-    "text": "Human brain stimulation is the only one of the three fields already turning neuroscience into patient outcomes, backed by multiple independent randomized trials and an adaptive system approved in 2025.",
+    "text": "Stimulation is the only one of the three already improving patient outcomes, with independent randomized trials and an adaptive system approved in 2025.",
     "sourceIds": [
      "weaver2009-jama",
      "earlystim2013-nejm",
@@ -12,14 +51,14 @@
     ]
    },
    {
-    "text": "Connectomics will increasingly tell stimulation where to aim, and biohybrid implants may eventually replace the electrode that delivers it.",
+    "text": "Connectomics will tell stimulation where to aim; biohybrid implants may one day replace the electrode that delivers it.",
     "sourceIds": [
      "horn2017-annneurol",
      "sciencecorp-biohybrid-page"
     ]
    },
    {
-    "text": "The binding constraint today is less the science than the last mile, meaning patient selection, device programming, referral, and payment, and that is where new companies can win.",
+    "text": "The bottleneck is the last mile (patient selection, programming, referral, payment), and that is where new companies can win.",
     "sourceIds": [
      "lange2017-underutilization",
      "ucsf-dbs-trials",
@@ -29,7 +68,7 @@
   ]
  },
  "framework": {
-  "intro": "We did not invent our criteria. Each one comes from a tool that funders, regulators, or investors use to judge new medical technology.",
+  "intro": "Six criteria, each borrowed from a tool that funders, regulators, or investors already use to judge medical technology.",
   "criteria": [
    {
     "id": "c1",
@@ -39,12 +78,14 @@
     "test": "Why should anyone care?",
     "owner": "Tyler",
     "questions": [
-     "How severe and widespread is the problem?",
-     "How much better could this be than existing alternatives?",
-     "Could it unlock capabilities that are currently impossible?"
+     "How big is the problem, and how much better could this be?"
     ],
-    "lookedFor": "Disease burden, unmet clinical needs, limitations of existing treatments, and credible estimates of potential benefit.",
-    "groundedIn": []
+    "lookedFor": "Disease burden; limits of current care.",
+    "groundedIn": [
+     "heilmeier-darpa",
+     "biodesign-guide",
+     "biodesign-need-research"
+    ]
    },
    {
     "id": "c2",
@@ -54,12 +95,14 @@
     "test": "Does it actually work?",
     "owner": "Tyler",
     "questions": [
-     "Has the underlying principle been demonstrated?",
-     "Is there reproducible evidence, or only an early proof of concept?",
-     "Has it worked in the relevant biological system and, where applicable, in humans?"
+     "Does it reliably work, ideally in humans?"
     ],
-    "lookedFor": "Peer-reviewed studies, independent replication, preclinical results, clinical trials, and demonstrated prototypes.",
-    "groundedIn": []
+    "lookedFor": "Replicated studies and trials.",
+    "groundedIn": [
+     "nasa-trl",
+     "nasa-esto-trl",
+     "dod-biomedical-trl"
+    ]
    },
    {
     "id": "c3",
@@ -69,12 +112,13 @@
     "test": "Can we get there?",
     "owner": "Sanjana",
     "questions": [
-     "What major scientific breakthroughs are still required?",
-     "What are the critical bottlenecks?",
-     "How long might it take to reach a useful real-world application?"
+     "What blocks real use, and for how long?"
     ],
-    "lookedFor": "Remaining technical challenges, development milestones, clinical validation requirements, and regulatory pathways.",
-    "groundedIn": []
+    "lookedFor": "Open problems; regulatory paths.",
+    "groundedIn": [
+     "fda-study-market",
+     "heilmeier-darpa"
+    ]
    },
    {
     "id": "c4",
@@ -84,12 +128,13 @@
     "test": "Who actually needs this?",
     "owner": "Ryan",
     "questions": [
-     "Who experiences the problem most acutely?",
-     "Who would use the solution, and who would pay for it?",
-     "Why would customers switch from current alternatives?"
+     "Who needs it, who pays, and why switch?"
     ],
-    "lookedFor": "Interviews with patients, clinicians, researchers, or buyers; existing spending; pilot programs; and demonstrated willingness to adopt.",
-    "groundedIn": []
+    "lookedFor": "Adoption, spending, switching.",
+    "groundedIn": [
+     "nsf-icorps-solicitation",
+     "biodesign-need-research"
+    ]
    },
    {
     "id": "c5",
@@ -99,14 +144,14 @@
     "test": "Can this become a sustainable business?",
     "owner": "Ryan",
     "questions": [
-     "Is there a sufficiently large, reachable market?",
-     "Can the product be delivered at a sustainable cost?",
-     "Can it scale without costs, complexity, or manufacturing constraints growing too quickly?",
-     "What would give the company a durable advantage over competitors?",
-     "Who is credibly building this, and with what track record?"
+     "Can it become a scalable business?"
     ],
-    "lookedFor": "Market data, competitor analysis, unit economics, manufacturing requirements, intellectual property, payment pathways, and business models.",
-    "groundedIn": []
+    "lookedFor": "Market, costs, reimbursement, rivals.",
+    "groundedIn": [
+     "biodesign-curriculum",
+     "sexton2023-jamahf",
+     "gompers2020-jfe"
+    ]
    },
    {
     "id": "c6",
@@ -116,19 +161,20 @@
     "test": "What could go wrong?",
     "owner": "Sanjana",
     "questions": [
-     "What assumptions could invalidate the entire thesis?",
-     "What safety, ethical, privacy, or equity concerns arise?",
-     "What could make the technology impossible to deploy at scale?"
+     "What could break the thesis or harm people?"
     ],
-    "lookedFor": "Known failure modes, safety data, unresolved ethical issues, regulatory uncertainty, and alternative scenarios.",
-    "groundedIn": []
+    "lookedFor": "Safety, ethics, equity, privacy.",
+    "groundedIn": [
+     "arpah-heilmeier-medium",
+     "brain-neuroethics"
+    ]
    }
   ],
   "ratingScale": {
-   "direction": "Higher is always better for the field's promise. For risk (C6), a higher number means lower or better-managed risk.",
-   "note": "Ratings are our team's judgments based on the evidence shown, not measurements.",
+   "direction": "Higher is always better. For risk (C6), higher means lower risk.",
+   "note": "Ratings are team judgments, not measurements.",
    "biodesignNote": {
-    "text": "Following Stanford Biodesign's screening guidance, we rated each field only on what is known today, not on hoped-for future solutions.",
+    "text": "Following Stanford Biodesign's guidance, we rated only what is known today.",
     "sourceIds": [
      "biodesign-need-screening"
     ]
@@ -137,22 +183,22 @@
     {
      "rating": 5,
      "label": "Strong",
-     "meaning": "Independent, replicated, human evidence; clear path; few open questions."
+     "meaning": "Replicated human evidence; clear path."
     },
     {
      "rating": 4,
      "label": "Good",
-     "meaning": "Solid evidence with notable but manageable gaps."
+     "meaning": "Solid evidence; manageable gaps."
     },
     {
      "rating": 3,
      "label": "Mixed",
-     "meaning": "Real evidence alongside major open questions."
+     "meaning": "Real evidence; major open questions."
     },
     {
      "rating": 2,
      "label": "Weak",
-     "meaning": "Early evidence; significant unresolved barriers."
+     "meaning": "Early evidence; big barriers."
     },
     {
      "rating": 1,
@@ -178,7 +224,7 @@
    {
     "id": "patients",
     "name": "Patients",
-    "rationale": "Patients care most about benefit, proof, speed to clinic, and safety.",
+    "rationale": "Benefit, proof, speed, and safety matter most.",
     "weights": {
      "c1": 2,
      "c2": 1.5,
@@ -191,7 +237,7 @@
    {
     "id": "founders",
     "name": "Founders",
-    "rationale": "Founders need real demand and a viable business.",
+    "rationale": "Demand and business viability matter most.",
     "weights": {
      "c1": 1,
      "c2": 1,
@@ -204,7 +250,7 @@
    {
     "id": "science",
     "name": "Science",
-    "rationale": "Researchers prize impact on understanding and the quality of evidence.",
+    "rationale": "Impact on understanding and evidence quality matter most.",
     "weights": {
      "c1": 2,
      "c2": 2,
@@ -215,8 +261,8 @@
     }
    }
   ],
-  "lensNote": "No source can tell us how to weight these criteria. That depends on whose perspective you take, so we let you choose.",
-  "trlFootnote": "Our estimate against the DoD biomedical TRL scale, not an official rating.",
+  "lensNote": "No source can set the weights. Pick a perspective.",
+  "trlFootnote": "Our estimate on the DoD biomedical TRL scale, not an official rating.",
   "trlSourceIds": [
    "nasa-trl",
    "dod-biomedical-trl"
@@ -226,79 +272,79 @@
   "biohybrid": {
    "c1": {
     "rating": 4,
-    "rationale": "Paralysis and limb loss are large, severe problems, and the claimed upside is the biggest of the three, though the brain benefits are still projections."
+    "rationale": "Severe needs; brain upside still projected."
    },
    "c2": {
     "rating": 2,
-    "rationale": "Peripheral interfaces work in humans, but brain biohybrids rest on rodent studies and one company preprint."
+    "rationale": "Works in the arm; brain data only in rodents."
    },
    "c3": {
     "rating": 1,
-    "rationale": "Several unsolved breakthroughs stand between today's mouse work and a human brain device, which is likely a decade or more away."
+    "rationale": "Unsolved breakthroughs; human brain use 10+ years out."
    },
    "c4": {
     "rating": 3,
-    "rationale": "The need is acute and current options frustrate users, but no one has tested demand for a brain biohybrid yet."
+    "rationale": "Acute need; brain demand untested."
    },
    "c5": {
     "rating": 1,
-    "rationale": "Costs, an unmapped regulatory path, and slow reimbursement for novel devices make a business case speculative today."
+    "rationale": "High cost, unclear regulation, slow payment."
    },
    "c6": {
     "rating": 2,
-    "rationale": "Living, genetically modified cells in the brain add immune and safety unknowns on top of the usual implant risks."
+    "rationale": "Living, modified cells add immune unknowns."
    }
   },
   "connectomics": {
    "c1": {
     "rating": 4,
-    "rationale": "Better circuit maps could help across many brain disorders, but almost every benefit runs through someone else's product."
+    "rationale": "Broad impact, but only through other products."
    },
    "c2": {
     "rating": 3,
-    "rationale": "Complete, predictive maps exist for flies and MRI maps help predict treatment outcomes, but mammalian maps are tiny single samples."
+    "rationale": "Fly maps predict; mammal maps are tiny samples."
    },
    "c3": {
     "rating": 2,
-    "rationale": "Proofreading cost and data volume block a whole mouse brain, which experts set as a 10 to 15 year goal."
+    "rationale": "Whole mouse brain 10 to 15 years out."
    },
    "c4": {
     "rating": 2,
-    "rationale": "The main buyers are researchers and public funders, with clinical demand arriving mostly through stimulation targeting."
+    "rationale": "Buyers are researchers and funders."
    },
    "c5": {
     "rating": 2,
-    "rationale": "Open, publicly funded data makes durable advantages hard to build, though tools and clinical software are possible niches."
+    "rationale": "Open data makes a moat hard to build."
    },
    "c6": {
     "rating": 3,
-    "rationale": "Direct patient risk is low, but misreading noisy maps and handling human brain data raise real scientific and ethical risks."
+    "rationale": "Low patient risk; noisy maps can mislead."
    }
   },
   "stimulation": {
    "c1": {
     "rating": 4,
-    "rationale": "Parkinson's and treatment-resistant depression are large, growing needs, and stimulation has already beaten medication in randomized trials."
+    "rationale": "Large, growing needs; beats drugs in trials."
    },
    "c2": {
     "rating": 5,
-    "rationale": "Multiple independent randomized trials, including blinded ones, support DBS for Parkinson's and TMS for depression."
+    "rationale": "Multiple independent randomized trials, some blinded."
    },
    "c3": {
     "rating": 4,
-    "rationale": "Core uses are in clinic and adaptive DBS is approved, while programming, eligibility, and psychiatric uses still need work."
+    "rationale": "In clinic now; programming still hard."
    },
    "c4": {
     "rating": 4,
-    "rationale": "Patients with drug-resistant disease benefit, yet only a small share of eligible patients are referred."
+    "rationale": "Clear benefit, but few patients referred."
    },
    "c5": {
     "rating": 4,
-    "rationale": "An established, reimbursed market exists, and new value is opening in personalization and programming."
+    "rationale": "Reimbursed market; value in personalization."
    },
    "c6": {
     "rating": 3,
-    "rationale": "Surgery carries serious adverse events, early psychiatric results did not survive sham controls, and access is unequal."
+    "rationale": "Surgical risk, failed sham trials, unequal access."
    }
   }
  },
@@ -309,7 +355,7 @@
    "shortName": "Stimulation",
    "colorToken": "--gfp",
    "verdict": "Already helping patients; the frontier is personalization and access.",
-   "definition": "Brain stimulation uses electrical or magnetic energy to change brain activity. Deep brain stimulation (DBS) sends pulses through electrodes implanted deep in the brain. Transcranial magnetic stimulation (TMS) uses a magnetic coil held against the head, with no surgery. Newer adaptive DBS systems listen to brain signals and adjust stimulation in real time.",
+   "definition": "Electrical or magnetic energy that changes brain activity: deep brain stimulation (DBS) through implanted electrodes, or transcranial magnetic stimulation (TMS) through a coil on the head. Adaptive DBS adjusts itself in real time.",
    "definitionSourceIds": [
     "stanmed2026-bronte",
     "snt2022-ajp",
@@ -341,138 +387,57 @@
     {
      "criterion": "c1",
      "owner": "Tyler",
-     "verdict": "Parkinson's and treatment-resistant depression are large and growing problems, and stimulation already beats medication in randomized trials, with the next generation aimed at symptoms today's devices cannot reach.",
+     "verdict": "Large, growing needs, and stimulation already outperforms drugs.",
      "evidence": [
       {
-       "group": "How severe and widespread",
-       "text": "People living with Parkinson's are projected to rise from 11.9 million in 2021 to 25.2 million by 2050, a 112% increase.",
+       "group": "The case",
+       "text": "Parkinson's cases may more than double by 2050, to 25.2 million.",
        "sourceIds": [
-        "su2025-neurologyadvisor"
+        "su2025-neurologyadvisor",
+        "bmj2025-parkinsons"
        ]
       },
       {
-       "group": "How severe and widespread",
-       "text": "Major depression is the leading cause of disability worldwide, and about 50% of patients meet criteria for treatment-resistant depression, according to the Stanford trial authors.",
-       "sourceIds": [
-        "snt2022-ajp"
-       ]
-      },
-      {
-       "group": "Today's stimulation versus drugs",
-       "text": "In the EARLYSTIM randomized trial of 251 patients, quality of life improved 26% over two years with neurostimulation and worsened 1% with medical therapy alone.",
+       "group": "The case",
+       "text": "In the EARLYSTIM trial, quality of life rose 26% with stimulation and fell 1% on drugs alone.",
        "sourceIds": [
         "earlystim2013-nejm"
        ]
       },
       {
-       "group": "Next-generation versus today",
-       "text": "Conventional DBS delivers the same stimulation all the time, which does not help walking problems such as freezing of gait and falls.",
+       "group": "The case",
+       "qualifier": "Single-site trials",
+       "text": "Stanford's 5-day SNT protocol beat sham for depression (50% versus 20.8% remission), though remission faded over 12 weeks.",
        "sourceIds": [
-        "pf2026-adbs-gait"
-       ]
-      },
-      {
-       "group": "Next-generation versus today",
-       "text": "Adaptive DBS, which adjusts stimulation using brain signals, was FDA-approved for Parkinson's in Medtronic's Percept devices in February 2025.",
-       "sourceIds": [
-        "ucsf-dbs-trials"
-       ]
-      },
-      {
-       "group": "Next-generation versus today",
-       "qualifier": "Small trial, 29 patients",
-       "text": "Stanford Neuromodulation Therapy (SNT), a 5-day, imaging-targeted protocol, produced remission in 78.6% of the active group within 4 weeks in its first sham-controlled trial.",
-       "sourceIds": [
-        "snt2022-ajp"
-       ]
-      },
-      {
-       "group": "Next-generation versus today",
-       "text": "A larger replication found a smaller but significant effect: 50.0% remission with active treatment versus 20.8% with sham at one month.",
-       "sourceIds": [
-        "snt-replication-kratter"
-       ]
-      },
-      {
-       "group": "Capabilities that are impossible today",
-       "qualifier": "Single-patient study",
-       "text": "At UCSF, researchers mapped one patient's depression circuit, found a brain signal marking her symptoms, and implanted a device that stimulated only when that signal appeared, producing a rapid and sustained improvement.",
-       "sourceIds": [
-        "scangos2021-natmed"
+        "snt-replication-kratter",
+        "snt-durability2025"
        ]
       }
      ],
-     "caveats": [
-      "Estimates of the treatment-resistant share of depression vary with the definition; we attribute the 50% figure to the trial paper.",
-      "The newest gains come from small studies."
-     ]
+     "caveats": []
     },
     {
      "criterion": "c2",
      "owner": "Tyler",
-     "verdict": "The most mature of the three fields by a wide margin, with replicated, randomized, and blinded evidence, plus a cautionary tale where early psychiatric results did not survive rigorous testing.",
+     "verdict": "The most mature field by far, with one cautionary tale.",
      "evidence": [
       {
-       "group": "Has the principle been demonstrated?",
-       "text": "Yes. One honest gap remains: the mechanism of DBS is not fully understood, even though it reliably improves the main motor symptoms of Parkinson's and tremor.",
+       "group": "The case",
+       "text": "Randomized trials favored DBS over best medical therapy; in the VA trial, good 'on' time rose from 6.4 to 10.9 hours a day.",
        "sourceIds": [
-        "practneuro2026-adbs"
-       ]
-      },
-      {
-       "group": "Tier 1: conventional DBS for Parkinson's",
-       "text": "A European consortium ran the first large randomized study comparing DBS with best medical therapy, with about 155 patients.",
-       "sourceIds": [
+        "deuschl2006-nejm",
+        "weaver2009-va",
+        "weaver2009-jama",
         "clinician-weaver"
        ]
       },
       {
-       "group": "Tier 1: conventional DBS for Parkinson's",
-       "text": "In a US Veterans Affairs trial of 255 patients at 13 hospitals, DBS beat best medical therapy on good 'on' time, motor function, and quality of life at 6 months. Serious adverse events occurred in 49 DBS patients versus 15 on medical therapy, including one death from brain hemorrhage.",
+       "group": "The case",
+       "qualifier": "Many trials at high risk of bias",
+       "text": "A 2026 meta-analysis of 30 randomized comparisons found robust, high-certainty antidepressant effects for TMS.",
        "sourceIds": [
-        "weaver2009-jama"
-       ]
-      },
-      {
-       "group": "Tier 1: conventional DBS for Parkinson's",
-       "text": "A double-blind trial, INTREPID, found a 3.03-hour improvement in 'on' time, similar to earlier open-label or single-blind studies.",
-       "sourceIds": [
-        "intrepid2020-lancetneurol"
-       ]
-      },
-      {
-       "group": "Tier 2: TMS for depression",
-       "text": "A 2026 meta-analysis of 30 randomized comparisons with 1,850 participants found robust antidepressant effects, with response and remission results rated high-certainty.",
-       "sourceIds": [
-        "rtms-meta2026-jad"
-       ]
-      },
-      {
-       "group": "Tier 3: adaptive DBS",
-       "text": "It met its primary goal: most participants on adaptive DBS achieved well-controlled 'on' time compared with stable conventional DBS, with no serious device-related adverse events.",
-       "sourceIds": [
-        "adaptpd2025-jamaneurol"
-       ]
-      },
-      {
-       "group": "Tier 3: adaptive DBS",
-       "text": "Medtronic was involved in the trial's design, conduct, data collection, and analysis, and the primary design tested 'as good as,' not 'better than.'",
-       "sourceIds": [
-        "adaptpd2025-jamaneurol"
-       ]
-      },
-      {
-       "group": "Tier 4: DBS for depression",
-       "text": "In the sham-controlled BROADEN trial, investigators expected 40% response but saw 20% with active stimulation versus 17% with sham, a non-significant difference.",
-       "sourceIds": [
-        "broaden-medscape2026"
-       ]
-      },
-      {
-       "group": "Tier 4: DBS for depression",
-       "text": "In the sham-controlled RECLAIM trial, an interim analysis of 30 patients showed no separation between active and sham, and the trial stopped for futility.",
-       "sourceIds": [
-        "reclaim-frontiers2018"
+        "rtms-meta2026-jad",
+        "rtms-nma2026"
        ]
       }
      ],
@@ -480,12 +445,12 @@
       {
        "label": "Conventional DBS for Parkinson's",
        "trl": 9,
-       "note": "Multiple independent RCTs, including double-blind."
+       "note": "Independent RCTs, incl. double-blind."
       },
       {
        "label": "Standard TMS for depression",
        "trl": 9,
-       "note": "Dozens of sham-controlled RCTs; meta-analyses."
+       "note": "Dozens of sham-controlled RCTs."
       },
       {
        "label": "Adaptive DBS for Parkinson's",
@@ -501,12 +466,12 @@
         7,
         8
        ],
-       "note": "Two sham-controlled RCTs, single site. Verify regulatory status before citing."
+       "note": "Two sham-controlled RCTs, one site."
       },
       {
        "label": "DBS for depression",
        "trl": 6,
-       "note": "Two pivotal trials stopped; new pivotal underway."
+       "note": "Two pivotal trials stopped."
       },
       {
        "label": "Closed-loop DBS for depression",
@@ -518,151 +483,115 @@
       "component": "OpenLabelVsShamChart"
      },
      "caveats": [
-      "Several key trials were industry-funded (EARLYSTIM in part by Medtronic; ADAPT-PD by Medtronic).",
-      "Readiness levels are our estimates, not official ratings."
+      "Several key trials were industry-funded."
      ]
     },
     {
      "criterion": "c3",
      "owner": "Sanjana",
-     "verdict": "Core uses are already in clinic; what remains is precision, personalization, and proving psychiatric uses, plus moving the research tool of optogenetics toward patients.",
+     "verdict": "In clinic now; what remains is precision and programming.",
      "evidence": [
       {
-       "group": "Breakthroughs still required",
-       "text": "Adaptive DBS programming is still incompletely defined, and several control parameters strongly affect performance and take a long time to tune.",
+       "group": "The catch",
+       "text": "Adaptive DBS programming is incompletely defined; in one clinic, only 9 of 20 patients offered it qualified.",
        "sourceIds": [
         "adaptstart2026-npj",
         "ucsf-dbs-trials"
        ]
       },
       {
-       "group": "Critical bottlenecks",
-       "text": "Referral: only 10% of the up to 15% of advanced Parkinson's patients eligible for DBS are referred to specialized centers.",
-       "sourceIds": [
-        "lange2017-underutilization"
-       ]
-      },
-      {
-       "group": "Critical bottlenecks",
-       "text": "Stanford's Helen Bronte-Stewart notes that many clinicians do not realize DBS is one of the safest neurosurgical procedures, so they wait too long to refer patients.",
-       "sourceIds": [
-        "stanmed2026-bronte"
-       ]
-      },
-      {
-       "group": "How long to a useful application",
-       "text": "Already here for Parkinson's and depression (TMS). UCSF is testing an automated pipeline to recommend adaptive DBS settings, aimed at clinics without specialized expertise.",
+       "group": "The case",
+       "text": "UCSF is testing an automated pipeline to recommend adaptive DBS settings for non-specialist clinics.",
        "sourceIds": [
         "ucsf-dbs-trials"
-       ]
-      },
-      {
-       "group": "Optogenetics, the next modality",
-       "qualifier": "Single-patient case report",
-       "text": "Optogenetics has transformed research but only just reached a patient: in 2021, a blind patient could perceive, locate, count, and touch objects after an optogenetic gene therapy combined with engineered goggles.",
-       "sourceIds": [
-        "sahel2021-natmed"
        ]
       }
      ],
      "caveats": [
-      "Psychiatric DBS timelines depend on whether TRANSCEND succeeds where BROADEN and RECLAIM did not."
-     ],
-     "callouts": [
-      {
-       "question": 2,
-       "title": "What holds neurotech back from patients",
-       "body": "Our evidence points to three gates beyond the science: proving benefit against a sham (depression DBS failed this twice), getting paid (novel devices waited a median of 5.7 years for Medicare coverage), and getting referred (only about 10% of eligible Parkinson's patients reach DBS centers). Regulation may need to change most at the payment gate, which a proposed CMS pathway called RAPID targets.",
-       "sourceIds": [
-        "broaden-medscape2026",
-        "reclaim-frontiers2018",
-        "sexton2023-jamahf",
-        "lange2017-underutilization",
-        "rapid-acg"
-       ]
-      }
+      "Psychiatric DBS timelines hinge on the TRANSCEND trial."
      ]
     },
     {
      "criterion": "c4",
      "owner": "Ryan",
-     "verdict": "People with drug-resistant disease clearly benefit and want to stay on newer therapies, but most eligible patients never reach them.",
+     "verdict": "Patients who get it stay on it, but most never get it.",
      "evidence": [
       {
-       "group": "Why customers would switch",
-       "text": "Neurology drugs fail often: new treatments have about a 5.9% chance of approval from Phase 1.",
-       "sourceIds": [
-        "cra2024-cns"
-       ]
-      },
-      {
-       "group": "Why customers would switch",
-       "text": "DBS beat best medical therapy in randomized trials on motor function and quality of life.",
-       "sourceIds": [
-        "weaver2009-jama",
-        "earlystim2013-nejm"
-       ]
-      },
-      {
-       "group": "Demonstrated willingness to adopt",
+       "group": "The case",
        "qualifier": "Conference abstract",
-       "text": "In the ADAPT-PD pivotal trial, 98% of participants chose to remain on adaptive DBS.",
+       "text": "98% of ADAPT-PD participants chose to remain on adaptive DBS.",
        "sourceIds": [
         "adaptpd2024-abstract"
        ]
       },
       {
-       "group": "What blocks adoption",
-       "text": "Only about 10% of eligible patients are referred to DBS centers. In one survey, neurologists estimated the risk of brain hemorrhage at 4.3% on average, and 30.6% worried about mood changes or depression after DBS.",
+       "group": "The catch",
+       "text": "Only about 10% of eligible Parkinson's patients are referred; many clinicians don't realize how safe DBS is.",
        "sourceIds": [
-        "lange2017-underutilization"
+        "lange2017-underutilization",
+        "stanmed2026-bronte"
        ]
       }
      ],
      "caveats": [
-      "Adoption data come largely from Parkinson's; demand for psychiatric implants is less proven."
+      "Adoption data are mostly from Parkinson's."
      ]
     },
     {
      "criterion": "c5",
      "owner": "Ryan",
-     "verdict": "An established, reimbursed market already exists, and the clearest new opening is software and services that make personalized stimulation easy to deliver.",
+     "verdict": "A reimbursed market exists; the opening is software for personalized programming.",
      "evidence": [
       {
-       "group": "Is there a large, reachable market?",
-       "text": "Most insurers cover DBS for Parkinson's.",
+       "group": "The case",
+       "text": "Most insurers cover DBS for Parkinson's, and adaptive DBS runs on sensing devices already in use.",
        "sourceIds": [
-        "dbs-disparities-review"
-       ]
-      },
-      {
-       "group": "Is there a large, reachable market?",
-       "text": "Adaptive DBS was approved in 2025 for Medtronic's Percept neurostimulators, the same sensing-enabled devices used for conventional DBS, so patients entered the pivotal trial on hardware they already had.",
-       "sourceIds": [
+        "dbs-disparities-review",
         "ucsf-dbs-trials",
         "adaptpd2024-abstract"
        ]
       },
       {
-       "group": "Durable advantage",
-       "text": "Sensing devices record brain signals continuously, creating patient data that can personalize therapy. UCSF is building an automated, data-driven pipeline to recommend settings.",
+       "group": "The case",
+       "text": "DBS needs skilled clinicians to program it, and the devices now record data that could help automate it.",
        "sourceIds": [
+        "practneuro2026-adbs",
         "stanmed2026-bronte",
         "ucsf-dbs-trials"
        ]
       },
       {
-       "group": "Risks to the business",
-       "text": "New devices without an existing payment code face long waits for Medicare coverage, a median of 5.7 years.",
+       "group": "Our demo",
+       "qualifier": "Our analysis, not peer reviewed",
+       "text": "We built a piece of that software: a small neural network that predicts the brain's mu rhythm from scalp EEG, so a TMS pulse lands on the wave's trough, the timing linked to stronger effects. Try it at the top of this page.",
        "sourceIds": [
-        "sexton2023-jamahf"
+        "tms-phase-demo",
+        "zrenner2018-brs"
        ]
       },
       {
-       "group": "Risks to the business",
-       "text": "CMS has proposed a RAPID pathway that could allow coverage 60 to 90 days after FDA approval for some breakthrough devices; it is not final.",
+       "group": "Our demo",
+       "qualifier": "Our analysis, not peer reviewed",
+       "text": "Tested on 9 people it never trained on, it put 71% of simulated pulses on target at a 40 ms system delay, versus 53% for the standard method and 25% for untimed TMS. It beat both published methods for all 9 people.",
        "sourceIds": [
-        "rapid-acg"
+        "tms-phase-demo",
+        "shirinpour2020-jne",
+        "bci-competition-iv-2a"
+       ]
+      },
+      {
+       "group": "Our demo",
+       "qualifier": "Our analysis, not peer reviewed",
+       "text": "At a 60 ms delay it was as accurate as the standard method with no delay, so cheaper hardware could deliver timed TMS. A few minutes of each person's own EEG made it better for all 9.",
+       "sourceIds": [
+        "tms-phase-demo"
+       ]
+      },
+      {
+       "group": "The catch",
+       "text": "One study found no effect of mu phase on how strongly TMS excites the motor cortex, so the benefit of timing still has to be shown in patients.",
+       "sourceIds": [
+        "madsen2019-brs"
        ]
       }
      ],
@@ -670,46 +599,32 @@
       "component": "CoverageGapChart"
      },
      "caveats": [
-      "Company revenue figures our teammate gathered are being verified against company filings and are hidden until confirmed.",
-      "The 'software and services' opening is our inference from the programming bottleneck, not a sourced market forecast."
+      "The software opening is our inference.",
+      "Our demo used recorded EEG, not live stimulation."
      ]
     },
     {
      "criterion": "c6",
      "owner": "Sanjana",
-     "verdict": "Surgery carries real risk, early psychiatric results did not survive sham controls, access is unequal, and devices that record the brain raise privacy questions.",
+     "verdict": "Surgery carries real risk, and access is unequal.",
      "evidence": [
       {
-       "group": "Safety",
-       "text": "In the VA trial, at least one serious adverse event occurred in 49 DBS patients versus 15 on medical therapy, including one death from brain hemorrhage.",
+       "group": "The risks",
+       "text": "In the VA trial, 49 DBS patients had serious adverse events versus 15 on medication, including one death.",
        "sourceIds": [
-        "weaver2009-jama"
+        "weaver2009-va"
        ]
       },
       {
-       "group": "Safety",
-       "text": "In the BROADEN depression trial, 28 patients experienced 40 serious adverse events, eight of which were judged related to the study.",
-       "sourceIds": [
-        "broaden-ethics2024"
-       ]
-      },
-      {
-       "group": "Equity",
-       "text": "Women and racial and ethnic minorities are less likely to undergo DBS, even after controlling for disease severity.",
+       "group": "The risks",
+       "text": "Women and racial and ethnic minorities are less likely to receive DBS, even at equal severity.",
        "sourceIds": [
         "dbs-disparities-review"
-       ]
-      },
-      {
-       "group": "Privacy",
-       "text": "Colorado, California, Montana, and Connecticut have amended privacy laws to cover neural data.",
-       "sourceIds": [
-        "dwt2025-mindact"
        ]
       }
      ],
      "caveats": [
-      "Most safety data come from experienced surgical centers; outcomes elsewhere may differ."
+      "Most safety data come from experienced centers."
      ]
     }
    ]
@@ -720,7 +635,7 @@
    "shortName": "Connectomics",
    "colorToken": "--dapi",
    "verdict": "Complete in a fly, a cubic millimeter in us.",
-   "definition": "Connectomics maps how neurons connect. At the microscale, scientists slice tissue, image it with electron microscopes, and trace every neuron and synapse. At the macroscale, MRI maps large fiber tracts between brain regions. It is mainly a research tool: a map helps patients only when someone uses it to build a better drug, device, or diagnosis.",
+   "definition": "Maps of how neurons connect, from every synapse in tiny tissue samples to MRI maps of major fiber tracts. A research tool: it helps patients only through what is built on it.",
    "definitionSourceIds": [
     "e11-prism",
     "maierhein2017-natcomm"
@@ -760,124 +675,44 @@
     {
      "criterion": "c1",
      "owner": "Tyler",
-     "verdict": "The underlying problem, not understanding how brain circuits work or fail, may be the largest of the three, but connectomics helps patients only indirectly.",
+     "verdict": "Maybe the biggest problem of the three, but it helps patients only indirectly.",
      "evidence": [
       {
-       "group": "How severe and widespread",
-       "text": "The 37 conditions affecting the nervous system were collectively the leading cause of disability-adjusted life years in 2021, affecting about 3.4 billion people, or 43% of the world's population.",
+       "group": "The case",
+       "text": "Nervous-system conditions were the top cause of lost healthy life in 2021, affecting about 3.4 billion people.",
        "sourceIds": [
         "gbd2021-lancet"
        ]
       },
       {
-       "group": "How severe and widespread",
-       "text": "Wellcome's expert report states that differences in brain connections likely underlie a range of mental health conditions.",
-       "sourceIds": [
-        "wellcome2023-report"
-       ]
-      },
-      {
-       "group": "How much better than today",
-       "text": "The whole fruit-fly connectome contains 139,255 neurons and 50 million synapses.",
-       "sourceIds": [
-        "dorkenwald2024-flywire"
-       ]
-      },
-      {
-       "group": "How much better than today",
-       "text": "A simulation built from the fly's wiring alone accurately predicted which neurons respond to tastes and are required to start feeding.",
+       "group": "The case",
+       "text": "A simulation built only from fly wiring correctly predicted which neurons sense taste and start feeding.",
        "sourceIds": [
         "shiu2024-nature"
        ]
-      },
-      {
-       "group": "How much better than today",
-       "text": "MRI-scale connectomes already help patients: in Parkinson's, a connectivity profile learned from 51 DBS patients predicted outcomes in an independent group of 44 patients, with an average error of 15% in motor-score improvement, without special imaging of those patients.",
-       "sourceIds": [
-        "horn2017-annneurol"
-       ]
-      },
-      {
-       "group": "Capabilities that are impossible today",
-       "text": "Nature Methods highlighted 'connectomic screening': mapping many smaller tissue samples to study brain health, development, and disease.",
-       "sourceIds": [
-        "naturemethods2025-moy"
-       ]
       }
      ],
-     "caveats": [
-      "Low drug approval rates have many causes, including slow endpoints and placebo effects. Missing circuit knowledge is one plausible contributor, not a proven root cause.",
-      "Nearly every patient benefit depends on another product being built on top of the map."
-     ]
+     "caveats": []
     },
     {
      "criterion": "c2",
      "owner": "Tyler",
-     "verdict": "Complete maps work and make testable predictions in flies, and MRI maps help predict treatment outcomes, but mammalian maps are tiny, single, partly checked samples.",
+     "verdict": "Fly maps replicate and predict; mammal maps are tiny, partly checked samples.",
      "evidence": [
       {
-       "group": "Has the principle been demonstrated?",
-       "text": "Yes, for small brains: FlyWire mapped the whole adult fly brain.",
+       "group": "The case",
+       "text": "Two independent fly maps agreed on most cell types and strong connections, but about a third of earlier proposed types could not be re-identified.",
        "sourceIds": [
-        "dorkenwald2024-flywire"
+        "schlegel2024-nature",
+        "schlegel2023-preprint"
        ]
       },
       {
-       "group": "Has the principle been demonstrated?",
-       "text": "In mouse, the MICrONS project recorded the activity of about 75,000 neurons in an awake mouse's visual cortex, then matched them to a reconstruction of more than 200,000 cells and 0.5 billion synapses.",
-       "sourceIds": [
-        "microns2025-nature"
-       ]
-      },
-      {
-       "group": "Has the principle been demonstrated?",
-       "text": "In human, the H01 dataset reconstructed one cubic millimeter of temporal cortex removed during epilepsy surgery: about 57,000 cells and 150 million synapses, totaling 1.4 petabytes.",
-       "sourceIds": [
-        "shapsoncoe2024-h01"
-       ]
-      },
-      {
-       "group": "Has the principle been demonstrated?",
-       "text": "MRI tractography has a known accuracy problem. In a benchmark with 96 submissions from 20 groups, most algorithms recovered 90% of true fiber bundles to some extent, but produced many more invalid bundles than valid ones.",
-       "sourceIds": [
-        "maierhein2017-natcomm"
-       ]
-      },
-      {
-       "group": "Is it reproducible?",
-       "text": "Two fly connectomes allowed a replication test. Most cell types were highly stereotyped across brains, and strong connections were reliable.",
-       "sourceIds": [
-        "schlegel2024-nature"
-       ]
-      },
-      {
-       "group": "Is it reproducible?",
-       "text": "But about one-third of cell types proposed from the earlier fly map could not be reliably re-identified, and connection weights varied surprisingly within and across animals.",
-       "sourceIds": [
-        "schlegel2024-nature"
-       ]
-      },
-      {
-       "group": "Is it reproducible?",
-       "text": "Mammalian datasets are single samples, only partly proofread. Tracing about 1,500 mouse neurons required years of human revision and over a million manual fixes.",
+       "group": "The catch",
+       "text": "Tracing about 1,500 mouse neurons took years and over a million manual fixes.",
        "sourceIds": [
         "microns2025-nature",
         "e11-prism"
-       ]
-      },
-      {
-       "group": "Has it worked in humans?",
-       "text": "At the macroscale, yes: connectivity predicted DBS outcomes in human patients, and Stanford's depression protocol targets stimulation using each patient's functional connectivity MRI.",
-       "sourceIds": [
-        "horn2017-annneurol",
-        "snt-replication-kratter"
-       ]
-      },
-      {
-       "group": "A fundamental limit",
-       "text": "Even a perfect map is incomplete: neuromodulators reshape how circuits function, so a wiring diagram cannot be read like a set of instructions.",
-       "sourceIds": [
-        "bargmann2012-bioessays"
        ]
       }
      ],
@@ -888,7 +723,7 @@
         8,
         9
        ],
-       "note": "Complete, open, cross-checked, predictive."
+       "note": "Complete, open, predictive."
       },
       {
        "label": "MRI connectomes for clinical prediction",
@@ -896,7 +731,7 @@
         6,
         7
        ],
-       "note": "Validated in independent DBS cohorts; known false positives."
+       "note": "Validated in DBS cohorts."
       },
       {
        "label": "Mammalian cubic-millimeter samples",
@@ -904,7 +739,7 @@
         5,
         6
        ],
-       "note": "Single samples, partly proofread."
+       "note": "Single, partly proofread samples."
       },
       {
        "label": "Whole mouse brain",
@@ -912,170 +747,109 @@
         3,
         4
        ],
-       "note": "Not done; cheaper optical methods at pilot scale."
+       "note": "Not done; pilot-scale methods."
       }
      ],
      "visual": {
       "component": "ConnectomeScaleLadder"
      },
-     "caveats": [
-      "Readiness levels were designed for devices; applying them to a research tool is our adaptation."
-     ]
+     "caveats": []
     },
     {
      "criterion": "c3",
      "owner": "Sanjana",
-     "verdict": "The path to a whole mammalian map is blocked mainly by proofreading cost and data volume, with experts targeting a whole mouse brain in 10 to 15 years and no credible timeline for a human.",
+     "verdict": "Whole mouse brain: 10 to 15 years out. Whole human brain: we found no credible timeline.",
      "evidence": [
       {
-       "group": "Breakthroughs still required",
-       "text": "Proofreading must be automated. It is the most resource-intensive step and might take about 100,000 person-years for a whole mouse today.",
+       "group": "The catch",
+       "text": "Wellcome's experts set a whole mouse connectome as a 10 to 15 year goal; proofreading alone might take about 100,000 person-years today.",
        "sourceIds": [
         "wellcome2023-report"
        ]
       },
       {
-       "group": "Breakthroughs still required",
+       "group": "The case",
        "qualifier": "Developer's claim",
-       "text": "E11 Bio's approach labels each neuron with a unique protein 'barcode' so AI can trace it more reliably on cheaper light microscopes. It has been shown in a small pilot volume of mouse hippocampus (about 10 million cubic microns).",
+       "text": "E11 Bio's protein barcodes let AI trace neurons on cheaper microscopes; it forecasts a mouse map in about five years.",
        "sourceIds": [
-        "e11-prism"
-       ]
-      },
-      {
-       "group": "Critical bottlenecks",
-       "text": "Imaging still requires slicing: the human H01 sample was cut into ultra-thin sections about 33 nanometers thick and imaged one section at a time with a multibeam electron microscope.",
-       "sourceIds": [
-        "shapsoncoe2024-h01"
-       ]
-      },
-      {
-       "group": "Critical bottlenecks",
-       "text": "Data volume is enormous: one cubic millimeter of human cortex produced 1.4 petabytes, and a whole mouse would need about 1,000 times that.",
-       "sourceIds": [
-        "shapsoncoe2024-h01",
-        "technetworks-h01"
-       ]
-      },
-      {
-       "group": "How long to a useful application",
-       "text": "Wellcome's expert group recommends a whole mouse connectome as a goal on a 10 to 15 year timeline.",
-       "sourceIds": [
-        "wellcome2023-report"
-       ]
-      },
-      {
-       "group": "How long to a useful application",
-       "qualifier": "Developer's forecast",
-       "text": "E11 Bio predicts an optical mouse connectome could be possible within about five years.",
-       "sourceIds": [
+        "e11-prism",
         "e11-roadmap"
        ]
       }
      ],
-     "caveats": [
-      "We found no credible published timeline for a whole human connectome.",
-      "Connections change over time as the brain learns, so any map is a snapshot. That is our team's judgment about a limit on what one map can explain."
-     ]
+     "caveats": []
     },
     {
      "criterion": "c4",
      "owner": "Ryan",
-     "verdict": "Today's customers are researchers and public funders; clinical demand arrives mostly through brain stimulation, which uses connectivity maps to aim.",
+     "verdict": "Buyers are researchers and funders; clinical demand arrives through stimulation.",
      "evidence": [
       {
-       "group": "Who feels the problem most",
-       "text": "Neuroscientists and the agencies that fund them. NIH's BRAIN CONNECTS program is building pipelines for mapping whole mammalian brains.",
+       "group": "The case",
+       "text": "NIH's BRAIN CONNECTS program is building pipelines to map whole mammalian brains.",
        "sourceIds": [
         "brain-connects"
        ]
       },
       {
-       "group": "Who would pay",
-       "text": "Clinicians already use MRI connectomes in research to predict and guide deep brain stimulation outcomes.",
-       "sourceIds": [
-        "horn2017-annneurol"
-       ]
-      },
-      {
-       "group": "Why customers would switch",
-       "text": "Demand grows as maps get cheaper. E11 Bio claims a clear path to connectomics at 100 times lower cost.",
+       "group": "The case",
+       "qualifier": "Developer's claim",
+       "text": "Demand grows as maps get cheaper; E11 Bio claims a path to 100 times lower cost.",
        "sourceIds": [
         "e11-prism"
        ]
       }
      ],
      "caveats": [
-      "We have not interviewed researchers or pharma buyers, so this is desk research rather than customer discovery."
+      "Desk research only; no buyer interviews yet."
      ]
     },
     {
      "criterion": "c5",
      "owner": "Ryan",
-     "verdict": "Connectomics is weak as a business by design: most data is open and publicly funded, so value is likely to come from tools, services, and therapies built on the maps.",
+     "verdict": "Weak as a business by design: the data is free and open.",
      "evidence": [
       {
-       "group": "Durable advantage",
-       "text": "Major datasets are released openly: MICrONS is an open-access resource with retrieval and analysis tools.",
+       "group": "The catch",
+       "text": "Flagship datasets (MICrONS, FlyWire, E11 Bio) are released free and open.",
        "sourceIds": [
-        "microns2025-nature"
+        "microns2025-nature",
+        "flywire-site",
+        "aws2025-e11"
        ]
       },
       {
-       "group": "Durable advantage",
-       "text": "FlyWire's connectome and annotations are openly browsable and downloadable.",
-       "sourceIds": [
-        "dorkenwald2024-flywire"
-       ]
-      },
-      {
-       "group": "Sustainable cost",
-       "text": "Not yet. With current electron microscopy, manual proofreading dominates cost and time.",
+       "group": "The case",
+       "text": "Only a few centers could image a whole mouse brain, but later software stages could be widely distributed.",
        "sourceIds": [
         "wellcome2023-report"
        ]
       }
      ],
-     "caveats": [
-      "Business opportunities likely sit in imaging tools, AI tracing, clinical connectivity software, and drug discovery partnerships. That is our inference, not a sourced market estimate."
-     ]
+     "caveats": []
     },
     {
      "criterion": "c6",
      "owner": "Sanjana",
-     "verdict": "Mapping carries little direct risk to patients, but misreading noisy maps, individual variation, and human brain data raise real scientific and ethical risks.",
+     "verdict": "Little direct patient risk, but noisy maps can mislead.",
      "evidence": [
       {
-       "group": "Assumptions that could break",
-       "text": "MRI tractography produces many false-positive connections, a risk if maps are used for clinical decisions.",
+       "group": "The risks",
+       "text": "MRI tractography produces more invalid fiber bundles than valid ones, a danger if maps guide treatment.",
        "sourceIds": [
         "maierhein2017-natcomm"
        ]
       },
       {
-       "group": "Assumptions that could break",
-       "text": "One brain's map is not 'the' map: a third of fly cell types from one map could not be re-identified in another.",
+       "group": "The risks",
+       "text": "Wiring maps leave out neuromodulators, which reshape how circuits behave.",
        "sourceIds": [
-        "schlegel2024-nature"
-       ]
-      },
-      {
-       "group": "Ethics and privacy",
-       "text": "NIH's neuroethics roadmap flags effects of neurotechnology on agency, identity, and public trust, and risks of hype, bias, and misuse of technologies and data.",
-       "sourceIds": [
-        "brain-neuroethics"
-       ]
-      },
-      {
-       "group": "Ethics and privacy",
-       "text": "Several states now treat neural data as sensitive personal data under privacy law.",
-       "sourceIds": [
-        "arnoldporter2025-neuraldata"
+        "bargmann2012-bioessays"
        ]
       }
      ],
      "caveats": [
-      "Low direct patient risk is our judgment, because microscale mapping happens on tissue outside the body."
+      "Low direct risk is our judgment; mapping uses tissue outside the body."
      ]
     }
    ]
@@ -1086,7 +860,7 @@
    "shortName": "Biohybrid",
    "colorToken": "--tdtomato",
    "verdict": "Proven in the arm, promised in the brain.",
-   "definition": "Biohybrid implants combine electronics with living cells, so the tissue connects to biology instead of bare metal. In the arm, surgeons wrap a cut nerve in a small muscle graft that amplifies its signals. In the brain, companies like Science Corp grow engineered neurons inside a device and let them wire into the brain.",
+   "definition": "Electronics paired with living cells, so tissue meets biology instead of bare metal: a muscle graft amplifying a cut nerve in the arm, or engineered neurons wiring into the brain.",
    "definitionSourceIds": [
     "rpni-review-mdpi2025",
     "sciencecorp-biohybrid-page"
@@ -1116,132 +890,49 @@
     {
      "criterion": "c1",
      "owner": "Tyler",
-     "verdict": "The problem is large and severe, and the upside claimed for the brain is the biggest of the three fields, but much of it is still a projection.",
+     "verdict": "The biggest claimed upside, but the brain benefits are projections.",
      "evidence": [
       {
-       "group": "How severe and widespread",
-       "text": "Nearly 5.4 million people in the US live with paralysis. Stroke is the leading cause (33.7%), followed by spinal cord injury (27.3%), multiple sclerosis (18.6%), and cerebral palsy (8.3%).",
+       "group": "The case",
+       "text": "Nearly 5.4 million Americans live with paralysis and nearly 2 million with limb loss.",
        "sourceIds": [
-        "armour2016-ajph"
-       ]
-      },
-      {
-       "group": "How severe and widespread",
-       "text": "Limb loss affects nearly 2 million people in the US, causing functional and psychosocial challenges.",
-       "sourceIds": [
+        "armour2016-ajph",
         "rpni-limbloss-review"
        ]
       },
       {
-       "group": "How much better than today",
-       "text": "Today's metal and silicon electrodes trigger a foreign body response that degrades performance over time: impedance rises, signal quality falls, fewer neurons can be detected, and stimulation thresholds climb.",
-       "sourceIds": [
-        "fbr-review2026"
-       ]
-      },
-      {
-       "group": "How much better than today",
-       "text": "For people with limb loss, the longest stable direct nerve interface reported lasted 16 months, with only 9% of electrode sites still working.",
-       "sourceIds": [
-        "vu2023-jne"
-       ]
-      },
-      {
-       "group": "How much better than today",
-       "qualifier": "Small study, 4 participants",
-       "text": "With a muscle-graft interface (RPNI), amputees controlled a prosthetic hand in real time for up to 300 days without recalibrating the control algorithm.",
-       "sourceIds": [
-        "vu2020-stm"
-       ]
-      },
-      {
-       "group": "Capabilities that are impossible today",
+       "group": "The catch",
        "qualifier": "Company claim",
-       "text": "Science Corp says anchoring hundreds of thousands of neurons to its device could connect to the brain with orders of magnitude more bandwidth than current devices, without the damage of inserting wires.",
+       "text": "Science Corp claims orders of magnitude more bandwidth; an outside expert says its device isn't yet an interface on its own.",
        "sourceIds": [
-        "sciencecorp-biohybrid-page"
-       ]
-      },
-      {
-       "group": "Capabilities that are impossible today",
-       "text": "An outside expert cautioned that the company's current device is not yet an interface on its own.",
-       "sourceIds": [
+        "sciencecorp-biohybrid-page",
         "ieee2025-biohybrid"
        ]
       }
      ],
-     "caveats": [
-      "We cite narrower patient numbers rather than the full neurological disease burden, because implants will not address most of it (for example, migraine or neonatal brain injury).",
-      "The strongest evidence of benefit is in the periphery; the brain benefits are company claims and expert opinion."
-     ],
-     "callouts": [
-      {
-       "question": 1,
-       "title": "Modality versus scale",
-       "body": "Science Corp is the clearest example of the 'modality' bet in Question 1. Rather than adding more electrodes, as Neuralink optimizes for electrode density and surgical automation, it bets that lab-grown neurons fused with the brain will eventually outperform electrodes. That bet is unproven and years from validation.",
-       "sourceIds": [
-        "nextweb2026-science"
-       ],
-       "link": {
-        "to": "/q4/biohybrid?c=2",
-        "label": "See the evidence for that bet"
-       }
-      }
-     ]
+     "caveats": []
     },
     {
      "criterion": "c2",
      "owner": "Tyler",
-     "verdict": "The principle works in the arm, with reproducible human results; in the brain it is an early proof of concept in rodents, with no human data and no two-way interface yet.",
+     "verdict": "Proven in the arm; in the brain, a one-way rodent proof of concept.",
      "evidence": [
       {
-       "group": "Has the principle been demonstrated?",
-       "text": "Yes, in the periphery: an RPNI amplifies microvolt-level nerve signals into millivolt-level muscle signals that track the nerve's activity.",
+       "group": "The case",
+       "qualifier": "Observational; mostly one center",
+       "text": "A 2026 meta-analysis (238 patients) found no neuromas after RPNI surgery versus 20 of 99 with standard care.",
        "sourceIds": [
-        "rpni-review-mdpi2025"
+        "rpni-meta2026",
+        "rpni-meta2026-pmc"
        ]
       },
       {
-       "group": "Has the principle been demonstrated?",
-       "text": "In the brain, Penn's Cullen lab grew living electrodes in the lab, stimulated and recorded them optically, and showed that they survived and integrated in rat cortex.",
+       "group": "The catch",
+       "qualifier": "Preprint",
+       "text": "In mice, Science Corp's grafted neurons integrated, but behavior change wasn't statistically significant and signals flowed one way.",
        "sourceIds": [
-        "cullen2021-sciadv"
-       ]
-      },
-      {
-       "group": "Has the principle been demonstrated?",
-       "qualifier": "Preprint, not peer reviewed",
-       "text": "In Science Corp's mouse study, engrafted neurons survived and integrated with the host brain for several weeks, and mice could report when their graft was optically stimulated.",
-       "sourceIds": [
-        "brown2024-biorxiv"
-       ]
-      },
-      {
-       "group": "Has the principle been demonstrated?",
-       "text": "An independent analysis noted that the mice's change in behavior was not statistically significant, the stimulation was extremely strong, and there was no recording from inside the brain, so information only flowed one way.",
-       "sourceIds": [
+        "brown2024-biorxiv",
         "fromtheinterface2025"
-       ]
-      },
-      {
-       "group": "Is it reproducible?",
-       "text": "Pain prevention is the most mature use. In a Michigan cohort, none of 45 patients who received RPNIs at amputation developed symptomatic neuromas, compared with 13.3% of 45 controls; phantom limb pain fell from 91.1% to 51.1%.",
-       "sourceIds": [
-        "kubiak2019-prs"
-       ]
-      },
-      {
-       "group": "Is it reproducible?",
-       "text": "A 2026 meta-analysis of five cohort studies (238 patients) found no neuromas in any RPNI group versus 20 of 99 with standard care. Its authors call the evidence observational and of limited certainty, and note that three of the five cohorts come from one center.",
-       "sourceIds": [
-        "rpni-meta2026"
-       ]
-      },
-      {
-       "group": "Has it worked in humans?",
-       "text": "In the brain, no. Science Corp's first human device is a recording-only sensor without cells, and the biohybrid concept has never been demonstrated in a human brain.",
-       "sourceIds": [
-        "nextweb2026-science"
        ]
       }
      ],
@@ -1252,12 +943,12 @@
         7,
         8
        ],
-       "note": "Multi-center observational cohorts; no randomized trials."
+       "note": "Multi-center cohorts; no RCTs."
       },
       {
        "label": "RPNI with implanted electrodes for prosthetic control",
        "trl": 6,
-       "note": "2 to 4 patients per study, mostly one center."
+       "note": "2 to 4 patients per study."
       },
       {
        "label": "Brain living electrodes (academic)",
@@ -1270,108 +961,57 @@
         3,
         4
        ],
-       "note": "Mouse preprint; one-way information only."
+       "note": "Mouse preprint; one-way only."
       }
      ],
      "visual": {
       "component": "BiohybridEvidenceLadder"
      },
      "caveats": [
-      "An RPNI on its own is purely biological; it becomes a biohybrid interface only when paired with implanted electrodes.",
-      "Readiness levels are our estimates, not official ratings."
+      "An RPNI alone is purely biological; it becomes biohybrid with electrodes."
      ]
     },
     {
      "criterion": "c3",
      "owner": "Sanjana",
-     "verdict": "Several hard breakthroughs separate today's mouse work from a human brain device, so useful brain applications are likely a decade or more away, while the peripheral version is already in surgical use.",
+     "verdict": "A human brain device is likely a decade or more away.",
      "evidence": [
       {
-       "group": "Breakthroughs still required",
-       "text": "Immune compatibility is a major hurdle. A graft from a patient's own cells would take many months and cost over a million dollars per patient, so developers need an immune-cloaked cell line that is compatible with anyone, which is a major undertaking on its own.",
+       "group": "The catch",
+       "text": "Developers need a universal, immune-cloaked cell line; patient-specific grafts would cost over $1 million each.",
        "sourceIds": [
         "sciencecorp-blog2024"
        ]
       },
       {
-       "group": "Critical bottlenecks",
-       "text": "A two-way interface, both reading from and writing to the brain, has not been shown. The company's next milestone is a device with human-engineered cells that records and stimulates, tested in a larger animal.",
+       "group": "The catch",
+       "text": "No two-way biohybrid interface has been shown, and Science Corp's first human device is a cell-free sensor.",
        "sourceIds": [
         "ieee2025-biohybrid",
-        "fromtheinterface2025"
-       ]
-      },
-      {
-       "group": "How long to a useful application",
-       "text": "Science Corp's first human placement will be a recording-only sensor during surgeries patients already need. Its surgical lead calls trials starting in 2027 'optimistic'.",
-       "sourceIds": [
-        "techcrunch2026-science",
+        "fromtheinterface2025",
         "nextweb2026-science"
-       ]
-      },
-      {
-       "group": "How long to a useful application",
-       "text": "One independent analyst estimated a decade or more before the biohybrid probe reaches human trials.",
-       "sourceIds": [
-        "fromtheinterface2025"
-       ]
-      },
-      {
-       "group": "How long to a useful application",
-       "text": "The peripheral approach is already here: RPNI surgery is performed at multiple centers to prevent post-amputation pain.",
-       "sourceIds": [
-        "rpni-meta2026"
        ]
       }
      ],
      "caveats": [
-      "Timelines come from a company surgical adviser and one analyst; treat them as informed guesses.",
-      "If an immune-compatible, mass-producible cell line arrives faster than expected, the timeline could shrink."
-     ],
-     "callouts": [
-      {
-       "question": 2,
-       "title": "Optogenetics has reached one human",
-       "body": "Science Corp's design uses neurons engineered to respond to light, which is optogenetics. That technique has only just touched the clinic: in 2021, a blind patient partially regained visual function after an optogenetic gene therapy plus engineered goggles. It was one patient, in the eye, after nearly 20 years of research use.",
-       "sourceIds": [
-        "nextweb2026-science",
-        "sahel2021-natmed"
-       ],
-       "link": {
-        "to": "/q4/stimulation?c=3",
-        "label": "See what holds neurotech back"
-       }
-      }
+      "Timelines are informed guesses."
      ]
     },
     {
      "criterion": "c4",
      "owner": "Ryan",
-     "verdict": "People with paralysis, limb loss, and blindness need better options and often abandon today's devices, but demand for a brain biohybrid has not been tested.",
+     "verdict": "Real need, but demand for a brain biohybrid is untested.",
      "evidence": [
       {
-       "group": "Who feels the problem most",
-       "text": "People living with paralysis, limb loss, or blindness. Paralysis alone affects nearly 5.4 million people in the US.",
+       "group": "The case",
+       "qualifier": "Older review",
+       "text": "Many adults abandon prostheses: average rejection rates were 26% (body-powered) and 23% (electric).",
        "sourceIds": [
-        "armour2016-ajph"
+        "biddiss2007-poi"
        ]
       },
       {
-       "group": "Who feels the problem most",
-       "text": "Science Corp's nearest-term product is PRIMA, a retinal implant for people with advanced macular degeneration, which shows the company is starting with vision rather than the brain.",
-       "sourceIds": [
-        "yahoo2026-seriesc"
-       ]
-      },
-      {
-       "group": "Why customers would switch",
-       "text": "Today's prosthetics frustrate users: a lack of intuitive control contributes to some people abandoning their prostheses.",
-       "sourceIds": [
-        "umich-rpni-spotlight"
-       ]
-      },
-      {
-       "group": "Who would pay",
+       "group": "The catch",
        "text": "Investors are paying for now: Science Corp raised a $230 million Series C at a reported $1.5 billion valuation.",
        "sourceIds": [
         "yahoo2026-seriesc",
@@ -1380,105 +1020,61 @@
       }
      ],
      "caveats": [
-      "We found no customer-discovery data (patient or clinician interviews) for brain biohybrids. Following NSF I-Corps practice, this is the biggest gap in our demand analysis.",
-      "Investor funding signals belief, not proven patient demand."
+      "No patient interviews yet; funding signals belief, not demand."
      ]
     },
     {
      "criterion": "c5",
      "owner": "Ryan",
-     "verdict": "Cost, an unmapped regulatory path, and slow payment for novel devices make a brain biohybrid business speculative today, though the leading company is hedging with nearer-term products.",
+     "verdict": "Cost, regulation, and slow payment make the business speculative today.",
      "evidence": [
       {
-       "group": "Can it be delivered at a sustainable cost?",
-       "text": "Not yet. A graft from the patient's own cells would cost over a million dollars per patient, which is why developers are pursuing universal cell lines.",
-       "sourceIds": [
-        "sciencecorp-blog2024"
-       ]
-      },
-      {
-       "group": "Regulation",
-       "text": "Science Corp does not plan to seek FDA approval for its first sensor placements, working through institutional review boards instead. The path to a full biohybrid device, with living neurons, runs through regulatory territory no company has mapped.",
+       "group": "The catch",
+       "text": "No company has mapped the regulatory path for a device containing living neurons.",
        "sourceIds": [
         "nextweb2026-science"
        ]
       },
       {
-       "group": "Payment",
-       "text": "Even after FDA authorization, novel devices waited a median of 5.7 years for Medicare coverage, and only 44% reached any coverage in the study period.",
-       "sourceIds": [
-        "sexton2023-jamahf"
-       ]
-      },
-      {
-       "group": "Payment",
-       "text": "Small manufacturers fared far worse: a five-year coverage probability of 19.4%, versus 67.9% for large manufacturers.",
+       "group": "The catch",
+       "text": "Small device makers had a 19.4% five-year chance of Medicare coverage, versus 67.9% for large ones.",
        "sourceIds": [
         "raps-coverage"
        ]
       },
       {
-       "group": "Durable advantage and business model",
-       "text": "Science Corp is hedging: its nearest product is a retinal implant, and it runs a chip foundry that other labs can rent while its biohybrid work matures.",
+       "group": "The case",
+       "text": "Science Corp is hedging by selling electronics and tooling to other BCI companies.",
        "sourceIds": [
+        "sciencecorp-neurosoft2026",
         "fromtheinterface2025"
        ]
       }
      ],
-     "caveats": [
-      "If CMS's proposed RAPID pathway is finalized, coverage for breakthrough devices could come within months of FDA approval instead of years.",
-      "A working biohybrid would be hard to copy, so the eventual moat could be strong; the problem is getting there."
-     ],
-     "callouts": [
-      {
-       "question": 2,
-       "title": "Why there aren't dozens of implant companies",
-       "body": "Building an implant company means surviving both FDA approval and a separate, often multi-year wait for Medicare coverage, and small companies are far less likely to clear the second hurdle. A proposed CMS pathway called RAPID could shorten that wait for breakthrough devices.",
-       "sourceIds": [
-        "sexton2023-jamahf",
-        "raps-coverage",
-        "rapid-acg"
-       ]
-      }
-     ]
+     "caveats": []
     },
     {
      "criterion": "c6",
      "owner": "Sanjana",
-     "verdict": "Putting living, genetically modified cells in the brain adds immune and safety unknowns on top of normal implant risks, and neural data raises privacy questions that laws are only starting to address.",
+     "verdict": "Living, gene-modified cells add new unknowns to normal implant risks.",
      "evidence": [
       {
-       "group": "What could go wrong",
-       "text": "The graft must be compatible with the patient's immune system or it will be rejected.",
+       "group": "The risks",
+       "text": "The graft must evade the immune system, and the long-term design uses light-sensitive, gene-modified neurons.",
        "sourceIds": [
-        "sciencecorp-blog2024"
-       ]
-      },
-      {
-       "group": "What could go wrong",
-       "text": "The long-term design calls for lab-grown neurons genetically modified with light-sensitive proteins, which adds gene-modification safety questions to the device itself.",
-       "sourceIds": [
+        "sciencecorp-blog2024",
         "nextweb2026-science"
        ]
       },
       {
-       "group": "What could go wrong",
-       "text": "Electronics in the brain still face the foreign body response, which leads to scarring, neuronal loss, and signal degradation over time.",
-       "sourceIds": [
-        "fbr-review2026"
-       ]
-      },
-      {
-       "group": "Privacy",
-       "text": "In 2024, Colorado and California passed the first US state laws treating neural data as sensitive, and at least six other states were following.",
+       "group": "The risks",
+       "text": "Neural-data privacy law is new: Colorado and California passed the first state laws in 2024.",
        "sourceIds": [
         "arnoldporter2025-neuraldata"
        ]
       }
      ],
-     "caveats": [
-      "We have not yet found a source on how infection or fever affects an implant's immune response, so we have left that hypothesis out."
-     ]
+     "caveats": []
     }
    ]
   }
@@ -1518,24 +1114,44 @@
   },
   "explanation": [
    {
-    "text": "Connectivity maps already predict which DBS placements help Parkinson's patients, and Stanford's depression protocol aims stimulation using each patient's connectivity scan.",
+    "text": "Connectivity maps already predict which DBS placements help, and they aim Stanford's SNT.",
     "sourceIds": [
      "horn2017-annneurol",
      "snt-replication-kratter"
     ]
    },
    {
-    "text": "Closed-loop devices stimulate only when they detect a symptom's brain signature, so better decoding means better timing.",
+    "text": "Closed-loop devices stimulate only on a symptom's brain signature, so better decoding means better timing.",
     "sourceIds": [
      "scangos2021-natmed",
      "stanmed2026-bronte"
     ]
    },
    {
-    "text": "Biohybrid interfaces aim to connect with far more neurons and less damage than metal electrodes, but are still at animal stage.",
+    "text": "Our demo shows the timing gain: predicting the motor rhythm 40 ms ahead put 71% of simulated TMS pulses on target, versus 53% with the standard method.",
+    "sourceIds": [
+     "tms-phase-demo",
+     "zrenner2018-brs"
+    ]
+   },
+   {
+    "text": "Biohybrids aim to reach more neurons with less damage, but are still in animals.",
     "sourceIds": [
      "sciencecorp-biohybrid-page",
      "brown2024-biorxiv"
+    ]
+   }
+  ]
+ },
+ "sham": {
+  "headline": "Before believing a neurotech claim, ask: was it tested against a sham, by someone other than its developer?",
+  "explanation": [
+   {
+    "text": "Depression DBS looked strong in open-label studies, then failed to beat sham in two controlled trials. Clinical attention, placebo effects, and the implant itself can all inflate uncontrolled results.",
+    "sourceIds": [
+     "clevelandclinic-dbs",
+     "broaden-medscape2026",
+     "reclaim-frontiers2018"
     ]
    }
   ]
@@ -1547,7 +1163,7 @@
    {
     "question": 1,
     "title": "Scale versus modality",
-    "body": "Our evidence suggests both bets are rational, on different clocks. Scaling electrodes builds on real human experience (roughly three dozen people have controlled BCIs with metal electrodes in university studies) but fights the body's scarring response, which degrades signals over time. Changing the modality, as Science Corp does with living neurons, could sidestep that limit but has no human data yet. Each company is making a different technical bet: Neuralink on electrode density and surgical automation, Paradromics on raw bandwidth, Synchron on surgical simplicity, and Science Corp on biology itself.",
+    "body": "Both bets are rational, on different clocks. Scaling metal electrodes (Neuralink) builds on real human use but fights scarring that degrades signals. Living-neuron interfaces (Science Corp) could sidestep that limit but have no human data yet.",
     "sourceIds": [
      "ieee2025-biohybrid",
      "fbr-review2026",
@@ -1562,7 +1178,7 @@
    {
     "question": 2,
     "title": "What holds neurotech back",
-    "body": "Three gates beyond the science: proving benefit against a sham, getting paid (novel devices waited a median of 5.7 years for Medicare coverage, longer for small companies), and getting referred (only about 10% of eligible Parkinson's patients reach DBS centers). Optogenetics has only just reached one patient, in the eye. If regulation needs to change, our evidence points first to payment, which CMS's proposed RAPID pathway targets.",
+    "body": "Three gates beyond the science: beating sham, getting paid (a median 5.7-year Medicare wait, longer for small firms), and getting referred (about 10% of eligible Parkinson's patients). Optogenetics has reached just one patient, in the eye. If regulation changes, our evidence points first to payment, which CMS's proposed RAPID pathway targets.",
     "sourceIds": [
      "broaden-medscape2026",
      "sexton2023-jamahf",
@@ -1579,16 +1195,58 @@
   ]
  },
  "charts": {
+  "openLabelVsSham": {
+   "title": "Depression DBS: before and after sham controls",
+   "summary": "Open-label response of 40 to 50% fell to 20% versus 17% sham in BROADEN, and 3 of 15 versus 2 of 14 in RECLAIM.",
+   "takeaway": "Strong uncontrolled results shrank to near the sham rate.",
+   "unit": "% of patients responding",
+   "groups": [
+    {
+     "label": "Early open-label pilots (6 months)",
+     "range": [
+      40,
+      50
+     ],
+     "sourceIds": [
+      "clevelandclinic-dbs"
+     ]
+    },
+    {
+     "label": "BROADEN, sham-controlled (6 months)",
+     "active": 20,
+     "sham": 17,
+     "expectedActive": 40,
+     "sourceIds": [
+      "broaden-medscape2026"
+     ]
+    },
+    {
+     "label": "RECLAIM, sham-controlled (16 weeks)",
+     "active": 20,
+     "activeFraction": "3 of 15",
+     "sham": 14.3,
+     "shamFraction": "2 of 14",
+     "sourceIds": [
+      "reclaim-frontiers2018"
+     ]
+    }
+   ],
+   "sourceIds": [
+    "clevelandclinic-dbs",
+    "broaden-medscape2026",
+    "reclaim-frontiers2018"
+   ]
+  },
   "connectomeScale": {
    "title": "How much brain has been mapped",
-   "summary": "Complete wiring maps exist for the worm (302 neurons) and the fruit fly (139,255 neurons). Mammalian maps are cubic-millimeter samples: over 200,000 cells from mouse cortex and about 57,000 cells from human cortex. A whole mouse brain and a whole human brain (about 100 billion neurons) have not been mapped.",
+   "summary": "Worm and fly brains are fully mapped; mammalian maps are cubic-millimeter samples; whole mouse and human brains are unmapped.",
    "takeaway": "Complete in a fly, a cubic millimeter in us.",
    "axis": {
     "label": "Neurons or cells mapped (log scale)",
     "min": 100,
     "max": 100000000000
    },
-   "countNote": "Counts as reported by each study; some count all cells, some count neurons only.",
+   "countNote": "Counts as reported; some studies count all cells, some neurons only.",
    "points": [
     {
      "label": "Worm (C. elegans)",
@@ -1674,7 +1332,7 @@
   },
   "biohybridEvidence": {
    "title": "Where biohybrid evidence stands",
-   "summary": "Muscle-graft nerve interfaces are used in human surgery to prevent pain, with 238 patients across five cohort studies. Prosthetic control has been shown in studies of 2 to 4 patients. Brain biohybrids have been tested in rats and, in a company preprint, mice. No human brain biohybrid exists yet.",
+   "summary": "In human surgery for pain prevention; small human studies for prosthetic control; animal-only in the brain.",
    "takeaway": "Proven in the arm, promised in the brain.",
    "steps": [
     {
@@ -1736,7 +1394,7 @@
   },
   "stimulationTimeline": {
    "title": "Two evidence tracks in brain stimulation",
-   "summary": "For Parkinson's, randomized trials in 2006, 2009, and 2013 favored DBS over medication, and adaptive DBS was approved in 2025. For depression, standard TMS and Stanford's SNT showed sham-controlled benefit, while two DBS pivotal trials were stopped and a new one began in 2025.",
+   "summary": "Parkinson's DBS: positive trials 2006 to 2020, adaptive DBS approved 2025. Depression: two DBS trials stopped, SNT positive 2022, TRANSCEND begun 2025.",
    "axis": {
     "start": 2005,
     "end": 2027
@@ -1748,15 +1406,16 @@
      "events": [
       {
        "year": 2006,
-       "label": "German randomized trial favors DBS (about 155 patients)",
+       "label": "German randomized trial favors DBS",
        "kind": "trial-positive",
        "sourceIds": [
-        "clinician-weaver"
+        "clinician-weaver",
+        "deuschl2006-nejm"
        ]
       },
       {
        "year": 2009,
-       "label": "VA randomized trial favors DBS (255 patients)",
+       "label": "VA randomized trial favors DBS",
        "kind": "trial-positive",
        "sourceIds": [
         "weaver2009-jama"
@@ -1764,7 +1423,7 @@
       },
       {
        "year": 2013,
-       "label": "EARLYSTIM: benefit earlier in disease (251 patients)",
+       "label": "EARLYSTIM: benefit earlier in disease",
        "kind": "trial-positive",
        "sourceIds": [
         "earlystim2013-nejm"
@@ -1802,7 +1461,7 @@
      "events": [
       {
        "year": 2015,
-       "label": "RECLAIM (DBS) results: stopped for futility",
+       "label": "RECLAIM (DBS): stopped for futility",
        "kind": "trial-negative",
        "sourceIds": [
         "reclaim-frontiers2018",
@@ -1811,7 +1470,7 @@
       },
       {
        "year": 2017,
-       "label": "BROADEN (DBS) published: no difference from sham at 6 months",
+       "label": "BROADEN (DBS): no better than sham",
        "kind": "trial-negative",
        "sourceIds": [
         "broaden-medscape2026"
@@ -1868,7 +1527,7 @@
   },
   "coverageGap": {
    "title": "FDA approval is not the finish line",
-   "summary": "Of 64 novel devices and diagnostics authorized by the FDA from 2016 to 2019, 28 (44 percent) reached any Medicare coverage, with a median wait of 5.7 years. Five-year coverage probability was 19.4 percent for small manufacturers versus 67.9 percent for large ones.",
+   "summary": "44% of 64 novel FDA-authorized devices reached any Medicare coverage, after a median 5.7 years; small makers fared far worse.",
    "bars": [
     {
      "label": "Novel devices reaching any Medicare coverage",
@@ -1916,11 +1575,28 @@
    "type": "framework"
   },
   {
+   "id": "arpah-heilmeier-medium",
+   "title": "The Heilmeier Catechism's Ongoing Legacy",
+   "publisher": "MetaScientific (Medium)",
+   "year": 2023,
+   "url": "https://medium.com/metascientific/the-heilmeier-catechisms-ongoing-legacy-4bd6bc22713c",
+   "type": "secondary",
+   "note": "Describes ARPA-H's two added questions on access and misuse."
+  },
+  {
    "id": "biodesign-guide",
    "title": "Biodesign Guide",
    "publisher": "Stanford University",
    "year": null,
    "url": "https://biodesignguide.stanford.edu/",
+   "type": "framework"
+  },
+  {
+   "id": "biodesign-need-research",
+   "title": "Becoming an Expert in Your Need Through Need Research (toolkit)",
+   "publisher": "Stanford Biodesign",
+   "year": 2022,
+   "url": "https://biodesignguide.stanford.edu/wp-content/uploads/2022/07/Need-Research-v3.pdf",
    "type": "framework"
   },
   {
@@ -1932,12 +1608,36 @@
    "type": "framework"
   },
   {
+   "id": "biodesign-curriculum",
+   "title": "Biodesign Innovation Fellowship: Program Curriculum",
+   "publisher": "Stanford Mussallem Center for Biodesign",
+   "year": 2026,
+   "url": "https://med.stanford.edu/biodesign/programs/fellowships/innovation-fellowships/program-curriculum.html",
+   "type": "framework"
+  },
+  {
    "id": "nasa-trl",
    "title": "Technology Readiness Levels",
    "publisher": "NASA",
    "year": 2026,
    "url": "https://www.nasa.gov/directorates/somd/space-communications-navigation-program/technology-readiness-levels/",
    "type": "government"
+  },
+  {
+   "id": "nasa-esto-trl",
+   "title": "Technology Readiness Levels",
+   "publisher": "NASA Earth Science Technology Office",
+   "year": null,
+   "url": "https://esto.nasa.gov/trl/",
+   "type": "government"
+  },
+  {
+   "id": "dod-biomedical-trl",
+   "title": "Biomedical DoD Technology Readiness Levels: Medical Devices",
+   "publisher": "LinkedIn article summarizing the DoD Technology Readiness Assessment Deskbook",
+   "year": 2018,
+   "url": "https://www.linkedin.com/pulse/biomedical-dod-technology-readiness-levels-trls-hanson-md-mph",
+   "type": "secondary"
   },
   {
    "id": "fda-study-market",
@@ -2029,20 +1729,20 @@
    "type": "peer-reviewed"
   },
   {
+   "id": "bmj2025-parkinsons",
+   "title": "Cases of Parkinson's disease set to reach 25 million worldwide by 2050",
+   "publisher": "BMJ Group (press release on Su et al., BMJ 2025)",
+   "year": 2025,
+   "url": "https://bmjgroup.com/cases-of-parkinsons-disease-set-to-reach-25-million-worldwide-by-2050/",
+   "type": "secondary"
+  },
+  {
    "id": "su2025-neurologyadvisor",
    "title": "Parkinson Disease Prevalence Projected to Double by 2050 Due to Population Aging",
    "publisher": "Neurology Advisor (on Su et al., BMJ 2025)",
    "year": 2025,
    "url": "https://www.neurologyadvisor.com/news/parkinson-disease-prevalence-projected-double-2050-population-aging/",
    "type": "news"
-  },
-  {
-   "id": "cra2024-cns",
-   "title": "Are we in a golden decade of drug development for the central nervous system?",
-   "publisher": "Charles River Associates (citing BIO, Informa, QLS Advisors 2011–2020 data)",
-   "year": 2024,
-   "url": "https://media.crai.com/wp-content/uploads/2024/09/13110655/Approaching-the-final-frontier-golden-decade-of-drug-development-for-the-central-nervous-system-Sept2024.pdf",
-   "type": "report"
   },
   {
    "id": "fbr-review2026",
@@ -2077,14 +1777,6 @@
    "type": "peer-reviewed"
   },
   {
-   "id": "kubiak2019-prs",
-   "title": "Prophylactic Regenerative Peripheral Nerve Interfaces to Prevent Postamputation Pain",
-   "publisher": "Plastic and Reconstructive Surgery (Kubiak et al.)",
-   "year": 2019,
-   "url": "https://journals.lww.com/plasreconsurg/abstract/10.1097/prs.0000000000005922~prophylactic-regenerative-peripheral-nerve-interfaces-to?redirectionsource=fulltextview",
-   "type": "peer-reviewed"
-  },
-  {
    "id": "rpni-meta2026",
    "title": "Prophylactic Regenerative Peripheral Nerve Interfaces for Prevention of Postamputation Pain: A Systematic Review and Meta-Analysis",
    "publisher": "PubMed",
@@ -2093,12 +1785,20 @@
    "type": "peer-reviewed"
   },
   {
-   "id": "umich-rpni-spotlight",
-   "title": "Mind Control Prosthesis",
-   "publisher": "University of Michigan Engineering",
-   "year": 2020,
-   "url": "https://spotlight.engin.umich.edu/mind-control-prosthesis/",
-   "type": "news"
+   "id": "rpni-meta2026-pmc",
+   "title": "Prophylactic RPNI meta-analysis (full text)",
+   "publisher": "PubMed Central",
+   "year": 2026,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13466367/",
+   "type": "peer-reviewed"
+  },
+  {
+   "id": "biddiss2007-poi",
+   "title": "Upper limb prosthesis use and abandonment: a survey of the last 25 years",
+   "publisher": "Prosthetics and Orthotics International (Biddiss and Chau)",
+   "year": 2007,
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17979010/",
+   "type": "peer-reviewed"
   },
   {
    "id": "cullen2021-sciadv",
@@ -2123,6 +1823,14 @@
    "publisher": "Science Corporation",
    "year": 2024,
    "url": "https://science.xyz/news/biohybrid-neural-interfaces/",
+   "type": "company"
+  },
+  {
+   "id": "sciencecorp-neurosoft2026",
+   "title": "Science Corp. and Neurosoft Bioelectronics Announce BCI Ecosystem Partnership",
+   "publisher": "Science Corporation",
+   "year": 2026,
+   "url": "https://science.xyz/news/neurosoft-partnership/",
    "type": "company"
   },
   {
@@ -2199,6 +1907,14 @@
    "type": "peer-reviewed"
   },
   {
+   "id": "schlegel2023-preprint",
+   "title": "Whole-brain annotation and multi-connectome cell typing quantifies circuit stereotypy in Drosophila (preprint version)",
+   "publisher": "bioRxiv via PubMed Central",
+   "year": 2023,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10327018/",
+   "type": "preprint"
+  },
+  {
    "id": "microns2025-nature",
    "title": "Functional connectomics spanning multiple areas of mouse visual cortex",
    "publisher": "Nature (MICrONS Consortium)",
@@ -2248,6 +1964,14 @@
    "type": "company"
   },
   {
+   "id": "aws2025-e11",
+   "title": "Unlocking the brain's secrets: E11 Bio's brain circuit mapping dataset now on AWS Open Data",
+   "publisher": "AWS Public Sector Blog",
+   "year": 2025,
+   "url": "https://aws.amazon.com/blogs/publicsector/unlocking-the-brains-secrets-e11-bios-brain-circuit-mapping-dataset-now-on-aws-open-data/",
+   "type": "company"
+  },
+  {
    "id": "naturemethods2025-moy",
    "title": "Method of the Year 2025: electron microscopy-based connectomics",
    "publisher": "Nature Methods (editorial)",
@@ -2286,6 +2010,15 @@
    "year": 2023,
    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(23)00756-0",
    "type": "peer-reviewed"
+  },
+  {
+   "id": "flywire-site",
+   "title": "FlyWire",
+   "publisher": "FlyWire Consortium",
+   "year": 2026,
+   "url": "https://flywire.ai/",
+   "type": "company",
+   "note": "Project website; open data and tools."
   },
   {
    "id": "pf2026-adbs-gait",
@@ -2363,12 +2096,28 @@
    "type": "peer-reviewed"
   },
   {
+   "id": "weaver2009-va",
+   "title": "Bilateral deep brain stimulation vs best medical therapy (VA abstract)",
+   "publisher": "U.S. Department of Veterans Affairs HSR&D",
+   "year": 2009,
+   "url": "https://hsrd.research.va.gov/research/citations/abstract.cfm?Identifier=25573",
+   "type": "government"
+  },
+  {
    "id": "clinician-weaver",
    "title": "Deep Brain Stimulation for Parkinson's Disease: A Randomized, Controlled Study Answers Many Remaining Questions",
    "publisher": "Clinician.com",
    "year": 2009,
    "url": "https://www.clinician.com/articles/112675-deep-brain-stimulation-for-parkinson-s-disease-a-randomized-controlled-study-answers-many-remaining-questions",
    "type": "secondary"
+  },
+  {
+   "id": "deuschl2006-nejm",
+   "title": "Pallidal versus Subthalamic Deep-Brain Stimulation for Parkinson's Disease",
+   "publisher": "New England Journal of Medicine (Follett et al.)",
+   "year": 2010,
+   "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa0907083",
+   "type": "peer-reviewed"
   },
   {
    "id": "intrepid2020-lancetneurol",
@@ -2411,11 +2160,27 @@
    "type": "peer-reviewed"
   },
   {
+   "id": "snt-durability2025",
+   "title": "Durability of clinical benefit with Stanford Neuromodulation Therapy (SNT) in treatment-resistant depression",
+   "publisher": "Brain Stimulation",
+   "year": 2025,
+   "url": "https://www.brainstimjrnl.com/article/S1935-861X(25)00196-2/fulltext",
+   "type": "peer-reviewed"
+  },
+  {
    "id": "rtms-meta2026-jad",
    "title": "Protocol-level moderators of antidepressant efficacy in prefrontal rTMS: A sham-controlled meta-analysis of randomized trials",
    "publisher": "Journal of Affective Disorders",
    "year": 2026,
    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0165032726006567",
+   "type": "peer-reviewed"
+  },
+  {
+   "id": "rtms-nma2026",
+   "title": "Repetitive Transcranial Magnetic Stimulation for Major Depressive Disorder: A Systematic Review and Network Meta-Analysis",
+   "publisher": "PubMed",
+   "year": 2026,
+   "url": "https://pubmed.ncbi.nlm.nih.gov/42383744/",
    "type": "peer-reviewed"
   },
   {
@@ -2452,14 +2217,6 @@
    "type": "news"
   },
   {
-   "id": "broaden-ethics2024",
-   "title": "Deep brain stimulation for major depressive disorder: Continued access or abandonment?",
-   "publisher": "Deep Brain Stimulation (journal)",
-   "year": 2024,
-   "url": "https://www.sciencedirect.com/science/article/pii/S294966912400006X",
-   "type": "peer-reviewed"
-  },
-  {
    "id": "sahel2021-natmed",
    "title": "Partial recovery of visual function in a blind patient after optogenetic therapy",
    "publisher": "Nature Medicine (Sahel et al.)",
@@ -2477,20 +2234,47 @@
    "type": "secondary"
   },
   {
-   "id": "dwt2025-mindact",
-   "title": "U.S. Senators Propose 'MIND Act' to Study and Recommend National Standards for Protecting Consumers' Neural Data",
-   "publisher": "Davis Wright Tremaine",
-   "year": 2025,
-   "url": "https://www.dwt.com/blogs/privacy--security-law-blog/2025/10/senate-mind-act-neural-data-ftc-regulation",
-   "type": "secondary"
+   "id": "tms-phase-demo",
+   "title": "Interactive demo: timing TMS to the brain's own rhythm",
+   "publisher": "Our team",
+   "year": 2026,
+   "url": "tms-demo/index.html",
+   "type": "analysis",
+   "note": "Our own model and evaluation on recorded EEG; not peer reviewed."
   },
   {
-   "id": "dod-biomedical-trl",
-   "title": "Biomedical DoD Technology Readiness Levels: Medical Devices",
-   "publisher": "LinkedIn article summarizing the DoD Technology Readiness Assessment Deskbook",
+   "id": "zrenner2018-brs",
+   "title": "Real-time EEG-defined excitability states determine efficacy of TMS-induced plasticity in human motor cortex",
+   "publisher": "Brain Stimulation (Zrenner et al.)",
    "year": 2018,
-   "url": "https://www.linkedin.com/pulse/biomedical-dod-technology-readiness-levels-trls-hanson-md-mph",
-   "type": "secondary"
+   "url": "https://doi.org/10.1016/j.brs.2017.11.016",
+   "type": "peer-reviewed"
+  },
+  {
+   "id": "shirinpour2020-jne",
+   "title": "Experimental evaluation of methods for real-time EEG phase-specific transcranial magnetic stimulation",
+   "publisher": "Journal of Neural Engineering (Shirinpour et al.)",
+   "year": 2020,
+   "url": "https://doi.org/10.1088/1741-2552/ab9dba",
+   "type": "peer-reviewed"
+  },
+  {
+   "id": "madsen2019-brs",
+   "title": "No trace of phase: Corticomotor excitability is not tuned by phase of pericentral mu-rhythm",
+   "publisher": "Brain Stimulation (Madsen et al.)",
+   "year": 2019,
+   "url": "https://www.biorxiv.org/content/10.1101/513390.full.pdf",
+   "type": "peer-reviewed",
+   "note": "Links to the open preprint of the published paper."
+  },
+  {
+   "id": "bci-competition-iv-2a",
+   "title": "BCI Competition IV, data set 2a",
+   "publisher": "Graz University of Technology",
+   "year": 2008,
+   "url": "https://bbci.de/competition/iv/",
+   "type": "dataset",
+   "note": "Nine people, 22-channel EEG; the recordings used in our demo."
   }
  ]
 }

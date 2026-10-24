@@ -1,19 +1,18 @@
-# TMS timing demo (linked from page IV)
+# TMS timing demo (top of page IV)
 
-A standalone page for question IV, styled with the same tokens and fonts as `index.html`. It is linked from page IV only through `iv-content.json`; no other existing file was changed.
+The interactive demo appears at the top of page IV, and a fuller standalone write-up lives in this folder.
 
 | File | What it is |
 |---|---|
-| `index.html` | The demo page: interactive closed-loop player, results across 9 people, method, caveats, sources |
-| `data.js` | Generated data: a 30 s recorded EEG clip from held-out subject 8, pulse times for each system delay (AR forecast vs our personalized model), and the 9-subject results. Loaded with a `<script>` tag, so the page also works when opened straight from disk. |
+| `player.js` | The interactive player (delay buttons, EEG strips, landing dials). Shared by page IV and `index.html` here. Styles are prefixed `tms-` and use the site's colour tokens. |
+| `data.js` | Generated data: a 30 s recorded EEG clip from held-out subject 8, pulse times for each system delay (AR forecast vs our personalized model), and the 9-subject results. |
+| `index.html` | Standalone page: the same player plus headline numbers, the latency chart, method, caveats and sources. Linked from page IV. |
 
-## Where page IV points to it
+## How page IV shows it
 
-- `fields` → stimulation → criterion 5 slide: three "Our demo" evidence items plus a "The catch" item, and one caveat.
-- `convergence.explanation`: one line under "when to stimulate".
-- `sources`: `tms-phase-demo` (URL `tms-demo/index.html`, the link readers click), plus `zrenner2018-brs`, `shirinpour2020-jne`, `madsen2019-brs`, `bci-competition-iv-2a`.
-
-`iv.js` renders JSON text only (no images or embeds), so the demo is reached through its entry in the page IV source list.
+- `iv-content.json` has a `demo` block (kicker, heading, lede, notes, link to the full page, and the two scripts to load). Edit the words there. Delete the block to remove the demo from page IV.
+- `iv.js` renders that block as the first section of page IV, loads `data.js` and `player.js`, and mounts the player. The player only animates while it is on screen.
+- Stimulation criterion 5 has three "Our demo" evidence items, a counterpoint (Madsen 2019) and a caveat. The convergence section has one line on timing. All cite sources added at the end of `sources`.
 
 ## Regenerating data.js
 

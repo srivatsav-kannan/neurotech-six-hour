@@ -53,29 +53,6 @@ button { font: inherit; cursor: pointer; color: var(--ink); background: transpar
 svg, canvas { display: block; max-width: 100%; }
 .caption { color: var(--ink-2); font-size: 17px; margin: 10px 0 0; max-width: 820px; }
 
-/* player */
-.demo { border: 1px solid var(--ink); margin-top: 28px; background: #f8f4ec; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 16px; border-bottom: 1px solid var(--ink); align-items: center; }
-.chips .sc { color: var(--ink-2); font-size: 16px; margin-right: 4px; }
-.chip { font-size: 16px; padding: 3px 10px; border-color: var(--rule); background: var(--paper); min-width: 44px; min-height: 32px; }
-.chip:hover { border-color: var(--ink); }
-.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.play { margin-left: auto; padding: 3px 16px; font-size: 16px; min-height: 32px; background: var(--ink); color: var(--paper); }
-.strip { padding: 14px 16px 10px; border-bottom: 1px solid var(--rule); }
-.strip .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
-.strip .name { font-size: 19px; }
-.strip .name i { font-style: normal; display: inline-block; width: 12px; height: 12px; margin-right: 8px; vertical-align: 0; }
-.strip .count { color: var(--ink-2); font-size: 17px; }
-.strip .count b { color: var(--ink); font-weight: 600; }
-.strip .row { display: grid; grid-template-columns: 1fr 132px; gap: 14px; align-items: center; }
-.strip canvas { width: 100%; height: 132px; }
-.scrub { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--ink); }
-.scrub input { flex: 1; accent-color: var(--ink); }
-.scrub .t { color: var(--ink-2); font-size: 16px; min-width: 120px; text-align: right; font-variant-numeric: tabular-nums; }
-.verdict { padding: 14px 16px; margin: 0; min-height: 56px; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 20px; color: var(--ink-2); font-size: 16px; margin-top: 10px; }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-
 /* big numbers, same grid as "What to build" */
 .grid4 { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); margin-top: 20px; }
 .grid4 > div { padding: 20px 22px; }
@@ -110,13 +87,9 @@ footer .wrap { display: flex; align-items: center; height: 100%; color: var(--in
   body { font-size: 18px; }
   nav a { padding: 6px 8px; }
   .top .wrap { height: auto; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; gap: 6px 16px; }
-  .strip .row { grid-template-columns: 1fr; }
-  .strip .dial { width: 132px; margin: 0 auto; }
-  .play { margin-left: 0; }
   .grid4 { grid-template-columns: 1fr; }
   .grid4 > div:nth-child(2n) { border-left: 0; }
   .grid4 > div:nth-child(n+2) { border-top: 1px solid var(--rule); }
-  .scrub .t { min-width: 0; }
 }
 </style>
 </head>
@@ -139,33 +112,7 @@ footer .wrap { display: flex; align-items: center; height: 100%; color: var(--in
     <h1>Timing TMS to the brain’s own rhythm</h1>
     <p class="lede">The motor cortex hums at about ten beats a second, a wave called the mu rhythm. Magnetic pulses that land on the wave’s trough have produced stronger effects than pulses at random times. But no one can see where a wave is until it has passed, and every system takes time to fire. So we trained a small neural network to predict the wave ahead of time.</p>
 
-    <div class="demo" id="player">
-      <div class="chips" role="group" aria-label="System delay">
-        <span class="sc">System delay</span>
-        <span id="lat-buttons"></span>
-        <button class="play" id="play" aria-label="Pause">Pause</button>
-      </div>
-      <div class="strip">
-        <div class="head"><span class="name"><i style="background:var(--navy)"></i>Standard method: AR forecast</span><span class="count" id="count-ar" aria-live="off"></span></div>
-        <div class="row"><canvas id="cv-ar" aria-label="EEG trace with pulses timed by the standard method"></canvas><svg class="dial" id="dial-ar" viewBox="0 0 132 132" role="img" aria-label="Where the standard method's pulses landed"></svg></div>
-      </div>
-      <div class="strip">
-        <div class="head"><span class="name"><i style="background:var(--accent)"></i>Ours: personalized neural network</span><span class="count" id="count-ours" aria-live="off"></span></div>
-        <div class="row"><canvas id="cv-ours" aria-label="EEG trace with pulses timed by our model"></canvas><svg class="dial" id="dial-ours" viewBox="0 0 132 132" role="img" aria-label="Where our model's pulses landed"></svg></div>
-      </div>
-      <div class="scrub">
-        <label for="scrub" class="sc" style="color:var(--ink-2);font-size:16px">Time</label>
-        <input type="range" id="scrub" min="0" max="30" step="0.02" value="0">
-        <span class="t" id="tlabel"></span>
-      </div>
-      <p class="verdict" id="verdict" aria-live="polite"></p>
-    </div>
-    <div class="legend">
-      <span><svg width="26" height="10"><line x1="0" y1="5" x2="26" y2="5" stroke="#b9b09c" stroke-width="1.2"/></svg>raw EEG</span>
-      <span><svg width="26" height="10"><line x1="0" y1="5" x2="26" y2="5" stroke="#1d1b18" stroke-width="2.2"/></svg>true mu rhythm, computed afterwards</span>
-      <span><svg width="14" height="12"><path d="M1 1h12L7 11z" fill="#1d1b18"/></svg>pulse within 45° of the trough</span>
-      <span><svg width="14" height="12"><path d="M1.5 1.5h11L7 10.5z" fill="none" stroke="#1d1b18" stroke-width="1.5"/></svg>pulse that missed</span>
-    </div>
+    <div id="player-mount"></div>
     <p class="caption" id="clipnote"></p>
 
     <section>
@@ -215,151 +162,15 @@ footer .wrap { display: flex; align-items: center; height: 100%; color: var(--in
 <footer><div class="wrap">Demo built for the Neurotech &amp; BCI track. Recorded EEG; no live stimulation.</div></footer>
 
 <script src="data.js"></script>
+<script src="player.js"></script>
 <script>
 (() => {
   const D = window.TMS_DEMO;
-  const INK = '#1d1b18', INK2 = '#5d574c', RULE = '#cdc3ae', RAW = '#b9b09c', PAPER2 = '#ebe4d4', BG = '#f8f4ec';
+  const INK = '#1d1b18', INK2 = '#5d574c', RULE = '#cdc3ae', BG = '#f8f4ec';
   const COL = { ar: '#1f3d5a', ours: '#7b2d26' };
-  const FS = D.fs, N = D.mu.length, DUR = N / FS;
-  let WIN = 2.5;
-  const TARGET = Math.PI;
-  const wrapA = a => Math.atan2(Math.sin(a), Math.cos(a));
-  const isHit = ph => Math.abs(wrapA(ph - TARGET)) < Math.PI / 4;
   const pct = x => Math.round(100 * x) + '%';
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = id => document.getElementById(id);
-
-  let lat = 40, tNow = WIN, playing = !reduce, last = null;
-
-  // ---------- latency chips ----------
-  $('lat-buttons').innerHTML = D.latencies.map(l =>
-    `<button class="chip" data-lat="${l}" aria-pressed="${l === lat}">${l} ms</button>`).join(' ');
-  $('lat-buttons').addEventListener('click', e => {
-    const b = e.target.closest('[data-lat]'); if (!b) return;
-    lat = +b.dataset.lat;
-    document.querySelectorAll('[data-lat]').forEach(x => x.setAttribute('aria-pressed', x === b));
-    draw(true);
-  });
-  const playBtn = $('play');
-  const setPlay = p => { playing = p; playBtn.textContent = p ? 'Pause' : 'Play'; playBtn.setAttribute('aria-label', p ? 'Pause' : 'Play'); if (p) { last = null; requestAnimationFrame(tick); } };
-  playBtn.addEventListener('click', () => setPlay(!playing));
-  const scrub = $('scrub');
-  scrub.max = DUR.toFixed(2);
-  scrub.addEventListener('input', () => { tNow = Math.max(0.05, +scrub.value); draw(true); });
-
-  // ---------- canvases ----------
-  const cvs = { ar: $('cv-ar'), ours: $('cv-ours') };
-  function fit() {
-    const dpr = window.devicePixelRatio || 1;
-    for (const c of Object.values(cvs)) {
-      const r = c.getBoundingClientRect();
-      c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr);
-      c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    WIN = cvs.ar.clientWidth < 560 ? 1.5 : 2.5;
-    if (tNow < WIN) tNow = WIN;
-  }
-  new ResizeObserver(() => { fit(); draw(false); }).observe(cvs.ar);
-
-  function drawStrip(key) {
-    const c = cvs[key], ctx = c.getContext('2d');
-    const w = c.clientWidth, h = c.clientHeight;
-    ctx.clearRect(0, 0, w, h);
-    const t1 = Math.max(tNow, WIN), t0 = t1 - WIN;
-    const X = t => (t - t0) / WIN * w;
-    const mid = h * 0.5, sy = h * 0.40 / 1000;
-    const Y = v => mid - Math.max(-1250, Math.min(1250, v)) * sy;
-    // second ticks
-    ctx.strokeStyle = RULE; ctx.fillStyle = INK2; ctx.lineWidth = 1; ctx.font = '13px "EB Garamond", Georgia, serif';
-    for (let s = Math.ceil(t0); s <= t1; s++) {
-      const x = Math.round(X(s)) + 0.5;
-      ctx.beginPath(); ctx.moveTo(x, h - 14); ctx.lineTo(x, h - 8); ctx.stroke();
-      ctx.fillText(s + ' s', Math.min(x + 3, w - 24), h - 1);
-    }
-    const i0 = Math.max(0, Math.floor(t0 * FS)), i1 = Math.min(N - 1, Math.floor(tNow * FS));
-    const line = (arr, col, lw) => {
-      ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.lineJoin = 'round'; ctx.beginPath();
-      for (let i = i0; i <= i1; i++) { const x = X(i / FS), y = Y(arr[i]); i === i0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
-      ctx.stroke();
-    };
-    line(D.raw, RAW, 1.1);
-    line(D.mu, INK, 2.2);
-    // "now" edge
-    if (tNow < DUR) { ctx.strokeStyle = RULE; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(X(tNow) - 0.5, 4); ctx.lineTo(X(tNow) - 0.5, h - 18); ctx.stroke(); ctx.setLineDash([]); }
-    // pulses
-    for (const [s, ph] of D.pulses[lat][key]) {
-      if (s < i0 || s > i1) continue;
-      const x = X(s / FS), y = Y(D.mu[s]);
-      ctx.beginPath(); ctx.moveTo(x - 6.5, y - 13); ctx.lineTo(x + 6.5, y - 13); ctx.lineTo(x, y - 1.5); ctx.closePath();
-      if (isHit(ph)) { ctx.fillStyle = COL[key]; ctx.fill(); ctx.strokeStyle = BG; ctx.lineWidth = 1; ctx.stroke(); }
-      else { ctx.fillStyle = BG; ctx.fill(); ctx.strokeStyle = COL[key]; ctx.lineWidth = 1.8; ctx.stroke(); }
-    }
-  }
-
-  // ---------- dials ----------
-  const NB = 24, CX = 66, CY = 66, R0 = 7, R1 = 52;
-  const pt = (a, r) => [CX + r * Math.sin(a), CY - r * Math.cos(a)];   // a = 0 at top, clockwise
-  function wedge(a0, a1, r0, r1) {
-    const [x0, y0] = pt(a0, r0), [x1, y1] = pt(a0, r1), [x2, y2] = pt(a1, r1), [x3, y3] = pt(a1, r0);
-    return `M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}A${r1} ${r1} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}L${x3.toFixed(1)} ${y3.toFixed(1)}A${r0} ${r0} 0 0 0 ${x0.toFixed(1)} ${y0.toFixed(1)}Z`;
-  }
-  function drawDial(key, list) {
-    const cnt = new Array(NB).fill(0);
-    for (const ph of list) { const a = wrapA(ph - TARGET); cnt[Math.min(NB - 1, Math.floor((a + Math.PI) / (2 * Math.PI) * NB))]++; }
-    const mx = Math.max(4, ...cnt);
-    let s = `<path d="${wedge(-Math.PI / 4, Math.PI / 4, 0.01, R1 + 4)}" fill="${PAPER2}"/>`;
-    s += `<circle cx="${CX}" cy="${CY}" r="${R1}" fill="none" stroke="${RULE}"/><circle cx="${CX}" cy="${CY}" r="${(R0 + R1) / 2}" fill="none" stroke="${RULE}" stroke-dasharray="2 3"/>`;
-    cnt.forEach((n, i) => {
-      if (!n) return;
-      const a0 = -Math.PI + i * 2 * Math.PI / NB, a1 = a0 + 2 * Math.PI / NB;
-      s += `<path d="${wedge(a0 + 0.02, a1 - 0.02, R0, R0 + (R1 - R0) * n / mx)}" fill="${COL[key]}"/>`;
-    });
-    s += `<text x="${CX}" y="9" text-anchor="middle" font-size="12" fill="${INK2}" font-family="EB Garamond, serif">trough</text>`;
-    s += `<text x="${CX}" y="130" text-anchor="middle" font-size="12" fill="${INK2}" font-family="EB Garamond, serif">peak</text>`;
-    $('dial-' + key).innerHTML = s;
-  }
-
-  // ---------- counters + verdict ----------
-  const tLabel = $('tlabel');
-  function draw(updateVerdict) {
-    const upto = Math.floor(tNow * FS);
-    const stats = {};
-    for (const key of ['ar', 'ours']) {
-      drawStrip(key);
-      const seen = D.pulses[lat][key].filter(([s]) => s <= upto).map(([, ph]) => ph);
-      const hits = seen.filter(isHit).length;
-      stats[key] = { hits, n: seen.length };
-      $('count-' + key).innerHTML = seen.length ? `<b>${hits} of ${seen.length}</b> on target (${pct(hits / seen.length)})` : 'waiting for the first pulse';
-      drawDial(key, seen);
-    }
-    scrub.value = tNow.toFixed(2);
-    tLabel.textContent = `${tNow.toFixed(1)} of ${DUR.toFixed(0)} s`;
-    if (updateVerdict || !playing) verdict(stats);
-  }
-  function verdict(st) {
-    const k = D.latencies.indexOf(lat), R = D.results;
-    const all = `Across all 9 people at this delay: ours ${pct(R.cnn_personal.mean[k])}, standard ${pct(R.ar.mean[k])}, untimed TMS 25%.`;
-    const clip = st.ours.n && st.ar.n ? `In this clip so far, ours put ${st.ours.hits} of ${st.ours.n} pulses on target and the standard method ${st.ar.hits} of ${st.ar.n}. ` : '';
-    $('verdict').textContent = `${lat} ms delay. ${clip}${all}`;
-  }
-  let vt = 0;
-  function tick(ts) {
-    if (!playing) return;
-    if (last !== null) tNow += Math.min(0.1, (ts - last) / 1000);
-    last = ts;
-    if (tNow > DUR) tNow = WIN;
-    draw(false);
-    if (ts - vt > 1000) { vt = ts; verdict(currentStats()); }
-    requestAnimationFrame(tick);
-  }
-  function currentStats() {
-    const upto = Math.floor(tNow * FS), st = {};
-    for (const key of ['ar', 'ours']) {
-      const seen = D.pulses[lat][key].filter(([s]) => s <= upto);
-      st[key] = { hits: seen.filter(([, ph]) => isHit(ph)).length, n: seen.length };
-    }
-    return st;
-  }
+  TMSDemo.mount($('player-mount'), D);
   $('clipnote').textContent = `Recorded EEG from person ${D.subject} of the BCI Competition IV 2a data set, a session the model never trained on. This ${D.seconds}-second clip is typical rather than the best one: we picked the 70th percentile of mu strength. The system only fires when the rhythm is strong.`;
 
   // ---------- big numbers ----------
@@ -414,10 +225,6 @@ footer .wrap { display: flex; align-items: center; height: 100%; color: var(--in
       `<tr><td>Untimed TMS</td>${L.map(() => '<td>25%</td>').join('')}</tr>`;
   })();
 
-  fit();
-  draw(true);
-  if (playing) requestAnimationFrame(tick);
-  else { playBtn.textContent = 'Play'; playBtn.setAttribute('aria-label', 'Play'); }
 })();
 </script>
 </body>
